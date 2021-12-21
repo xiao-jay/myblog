@@ -10,11 +10,11 @@ title: mysql索引
 
 
 
-![](D:\Users\David\Desktop\mystroy\themes\fluid\source\img\联合索引.png)
+![](http://hkctfsys.com/img/%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95.png)
 
 聚簇索引：数据存储和索引放一块，b+树叶子节点存放的是数据表的行记录，可以理解成将数据存储和索引放到了一块,这是主键索引，因为InnoDB数据文件本身要按主键聚集，所以InnoDB要求必须有主键，如果没有就自动生成一个隐含的字段作为主键
 
-![](D:\Users\David\Desktop\mystroy\themes\fluid\source\img\innode主键索引.png)
+![](http://hkctfsys.com/img/innode%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95.png)
 
 为什么mysql表要有一个自增的id主键，因为mysql索引用b+数，得是一个递增的，因为如果不递增增加数据的话得裂表影响效率，而且不建议使用太长的字段作为主键。
 

@@ -24,7 +24,7 @@ title: B树、B+树、红黑树、AVL树
 
 2-3树是B树的一种特例，二叉搜索树搜索效率高，但是为了保持平衡需要的代价太大，所以人想出了一个结点允许多个值的数据结构-B树
 
-#### ![B树](/home/david/Desktop/HTML/my storys/hexo/themes/fluid/source/img\B树.png)
+ ![B树](http://hkctfsys.com/img/B%E6%A0%91.png)
 
 ##### 特点：
 
@@ -34,7 +34,7 @@ title: B树、B+树、红黑树、AVL树
 
 #### B+树
 
-![b+树png](/home/david/Desktop/HTML/my storys/hexo/themes/fluid/source/img/b加树.png)
+![b+树png](http://hkctfsys.com/img/b%E5%8A%A0%E6%A0%91.png)
 
 ##### 特点：
 

@@ -10,7 +10,7 @@ title: TCP拥塞处理
 
 ​	网络中对某一资源的需求量超过该资源所提供的可用部分，网络性能就会变坏，这种叫做网络拥塞，若出现拥塞不进行控制，随着网络请求的增加会导致吞吐量越来越小，最后会导致吞吐量为0，形成死锁，TCP拥塞控制就是要解决这个问题。
 
-![tcp拥塞控制](/home/david/Desktop/HTML/my storys/hexo/themes/fluid/source/img/tcp拥塞控制.png)
+![tcp拥塞控制](http://hkctfsys.com/img/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6.png)
 
 ##### TCP拥塞控制
 

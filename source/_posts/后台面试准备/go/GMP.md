@@ -8,7 +8,7 @@ title: GMP
 
 G是goroutine,M是内核线程的抽象，P是逻辑处理器，提供执行一个go语言代码片段所需要的资源，内存分配状态，任务队列（G），存储了所有需要它来调度的G，可以用户使用gomaxprocs来设置。就是讲golang怎么从cup到实现goroutine
 
-![](img/GMP.jfif)
+![](http://hkctfsys.com/img/GMP.jfif)
 
 2、如果某个M陷入阻塞如何处理？
 

@@ -20,11 +20,9 @@ ssl由权威机构颁发，ssl是一个非对称加密，有一个公钥，和�
 
 3、通信使用明文，可能信息被窃听
 
-![http请求报文](/home/david/Desktop/HTML/my storys/hexo/themes/fluid/source/img\http请求报文.png)
+![http请求报文](http://hkctfsys.com/img/http%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png)
 
-
-
-![http报文](/home/david/Desktop/HTML/my storys/hexo/themes/fluid/source/img/http报文.png)
+![http报文](http://hkctfsys.com/img/http%E6%8A%A5%E6%96%87.png)
 
 #### http常见状态码
 
