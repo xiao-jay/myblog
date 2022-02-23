@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://hkctfsys.com/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
+  <link rel="icon" type="image/png" href="http://hkctfsys.com/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>1085 PAT单位排行 - My Story</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>My Story</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-21 21:37" pubdate>
+        2022年1月21日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">1085 PAT单位排行</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h3 id="PAT单位排行"><a href="#PAT单位排行" class="headerlink" title="PAT单位排行"></a><font size=6px>PAT单位排行</font></h3><h4 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h4><p>每次 PAT 考试结束后，考试中心都会发布一个考生单位排行榜。本题就请你实现这个功能。</p>
+<h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3><p>输入第一行给出一个正整数 N（≤105），即考生人数。随后 N 行，每行按下列格式给出一个考生的信息：</p>
+<pre><code class="hljs">准考证号 得分 学校</code></pre>
+
+<p>其中<code>准考证号</code>是由 6 个字符组成的字符串，其首字母表示考试的级别：<code>B</code>代表乙级，<code>A</code>代表甲级，<code>T</code>代表顶级；<code>得分</code>是 [0, 100] 区间内的整数；<code>学校</code>是由不超过 6 个英文字母组成的单位码（大小写无关）。注意：题目保证每个考生的准考证号是不同的。</p>
+<h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>首先在一行中输出单位个数。随后按以下格式非降序输出单位的排行榜：</p>
+<pre><code class="hljs">排名 学校 加权总分 考生人数</code></pre>
+
+<p>其中<code>排名</code>是该单位的排名（从 1 开始）；<code>学校</code>是全部按小写字母输出的单位码；<code>加权总分</code>定义为<code>乙级总分/1.5 + 甲级总分 + 顶级总分*1.5</code>的<strong>整数部分</strong>；<code>考生人数</code>是该属于单位的考生的总人数。</p>
+<p>学校首先按加权总分排行。如有并列，则应对应相同的排名，并按考生人数升序输出。如果仍然并列，则按单位码的字典序输出。</p>
+<h3 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h3><pre><code class="hljs in">10
+A57908 85 Au
+B57908 54 LanX
+A37487 60 au
+T28374 67 CMU
+T32486 24 hypu
+A66734 92 cmu
+B76378 71 AU
+A47780 45 lanx
+A72809 100 pku
+A03274 45 hypu</code></pre>
+
+<h3 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h3><pre><code class="hljs out">5
+1 cmu 192 2
+1 au 192 3
+3 pku 100 1
+4 hypu 81 2
+4 lanx 81 2</code></pre>
+
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h4><p>实现思路：这里从一开始就摒弃了在输入的过程中进行学校控制，即循环对已存在学校代码进行匹配的算法，因为前面有题验证过，会导致超时，这里采用了另外的方法，即先将所有数据输入，然后依据学校代码排序，这样相同的学校必定相邻，直接循环验证即可，不同的学校存放在结果数组，相同的就将分数相加，最后得到结果数组，再进行快速排序，即可。最后一题完美依次通过，哈哈。</p>
+<p>1.定义学校结构体，包含学校代码，分数，学生人数；</p>
+<p>2.定义指定数量的结构体数组两个，一个存放输入数据，一个存放结果数据，都分别初始化；</p>
+<p>3.逐个输入数据，过程中把输入分数直接进行加权，学生数统一置为1；</p>
+<p>4.按照学校代码进行快速排序；</p>
+<p>5.遍历数组，按照前后项是否相等决定是向结果数组中写入新学校还是增加旧学校分数，得到结果数组；</p>
+<p>6.按照学校分数、考生人数、学校字典序进行快速排序；</p>
+<p>7.输出。</p>
+<h5 id="说说踩过的坑："><a href="#说说踩过的坑：" class="headerlink" title="说说踩过的坑："></a>说说踩过的坑：</h5><p>1、最后两个都是段错误，怎么样都找不出错误，段错误先找是否是数组越界，然后后来看别人知道<strong>把c++的cin和cout全部换成scanf和printf就可以</strong></p>
+<p>2、两个字符串的比较，不能直接比较，因为字符串是地址，比较是比较地址，而这两个地址是不一样的，所以就算名字一样地址不一样就是不一样，得用strcmp，并且字符串不能赋值给字符串，得用strcpy。</p>
+<p>3、计算的综合成绩得用小数保存，最后输出用int</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4><pre><code class="hljs go">#include&lt;stdio.h&gt;
+#include&lt;<span class="hljs-type">string</span>.h&gt;
+#include &lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std; 
+<span class="hljs-keyword">struct</span> Input&#123;
+	char id[<span class="hljs-number">6</span>];
+	double score;
+	char school[<span class="hljs-number">6</span>];
+&#125;;
+<span class="hljs-keyword">struct</span> Output&#123;
+	char id[<span class="hljs-number">6</span>];
+	double score;
+	<span class="hljs-type">int</span> num;
+	<span class="hljs-type">int</span> xuhao;
+&#125;;
+<span class="hljs-comment">//把所有的学校名都改成小写 </span>
+void tolower(char *a)&#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++)&#123;
+		<span class="hljs-keyword">if</span> (a[i]&gt;=<span class="hljs-string">&#x27;A&#x27;</span>&amp;&amp;a[i]&lt;=<span class="hljs-string">&#x27;Z&#x27;</span>)&#123;
+			a[i]+=<span class="hljs-number">32</span>;
+		&#125;
+	&#125;
+&#125;
+<span class="hljs-comment">//计算分数，记得用double最后再相加 </span>
+double Calculate_score(char *id,double score)&#123;
+    <span class="hljs-keyword">if</span> (strlen(id)&gt;<span class="hljs-number">0</span>)&#123;
+    	<span class="hljs-keyword">if</span> (id[<span class="hljs-number">0</span>]==<span class="hljs-string">&#x27;A&#x27;</span>)&#123;
+			<span class="hljs-keyword">return</span> score;
+		&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (id[<span class="hljs-number">0</span>]==<span class="hljs-string">&#x27;B&#x27;</span>)&#123;
+			<span class="hljs-keyword">return</span> score/<span class="hljs-number">1.5</span>;
+		&#125;<span class="hljs-keyword">else</span>&#123;
+			<span class="hljs-keyword">return</span> score*<span class="hljs-number">1.5</span>;
+		&#125;
+	&#125;
+&#125;
+<span class="hljs-type">bool</span> cmp(<span class="hljs-keyword">struct</span> Output a,<span class="hljs-keyword">struct</span> Output b)&#123;
+	<span class="hljs-keyword">if</span>(<span class="hljs-type">int</span>(a.score)!=<span class="hljs-type">int</span>(b.score))&#123;
+		<span class="hljs-keyword">return</span> a.score&gt;b.score;
+	&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a.num!=b.num) &#123;
+		<span class="hljs-keyword">return</span> a.num&lt;b.num;
+	&#125;<span class="hljs-keyword">else</span>&#123;
+		<span class="hljs-keyword">return</span> strcmp(a.id,b.id)&lt;<span class="hljs-number">0</span>;
+		<span class="hljs-comment">//别用下面的那个，字符串比较无脑用strcp </span>
+		<span class="hljs-comment">//return a.id&lt;b.id;</span>
+	&#125;
+&#125;
+<span class="hljs-type">bool</span> cmp1(<span class="hljs-keyword">struct</span> Input a,<span class="hljs-keyword">struct</span> Input b) &#123;
+	<span class="hljs-keyword">return</span> strcmp(a.school,b.school)&lt;<span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-type">int</span> main()&#123;
+	<span class="hljs-type">int</span> n,i,k=<span class="hljs-number">0</span>;
+	scanf(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);
+	<span class="hljs-keyword">struct</span> Output output[n];
+	<span class="hljs-keyword">struct</span> Input input[n];
+	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+		output[i].num=<span class="hljs-number">0</span>;
+		output[i].score=<span class="hljs-number">0</span>;
+	&#125;
+	i=<span class="hljs-number">0</span>;
+	<span class="hljs-comment">//输入数据 </span>
+	while(i&lt;n)&#123;
+		scanf(<span class="hljs-string">&quot;%s%lf%s&quot;</span>,input[i].id,&amp;input[i].score,input[i].school);
+		tolower(input[i].school);
+		i++;
+	&#125;
+	sort(input,input+n,cmp1);
+<span class="hljs-comment">//为了测试数据而输出 </span>
+<span class="hljs-comment">//	for(i=0;i&lt;n;i++)&#123;</span>
+<span class="hljs-comment">//		printf(&quot;%s\n&quot;,input[i].school);</span>
+<span class="hljs-comment">//	&#125;</span>
+	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+		<span class="hljs-keyword">if</span>(i==<span class="hljs-number">0</span>)&#123;
+			strcpy(output[i].id,input[i].school);
+		&#125;<span class="hljs-keyword">else</span>&#123;
+			<span class="hljs-keyword">if</span>(strcmp(input[i].school,input[i<span class="hljs-number">-1</span>].school)!=<span class="hljs-number">0</span>)&#123;
+				k++;
+				strcpy(output[k].id,input[i].school);
+			&#125;
+		&#125;
+		output[k].num++;
+		output[k].score+=Calculate_score(input[i].id,input[i].score);	
+	&#125;
+	k++;
+	sort(output,output+k,cmp);
+	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;k;i++)&#123;
+		output[i].xuhao=i+<span class="hljs-number">1</span>;
+	&#125;
+	printf(<span class="hljs-string">&quot;%d\n&quot;</span>,k);
+	<span class="hljs-comment">//输出环节 </span>
+	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;k;i++)&#123;
+		<span class="hljs-keyword">if</span>(i!=<span class="hljs-number">0</span>)&#123;
+			<span class="hljs-keyword">if</span> (<span class="hljs-type">int</span>(output[i].score)==<span class="hljs-type">int</span>(output[i<span class="hljs-number">-1</span>].score))&#123;
+				output[i].xuhao=output[i<span class="hljs-number">-1</span>].xuhao;
+				printf(<span class="hljs-string">&quot;%d &quot;</span>,output[i<span class="hljs-number">-1</span>].xuhao);
+			&#125;<span class="hljs-keyword">else</span>&#123;
+				printf(<span class="hljs-string">&quot;%d &quot;</span>,output[i].xuhao);
+			&#125;
+		&#125;<span class="hljs-keyword">else</span>&#123;
+			printf(<span class="hljs-string">&quot;%d &quot;</span>,output[i].xuhao);
+		&#125;
+		printf(<span class="hljs-string">&quot;%s %d %d\n&quot;</span>,output[i].id,<span class="hljs-type">int</span>(output[i].score),output[i].num);
+		<span class="hljs-comment">//cout &lt;&lt;output[i].id&lt;&lt;&quot; &quot;&lt;&lt;int(output[i].score)&lt;&lt;&quot; &quot;&lt;&lt;output[i].num&lt;&lt;endl;</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
+
+<p>参考地址:<a target="_blank" rel="noopener" href="https://blog.csdn.net/bawangtu/article/details/81544845">https://blog.csdn.net/bawangtu/article/details/81544845</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/PAT%E5%88%B7%E9%A2%98/">PAT刷题</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/c/">c</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/21/PAT%E4%B9%99/1082%20%E5%B0%84%E5%87%BB%E6%AF%94%E8%B5%9B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">1082 射击比赛</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/21/PAT%E4%B9%99/1079%20%E5%BB%B6%E8%BF%9F%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0/">
+                        <span class="hidden-mobile">1079 延迟的回文数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://example.com/2022/01/21/PAT%E4%B9%99/1085%20PAT%E5%8D%95%E4%BD%8D%E6%8E%92%E8%A1%8C/';
+        this.page.identifier = '/2022/01/21/PAT%E4%B9%99/1085%20PAT%E5%8D%95%E4%BD%8D%E6%8E%92%E8%A1%8C/';
+      };
+      function loadDisqus() {
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }
+      waitElementVisible('disqus_thread', loadDisqus);
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">浙ICP备2020038092号</a>
+    
+      <a
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        rel="nofollow noopener"
+        class="beian-police"
+        target="_blank"
+      >
+        <span class="beian-police-sep">&nbsp;|&nbsp;</span>
+        
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+        <span>浙ICP备2020038092号</span>
+      </a>
+     
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "1085 PAT单位排行&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://hkctfsys.com/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
+  <link rel="icon" type="image/png" href="http://hkctfsys.com/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>2029. 石子游戏 IX - My Story</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>My Story</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-21 21:37" pubdate>
+        2022年1月21日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">2029. 石子游戏 IX</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h3 id="石子游戏-IX"><a href="#石子游戏-IX" class="headerlink" title="石子游戏 IX"></a><font size=6px>石子游戏 IX</font></h3><h4 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h4><p>Alice 和 Bob 再次设计了一款新的石子游戏。现有一行 n 个石子，每个石子都有一个关联的数字表示它的价值。给你一个整数数组 stones ，其中 stones[i] 是第 i 个石子的价值。</p>
+<p>Alice 和 Bob 轮流进行自己的回合，Alice 先手。每一回合，玩家需要从 stones 中移除任一石子。</p>
+<p>如果玩家移除石子后，导致 所有已移除石子 的价值 总和 可以被 3 整除，那么该玩家就 输掉游戏 。<br>如果不满足上一条，且移除后没有任何剩余的石子，那么 Bob 将会直接获胜（即便是在 Alice 的回合）。<br>假设两位玩家均采用 最佳 决策。如果 Alice 获胜，返回 true ；如果 Bob 获胜，返回 false 。</p>
+<p>示例 1：</p>
+<p>输入：stones &#x3D; [2,1]<br>输出：true<br>解释：游戏进行如下：</p>
+<ul>
+<li>回合 1：Alice 可以移除任意一个石子。</li>
+<li>回合 2：Bob 移除剩下的石子。<br>已移除的石子的值总和为 1 + 2 &#x3D; 3 且可以被 3 整除。因此，Bob 输，Alice 获胜。<br>示例 2：</li>
+</ul>
+<p>输入：stones &#x3D; [2]<br>输出：false<br>解释：Alice 会移除唯一一个石子，已移除石子的值总和为 2 。<br>由于所有石子都已移除，且值总和无法被 3 整除，Bob 获胜。<br>示例 3：</p>
+<p>输入：stones &#x3D; [5,1,2,4,3]<br>输出：false<br>解释：Bob 总会获胜。其中一种可能的游戏进行方式如下：</p>
+<ul>
+<li>回合 1：Alice 可以移除值为 1 的第 2 个石子。已移除石子值总和为 1 。</li>
+<li>回合 2：Bob 可以移除值为 3 的第 5 个石子。已移除石子值总和为 &#x3D; 1 + 3 &#x3D; 4 。</li>
+<li>回合 3：Alices 可以移除值为 4 的第 4 个石子。已移除石子值总和为 &#x3D; 1 + 3 + 4 &#x3D; 8 。</li>
+<li>回合 4：Bob 可以移除值为 2 的第 3 个石子。已移除石子值总和为 &#x3D; 1 + 3 + 4 + 2 &#x3D; 10.</li>
+<li>回合 5：Alice 可以移除值为 5 的第 1 个石子。已移除石子值总和为 &#x3D; 1 + 3 + 4 + 2 + 5 &#x3D; 15.<br>Alice 输掉游戏，因为已移除石子值总和（15）可以被 3 整除，Bob 获胜</li>
+</ul>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h4><p>s&#x3D;0 的石子数量为偶数：此时等价于没有 s &#x3D; 0s&#x3D;0 的石子，我们只需要关心 s &#x3D; 1s&#x3D;1 和 s &#x3D; 2s&#x3D;2 即可：</p>
+<p>s &#x3D; 1s&#x3D;1 的石子数量为 00： 这意味着 A 开始选择的只能是 s &#x3D; 2s&#x3D;2，此时交给 B 的局面为「x &#x3D; 2x&#x3D;2、剩余石子只有 s &#x3D; 2s&#x3D;2」，此时 B 只能选 s &#x3D; 2s&#x3D;2 的石子，由于 x &#x3D; 2x&#x3D;2 且选择的石子 s &#x3D; 2s&#x3D;2，因此交由回 A 的局面为「x &#x3D; 1x&#x3D;1，剩余是在只有 s &#x3D; 2s&#x3D;2」，因此游戏继续的话 A 必败，同时如果在该过程的任何时刻石子被取完，也是 B 直接获胜，即 A 仍为必败；</p>
+<p>s &#x3D; 2s&#x3D;2 的石子数量为 00：分析同理，A 只能选 s &#x3D; 1s&#x3D;1，此时交给 B 的局面为「x &#x3D; 1x&#x3D;1、剩余石子只有 s &#x3D; 1s&#x3D;1」，此时 B 只能选 s &#x3D; 1s&#x3D;1 的石子，由于 x &#x3D; 1x&#x3D;1 且选择的石子 s &#x3D; 1s&#x3D;1，因此交由回 A 的局面为「x &#x3D; 2x&#x3D;2，剩余是在只有 s &#x3D; 1s&#x3D;1」，因此游戏继续的话 A 必败，同时如果在该过程的任何时刻石子被取完，也是 B 直接获胜，即 A 仍为必败；</p>
+<p>s &#x3D; 1s&#x3D;1 和 s &#x3D; 2s&#x3D;2 的石子数量均不为 00：A 选数量不是最多的一类石子，B 下一回合只能选择相同类型的石子（或是无从选择导致失败），然后游戏继续，最终 B 会先进入「只能凑成 33 的倍数」的局面导致失败，即 A 必胜。</p>
+<p>s &#x3D; 0s&#x3D;0 的石子数量为奇数：此时等价于有一次换手机会，该换手机会必然应用在「对必败局面进行转移」才有意义，因此只有 s &#x3D; 1s&#x3D;1 和 s &#x3D; 2s&#x3D;2 的石子数量差大于 22，A 的先手优势不会因为存在换手机会而被转移：</p>
+<p>两者数量差不超过 22：此时 B 可以利用「对方凑成 33 的倍数必败」规则和「优先使用 s &#x3D; 0s&#x3D;0 石子」权利来进入确保自己为必胜态：</p>
+<p>举个 🌰，当 s &#x3D; 1s&#x3D;1 和 s &#x3D; 2s&#x3D;2 的石子数量相等，虽然有 s &#x3D; 0s&#x3D;0 的石子，A 先手，但是 A 的首个回合必然不能选 s &#x3D; 0s&#x3D;0，否则马上失败结束，因此 A 只能选 s &#x3D; 1s&#x3D;1 或 s &#x3D; 2s&#x3D;2，此时 B直接选择 s &#x3D; 0s&#x3D;0 的石子，交由给 A 的局面 xx 没有发生改变，A 只能选择与首个回合相同的 ss 游戏才能继续，因此局面会变为「B 先手、s &#x3D; 1s&#x3D;1 和 s &#x3D; 2s&#x3D;2 的石子数量差为 22」，游戏继续，最终 A 会先遇到「只能凑成 33 的倍数」的局面，即 B 必胜。</p>
+<p>两者数量差不超过 2：此时无论 A 选择数量较少或较多的 s，B 都在第二回合马上使用 s &#x3D; 0 的石子进行换手，A 只能继续选与第一回合相同类型的的石子，游戏才能进行，最终 A 会先遇到「只能凑成 3 的倍数」或「石子被取完」的局面，即 B 必胜。</p>
+<p>两者数量差超过 2 ：此时即使 A 只要确保第一次选择数量较多的 s，不管 B 是否使用「优先使用 s &#x3D; 0s&#x3D;0」的石子，A 都有足够次数数量多 ss 来抵消换手（或是在 B 放弃使用 s &#x3D; 0s&#x3D;0 之后马上使用），最终都是 B 最先遇到「只能凑成 33 的倍数」的局面，即 A 获胜。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4><pre><code class="hljs golang"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">stoneGameIX</span><span class="hljs-params">(stones []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+    <span class="hljs-keyword">var</span> mode_0,mode_1,mode_2 <span class="hljs-type">int</span>
+    <span class="hljs-keyword">for</span> _,v := <span class="hljs-keyword">range</span> stones&#123;
+        <span class="hljs-keyword">if</span> v %<span class="hljs-number">3</span> == <span class="hljs-number">0</span>&#123;
+            mode_0 ++
+        &#125;
+        <span class="hljs-keyword">if</span> v %<span class="hljs-number">3</span> == <span class="hljs-number">1</span>&#123;
+            mode_1 ++
+        &#125;
+        <span class="hljs-keyword">if</span> v % <span class="hljs-number">3</span> ==<span class="hljs-number">2</span> &#123;
+            mode_2 ++
+        &#125;
+
+    &#125;
+
+    <span class="hljs-keyword">if</span> mode_0 % <span class="hljs-number">2</span> ==<span class="hljs-number">0</span>&#123;
+        <span class="hljs-keyword">return</span> mode_1&gt;=<span class="hljs-number">1</span> &amp;&amp; mode_2 &gt;=<span class="hljs-number">1</span>
+    &#125;<span class="hljs-keyword">else</span>&#123;
+        <span class="hljs-keyword">return</span> abs(mode_1-mode_2)&gt;<span class="hljs-number">2</span>
+    &#125;
+    
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">abs</span><span class="hljs-params">(a <span class="hljs-type">int</span>)</span></span><span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">if</span> a &lt;<span class="hljs-number">0</span>&#123;
+        <span class="hljs-keyword">return</span> -a
+    &#125;<span class="hljs-keyword">else</span>&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+&#125;</code></pre>
+
+<h4 id="代码效率："><a href="#代码效率：" class="headerlink" title="代码效率："></a>代码效率：</h4><p class="note note-primary"; style="font-size:22px">
+   执行用时：0 ms, 在所有 Go 提交中击败了100.00%的用户<br>
+   内存消耗：8.9 MB, 在所有 Go 提交中击败了73.08%的用户
+</p>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/golang/">golang</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E5%AD%A6%E9%A2%98/">数学题</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/21/%E5%8A%9B%E6%89%A3/2006.%20%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BA%20K%20%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2006. 差的绝对值为 K 的数对数目</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/21/%E5%8A%9B%E6%89%A3/2000.%20%E5%8F%8D%E8%BD%AC%E5%8D%95%E8%AF%8D%E5%89%8D%E7%BC%80/">
+                        <span class="hidden-mobile">2000. 反转单词前缀</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://example.com/2022/01/21/%E5%8A%9B%E6%89%A3/2029.%20%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F%20IX/';
+        this.page.identifier = '/2022/01/21/%E5%8A%9B%E6%89%A3/2029.%20%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F%20IX/';
+      };
+      function loadDisqus() {
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }
+      waitElementVisible('disqus_thread', loadDisqus);
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">浙ICP备2020038092号</a>
+    
+      <a
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        rel="nofollow noopener"
+        class="beian-police"
+        target="_blank"
+      >
+        <span class="beian-police-sep">&nbsp;|&nbsp;</span>
+        
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+        <span>浙ICP备2020038092号</span>
+      </a>
+     
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "2029. 石子游戏 IX&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
