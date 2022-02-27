@@ -1,5 +1,4 @@
 ---
-
 title: golang后台面试题目
 ---
 
@@ -65,6 +64,7 @@ func main() {
 运行这段代码，你就会发现
 
 ````
+{1} {2} {3}
 &{3} &{3} &{3}
 ````
 
@@ -300,11 +300,12 @@ func (ua *UserAges) Get(name string) int {
 	}
 	return -1
 }
+
 ```
 
 解答：在并发处理的时候可能会出现`fatal error: concurrent map read and map write`.，因为get没上锁，在同一时间读写一个东西会出现竞争
 
-10、printf和Sprintf的区别
+#### 10、printf和Sprintf的区别
 
 printf
 

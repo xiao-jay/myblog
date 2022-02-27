@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://hkctfsys.com/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
+  <link rel="icon" type="image/png" href="http://hkctfsys.com/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -39,7 +39,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 
 <body>
@@ -47,7 +47,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>My Story</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -149,7 +149,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.hkctfsys.com/img/%E5%A4%AA%E9%98%B3%E6%98%9F%E7%A9%BA.jpg') no-repeat center center;
+         style="background: url('http://hkctfsys.com/img/%E5%A4%AA%E9%98%B3%E6%98%9F%E7%A9%BA.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
@@ -189,17 +189,22 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/02/05/PAT/1001%20%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n+1%E7%8C%9C%E6%83%B3%20/">1001 害死人不偿命的3n+1猜想</a>
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">简单工厂模式</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/02/05/PAT/1001%20%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n+1%E7%8C%9C%E6%83%B3%20/">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
           
           
             
           
-          害死人不偿命的3n+1猜想 题目描述：卡拉兹(Callatz)猜想：
-对任何一个正整数 n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把 (3n+1) 砍掉一半。这样一直反复砍下去，最后一定在某一步得到 n=1。卡拉兹在 1950 年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证 (3n+1)，以至于有人说
+          ​    这种设计模式属于创建型模式，在创建对象时不会对客户端暴露创建逻辑，而是通过使用一个接口指向新创建的对象
+意图：定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。
+主要解决：主要解决接口选择的问题。
+何时使用：我们明确地计划不同条件下创建不同实例时。
+如何解决：让其子类实现工厂接口，返回的也是一个抽象的产品。
+关键代码：创建过程在其子类执行。
+
         </a>
       </p>
 
@@ -207,366 +212,11 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-02-05 13:10" pubdate>
-              2021-02-05
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
             </time>
           </div>
         
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/PAT%E5%88%B7%E9%A2%98/">PAT刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/02/02/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E4%B9%9D%E5%8D%81%E4%B8%89%EF%BC%9A%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/">力扣九十三：复原IP地址</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/02/02/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E4%B9%9D%E5%8D%81%E4%B8%89%EF%BC%9A%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/">
-          
-          
-            
-          
-          所在模块：string
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-02-02 12:47" pubdate>
-              2021-02-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-              <a href="/tags/string/">string</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/01/30/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E4%BA%8C%E5%8D%81%EF%BC%9A%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/">力扣二十：有效的括号</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/30/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E4%BA%8C%E5%8D%81%EF%BC%9A%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/">
-          
-          
-            
-          
-          所在模块：string
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-30 12:29" pubdate>
-              2021-01-30
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-              <a href="/tags/string/">string</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/01/29/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E5%8D%81%E4%B8%83%EF%BC%9A%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/">电话号码的字母组合</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/29/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E5%8D%81%E4%B8%83%EF%BC%9A%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/">
-          
-          
-            
-          
-          所在模块：string
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-29 20:46" pubdate>
-              2021-01-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-              <a href="/tags/string/">string</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/01/28/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E5%8D%81%E4%B8%89%EF%BC%9A%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/">力扣模板</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/28/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E5%8D%81%E4%B8%89%EF%BC%9A%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/">
-          
-          
-            
-          
-          所在模块：string
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-28 10:49" pubdate>
-              2021-01-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-              <a href="/tags/string/">string</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/01/27/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E4%B8%89%EF%BC%9A%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%97%E4%B8%B2/">力扣三：无重复字字符的最长字串</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/27/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E4%B8%89%EF%BC%9A%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%97%E4%B8%B2/">
-          
-          
-            
-          
-          所在模块：string
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-27 11:43" pubdate>
-              2021-01-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-              <a href="/tags/string/">string</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/01/25/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E5%9B%9B%E5%8D%81%E5%85%AB%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F/">力扣四十八：旋转图像</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/25/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E5%9B%9B%E5%8D%81%E5%85%AB%EF%BC%9A%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F/">
-          
-          
-            
-          
-          所在模块：array
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-25 16:49" pubdate>
-              2021-01-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-              <a href="/tags/array/">array</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/01/10/%E5%8A%9B%E6%89%A3/%E5%88%86%E6%A8%A1%E5%9D%97%E5%88%B7%E5%8A%9B%E6%89%A3%E9%A2%98/">分模块刷力扣题</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/10/%E5%8A%9B%E6%89%A3/%E5%88%86%E6%A8%A1%E5%9D%97%E5%88%B7%E5%8A%9B%E6%89%A3%E9%A2%98/">
-          
-          
-            
-          
-          我打算各个模块刷10题，并写下我的做题思路和感悟（全用go语言写）
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-10 00:11" pubdate>
-              2021-01-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
-            
-          </div>
         
         
       </div>
@@ -579,16 +229,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/01/09/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E5%9B%9B%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%8E%A5%E9%9B%A8%E6%B0%B4/">力扣四十二：接雨水</a>
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">建造者模式</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/01/09/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3%E5%9B%9B%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%8E%A5%E9%9B%A8%E6%B0%B4/">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
           
           
             
           
-          所在模块：array
+          举个例子，需要造一个人，需要捏手脚头和身体，就创建一个接口类，来放入捏手脚头和身体的函数的原型，构建一个类来作为指挥者，指挥人的构建，指挥类是用来隔离用户和构造过程之间的联系，最后可以输入不同参数构建起一个不同尺寸的人。这就符合开放封闭原则，要一个胖子只需要增加一个胖子类输入参数就可以构建。
+
         </a>
       </p>
 
@@ -596,28 +247,12 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-09 23:36" pubdate>
-              2021-01-09
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
             </time>
           </div>
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-              <a href="/tags/array/">array</a>
-            
-          </div>
         
       </div>
     </article>
@@ -629,16 +264,18 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/01/06/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3-%E5%9B%9B%E5%8D%81%E4%B8%80%EF%BC%9A%E7%BC%BA%E5%A4%B1%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0/">力扣-四十一：缺失一个正数</a>
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0/">TCP四次挥手出现大量time_wait是什么原因</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/01/06/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3-%E5%9B%9B%E5%8D%81%E4%B8%80%EF%BC%9A%E7%BC%BA%E5%A4%B1%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0/">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0/">
           
           
             
           
-          所在模块：array
+          TIME_WAIT产生条件：TCP四次挥手中，第一个发送FIN&#x3D;1的TCP报文的人称为主动关闭者，主动关闭者在发送四次挥手最后一个ACK后会变成TIME_WAIT状态，持续时间为2MSL（linux一个MSL为30s，不可配置）
+TIME_WAIT持续两个MSL的作用：
+1、可靠安全关闭TCP连接，比如网络拥塞，如果主动关闭方最后一个ACK没有被关闭方接收到（它怎么知道有没有被关闭方收到
         </a>
       </p>
 
@@ -646,28 +283,313 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-06 16:16" pubdate>
-              2021-01-06
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
             </time>
           </div>
         
         
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E6%8B%A5%E5%A1%9E/">TCP拥塞处理</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E6%8B%A5%E5%A1%9E/">
+          
+          
+            
+          
+          为什么要TCP拥塞控制网络拥塞：​    网络中对某一资源的需求量超过该资源所提供的可用部分，网络性能就会变坏，这种叫做网络拥塞，若出现拥塞不进行控制，随着网络请求的增加会导致吞吐量越来越小，最后会导致吞吐量为0，形成死锁，TCP拥塞控制就是要解决这个问题。
+
+TCP拥塞控制1、慢开始，拥塞避免​    发送方维持一个动态大小的拥塞窗口cwnd（congestion window），假设初始设置慢
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
           <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
-            
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
           </div>
         
         
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/http%E5%AE%8C%E6%95%B4%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B/">一次完整的HTTP请求过程</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/http%E5%AE%8C%E6%95%B4%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B/">
+          
+          
             
-              <a href="/tags/golang/">golang</a>
-            
-              <a href="/tags/array/">array</a>
-            
+          
+          1、域名解析浏览器解析域名得到对应的IP地址
+2、TCP三次握手3、建立连接发起HTTP请求4、服务器响应http请求，浏览器得到html代码5、浏览器解析html码，并请求html代码中的资源6、浏览器对页面进行渲染给用户
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
           </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">三次握手，四次挥手</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
+          
+          
+            
+          
+          三次握手大值理解：tcp为了确认传输数据的安全，第一次发送特殊tcp报文段给客户，客户第二次回复特殊的tcp报文段给服务器，第三次服务器发送要发送的数据给客户。
+
+
+第一次客户端发送SYN&#x3D;1和初始化的序列号seq x给服务器请求连接连接（ SYN：同步标志）
+第二次服务器回复ACK&#x3D;1，ack&#x3D;x+1,seq&#x3D;y是发送数据的第一个字符的数据编号，SYN为1
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%B1%82%E8%AF%A6%E6%83%85/">网络协议层详情</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%B1%82%E8%AF%A6%E6%83%85/">
+          
+          
+            
+          
+          
+
+
+OSI七层模型
+TCP四层协议
+综合五层协议
+
+
+
+应用层
+应用层
+应用层
+
+
+表示层
+
+
+
+
+会话层
+
+
+
+
+运输层
+运输层
+运输层
+
+
+网络层
+网络层
+网络层
+
+
+数据链路层
+网络接口层
+数据链路层
+
+
+物理层
+
+物理层
+
+
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ArchLinux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">ArchLinux定时任务</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ArchLinux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+          
+          
+            
+          
+          安装sudo pacman -S cronie
+启动服务#设置开机启动
+sudo systemctl enable cronie.service
+#立即启动
+sudo systemctl start cronie.service
+
+crontab用法crontab –e : 修改 crontab 文件，如果文件不存在会自动创建。crontab –l : 显示 crontab 文件。crontab 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E6%97%B6%E9%97%B4%E7%89%87/">CPU时间片</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/CPU%E6%97%B6%E9%97%B4%E7%89%87/">
+          
+          
+            
+          
+          现在的操作系统是分时系统，会给每个进程分配相同时间CPU资源，如果这个进程在时间片结束前阻塞或者结束，可以进行CPU切换来提高CPU的利用率。
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%A1%AC%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BD%AF%E8%BF%9E%E6%8E%A5/">linux硬连接和软连接</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%A1%AC%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BD%AF%E8%BF%9E%E6%8E%A5/">
+          
+          
+            
+          
+          硬连接Linux 下的文件是通过索引节点（inode）识别文件，硬链接可以认为为一个指针指向文件索引节点，系统并不分配inode，文件链接数加一。
+不足：1、不可以在不同文件系统的文件间建立链接
+2、只有超级用户才可以为目录创建硬链接
+软链接没有任何文件系统的限制，任何用户可以创建指向目录的符号链接，有更大灵活性，可以跨越不同机器
+缺点：
+1、链接文件包含有源文件的路径信息，需要系统分配额外的空间
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
         
       </div>
     </article>
@@ -677,7 +599,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
@@ -760,6 +682,26 @@
 
 
   
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">浙ICP备2020038092号</a>
+    
+      <a
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        rel="nofollow noopener"
+        class="beian-police"
+        target="_blank"
+      >
+        <span class="beian-police-sep">&nbsp;|&nbsp;</span>
+        
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+        <span>浙ICP备2020038092号</span>
+      </a>
+     
+  </div>
+
 
   
 </footer>
@@ -839,6 +781,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 

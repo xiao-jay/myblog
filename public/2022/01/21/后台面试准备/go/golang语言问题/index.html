@@ -279,7 +279,8 @@ func <span class="hljs-selector-tag">main</span>() &#123;
 &#125;</code></pre>
 
 <p>运行这段代码，你就会发现</p>
-<pre><code class="hljs dust"><span class="language-xml">&amp;</span><span class="hljs-template-variable">&#123;3&#125;</span><span class="language-xml"> &amp;</span><span class="hljs-template-variable">&#123;3&#125;</span><span class="language-xml"> &amp;</span><span class="hljs-template-variable">&#123;3&#125;</span></code></pre>
+<pre><code class="hljs dust"><span class="hljs-template-variable">&#123;1&#125;</span><span class="language-xml"> </span><span class="hljs-template-variable">&#123;2&#125;</span><span class="language-xml"> </span><span class="hljs-template-variable">&#123;3&#125;</span><span class="language-xml"></span>
+<span class="language-xml">&amp;</span><span class="hljs-template-variable">&#123;3&#125;</span><span class="language-xml"> &amp;</span><span class="hljs-template-variable">&#123;3&#125;</span><span class="language-xml"> &amp;</span><span class="hljs-template-variable">&#123;3&#125;</span></code></pre>
 
 <p>怎么都是同一个地址，因为range赋值用的是用的是一个循环变量的地址，Go每次循环都会复用这一”循环变量”，所以一直会输出最后一个数的地址</p>
 <h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h5><pre><code class="hljs go"><span class="hljs-keyword">for</span> i := <span class="hljs-keyword">range</span> list &#123;
@@ -451,11 +452,11 @@ func <span class="hljs-selector-tag">main</span>() &#123;
 		<span class="hljs-keyword">return</span> age
 	&#125;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
-&#125;</code></pre>
+&#125;
+</code></pre>
 
 <p>解答：在并发处理的时候可能会出现<code>fatal error: concurrent map read and map write</code>.，因为get没上锁，在同一时间读写一个东西会出现竞争</p>
-<p>10、printf和Sprintf的区别</p>
-<p>printf</p>
+<h4 id="10、printf和Sprintf的区别"><a href="#10、printf和Sprintf的区别" class="headerlink" title="10、printf和Sprintf的区别"></a>10、printf和Sprintf的区别</h4><p>printf</p>
 <ol>
 <li>用传入的格式化规则符将传入的变量写入到标准输出里面(即在终端中有显示)，</li>
 <li>返回值为 写入标准输出的字节数和写入过程中遇到的问题。</li>
