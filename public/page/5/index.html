@@ -226,25 +226,21 @@ Linux的优点：Linux是开源的，并且有完善的权限管理机制，是�
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">linux常用命令</a>
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%A1%AC%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BD%AF%E8%BF%9E%E6%8E%A5/">linux硬连接和软连接</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%A1%AC%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BD%AF%E8%BF%9E%E6%8E%A5/">
           
           
             
           
-          1、ls (list) 查看linux文件夹包含的文件
-ls -a 列出所以文件，包含隐藏文件
-ls -t 以文件修改时间排序
-ls -S 以文件大小排序
-ls -h 以易读大小显示
-ls -l除了文件名之外，还有文件的权限、所有者、文件大小等信息
-2、cd (chaneg directory) 进入目录
-cd   &#x2F;     进入根目录
-cd ~     进入home目录
-cd -  
+          硬连接Linux 下的文件是通过索引节点（inode）识别文件，硬链接可以认为为一个指针指向文件索引节点，系统并不分配inode，文件链接数加一。
+不足：1、不可以在不同文件系统的文件间建立链接
+2、只有超级用户才可以为目录创建硬链接
+软链接没有任何文件系统的限制，任何用户可以创建指向目录的符号链接，有更大灵活性，可以跨越不同机器
+缺点：
+1、链接文件包含有源文件的路径信息，需要系统分配额外的空间
         </a>
       </p>
 
@@ -325,6 +321,41 @@ cd -
 B树2-3树是B树的一种特例，二叉搜索树搜索效率高，但是为了保持平衡需要的代价太大，所以人想出了一个结点允许多个值的数据结构-B树
  
 特点：1、所有叶子子结点
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/MyISAM%E4%B8%8EInnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB/">MyISAM与InnoDB 的区别</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/MyISAM%E4%B8%8EInnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+          
+          
+            
+          
+          1. InnoDB支持事务，MyISAM不支持，对于InnoDB每一条SQL语言都默认封装成事务，自动提交，这样会影响速度，所以最好把多条SQL语言放在begin和commit之间，组成一个事务； 
+2、 InnoDB是聚集索引，使用B+Tree作为索引结构，数据文件是和（主键）索引绑在一起的（表数据文件本身就是按B+Tree组织的一个索引结构），必须要有主键，通过主键索引效率很高。但是辅助索引需
         </a>
       </p>
 
@@ -463,17 +494,21 @@ I    iso
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/MyISAM%E4%B8%8EInnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB/">MyISAM与InnoDB 的区别</a>
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/">TCP和UDP的区别</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/MyISAM%E4%B8%8EInnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/">
           
           
             
           
-          1. InnoDB支持事务，MyISAM不支持，对于InnoDB每一条SQL语言都默认封装成事务，自动提交，这样会影响速度，所以最好把多条SQL语言放在begin和commit之间，组成一个事务； 
-2、 InnoDB是聚集索引，使用B+Tree作为索引结构，数据文件是和（主键）索引绑在一起的（表数据文件本身就是按B+Tree组织的一个索引结构），必须要有主键，通过主键索引效率很高。但是辅助索引需
+          TCP的优点：提供可靠稳定安全的连接，无差错，不重复，不丢失，三次握手建立连接，数据传输时有确认、窗口、重传、拥塞控制，数据传完还有四次挥手断开连接。
+TCP缺点：慢，效率低，开销较大，占用硬件资源多，传输效率较低，TCP有确认机制容易被人利用，实现DDOS等攻击
+UDP的优点：无状态的传输协议，单位时间传输数据多。
+UDP的缺点：不可靠，在网络不好的时候容易丢包。
+TCP和UPD的区别
+1、基于
         </a>
       </p>
 
@@ -510,45 +545,6 @@ I    iso
           HTTP和HTTPS的区别 http是超文本传输协议，最开始是为了方便传输html而创建的，传输的信息都是没经过加密的，并且是无状态的，连接通过TCP连接，端口为80，安全性很差，但是连接很简单，速度快减少界面加载延时
 https是经过ssl证书认证并且在传输过程加密的一种传输方式，端口为443安全性大大增加
 安全的基础是ssl协议，连接方式不同（待补充），https是http+ssl协议进行构建
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/">TCP和UDP的区别</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/">
-          
-          
-            
-          
-          TCP的优点：提供可靠稳定安全的连接，无差错，不重复，不丢失，三次握手建立连接，数据传输时有确认、窗口、重传、拥塞控制，数据传完还有四次挥手断开连接。
-TCP缺点：慢，效率低，开销较大，占用硬件资源多，传输效率较低，TCP有确认机制容易被人利用，实现DDOS等攻击
-UDP的优点：无状态的传输协议，单位时间传输数据多。
-UDP的缺点：不可靠，在网络不好的时候容易丢包。
-TCP和UPD的区别
-1、基于
         </a>
       </p>
 
