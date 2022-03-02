@@ -189,6 +189,41 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/MyISAM%E4%B8%8EInnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB/">MyISAM与InnoDB 的区别</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/MyISAM%E4%B8%8EInnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB/">
+          
+          
+            
+          
+          1. InnoDB支持事务，MyISAM不支持，对于InnoDB每一条SQL语言都默认封装成事务，自动提交，这样会影响速度，所以最好把多条SQL语言放在begin和commit之间，组成一个事务； 
+2、 InnoDB是聚集索引，使用B+Tree作为索引结构，数据文件是和（主键）索引绑在一起的（表数据文件本身就是按B+Tree组织的一个索引结构），必须要有主键，通过主键索引效率很高。但是辅助索引需
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E7%B4%A2%E5%BC%95/">mysql索引</a>
       </h1>
 
@@ -511,47 +546,6 @@ cd -
 协程是用户态的轻量级线程，操作系统所不能开辟的，但是可以由程序控制
 一个进程中有多个线程，一个线程里面可以有多个协程，因为进程是最大的了，进程切换需要的开销很大，但是进程挂了，其他进程因为保护机制会不受影响，但是这个进程里面的线程协程也都会挂掉。
 协程的优势1、极高的执行效率，因为子程序切换不是线程切换，而是程序自身切换，没有
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/java%E7%BD%91%E6%98%93%E5%90%8E%E7%AB%AF%E4%B8%80%E9%9D%A2%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/"></a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/java%E7%BD%91%E6%98%93%E5%90%8E%E7%AB%AF%E4%B8%80%E9%9D%A2%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">
-          
-          
-            
-          
-          java网易后端一面面试问题
-1、有没有了解过spring
-没有了解过
-2、java的继承封装多态概念
-封装:隐藏对象的属性和细节，对外提供公共访问方式，让使用者只能通过程序员规定的方法来访问数据
-继承：子类继承父类的方法，具有父类非private 的方法
-多态：重写和重载是实现多态的两种主要方式
-（1）、重写：子类定义了一个方法，其方法名、返回值类型，参数列表与父类中某个方法一样，就说子类重写父
         </a>
       </p>
 
