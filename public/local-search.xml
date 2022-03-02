@@ -4688,6 +4688,60 @@
   
   
   <entry>
+    <title>6. Z 字形变换</title>
+    <link href="/2022/01/21/%E5%8A%9B%E6%89%A3/6.%20Z%20%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/"/>
+    <url>/2022/01/21/%E5%8A%9B%E6%89%A3/6.%20Z%20%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/</url>
+    
+    <content type="html"><![CDATA[<h3 id="Z-字形变换"><a href="#Z-字形变换" class="headerlink" title="Z 字形变换"></a><font size=6px>Z 字形变换</font></h3><h4 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h4><p>将一个给定字符串 s 根据给定的行数 numRows ，以从上往下、从左到右进行 Z 字形排列。</p><p>比如输入字符串为 “PAYPALISHIRING” 行数为 3 时，排列如下：</p><p>P   A   H   N<br>A P L S I I G<br>Y   I   R<br>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：”PAHNAPLSIIGYIR”。</p><p>请你实现这个将字符串进行指定行数变换的函数：</p><p>string convert(string s, int numRows);</p><p>示例 1：</p><p>输入：s &#x3D; “PAYPALISHIRING”, numRows &#x3D; 3<br>输出：”PAHNAPLSIIGYIR”<br>示例 2：<br>输入：s &#x3D; “PAYPALISHIRING”, numRows &#x3D; 4<br>输出：”PINALSIGYAHRPI”<br>解释：<br>P     I    N<br>A   L S  I G<br>Y A   H R<br>P     I<br>示例 3：</p><p>输入：s &#x3D; “A”, numRows &#x3D; 1<br>输出：”A”</p><p>提示：</p><p>1 &lt;&#x3D; s.length &lt;&#x3D; 1000<br>s 由英文字母（小写和大写）、’,’ 和 ‘.’ 组成<br>1 &lt;&#x3D; numRows &lt;&#x3D; 1000</p><h4 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h4><p>直接模拟法做</p><h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4><pre><code class="hljs golang"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">convert</span><span class="hljs-params">(s <span class="hljs-type">string</span>, numRows <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">string</span> &#123;<span class="hljs-keyword">if</span> numRows == <span class="hljs-number">1</span> &#123;<span class="hljs-keyword">return</span> s&#125;<span class="hljs-keyword">var</span> ans [][]<span class="hljs-type">byte</span><span class="hljs-keyword">var</span> res <span class="hljs-type">string</span>ans = <span class="hljs-built_in">make</span>([][]<span class="hljs-type">byte</span>, numRows)<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(s); i += <span class="hljs-number">2</span>*numRows - <span class="hljs-number">2</span> &#123;<span class="hljs-keyword">for</span> j := i; j &lt; i+numRows &amp;&amp; j &lt; <span class="hljs-built_in">len</span>(s); j++ &#123;ans[j%(<span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span>)] = <span class="hljs-built_in">append</span>(ans[j%(<span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span>)], s[j])&#125;<span class="hljs-comment">// z中间部分</span><span class="hljs-keyword">for</span> j := i + numRows; j &lt; i+<span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span> &amp;&amp; j &lt; <span class="hljs-built_in">len</span>(s); j++ &#123;ans[<span class="hljs-number">2</span>*numRows-(j%(<span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span>))<span class="hljs-number">-2</span>] = <span class="hljs-built_in">append</span>(ans[<span class="hljs-number">2</span>*numRows-(j%(<span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span>))<span class="hljs-number">-2</span>], s[j])&#125;&#125;<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(ans); i++ &#123;res += <span class="hljs-type">string</span>(ans[i])&#125;<span class="hljs-keyword">return</span> res&#125;</code></pre><h4 id="代码效率："><a href="#代码效率：" class="headerlink" title="代码效率："></a>代码效率：</h4><p class="note note-primary"; style="font-size:22px">   执行用时：8 ms, 在所有 Go 提交中击败了74.10%的用户<br>   内存消耗：6.9 MB, 在所有 Go 提交中击败了36.24%的用户</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>力扣刷题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>array</tag>
+      
+      <tag>golang</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1763. 最长的美好子字符串</title>
+    <link href="/2022/01/21/%E5%8A%9B%E6%89%A3/1763.%20%E6%9C%80%E9%95%BF%E7%9A%84%E7%BE%8E%E5%A5%BD%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    <url>/2022/01/21/%E5%8A%9B%E6%89%A3/1763.%20%E6%9C%80%E9%95%BF%E7%9A%84%E7%BE%8E%E5%A5%BD%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    
+    <content type="html"><![CDATA[<h3 id="最长的美好子字符串"><a href="#最长的美好子字符串" class="headerlink" title="最长的美好子字符串"></a><font size=6px>最长的美好子字符串</font></h3><h4 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h4><p>当一个字符串 s 包含的每一种字母的大写和小写形式 同时 出现在 s 中，就称这个字符串 s 是 美好 字符串。比方说，”abABB” 是美好字符串，因为 ‘A’ 和 ‘a’ 同时出现了，且 ‘B’ 和 ‘b’ 也同时出现了。然而，”abA” 不是美好字符串因为 ‘b’ 出现了，而 ‘B’ 没有出现。</p><p>给你一个字符串 s ，请你返回 s 最长的 美好子字符串 。如果有多个答案，请你返回 最早 出现的一个。如果不存在美好子字符串，请你返回一个空字符串。</p><p>示例 1：</p><p>输入：s &#x3D; “YazaAay”<br>输出：”aAa”<br>解释：”aAa” 是一个美好字符串，因为这个子串中仅含一种字母，其小写形式 ‘a’ 和大写形式 ‘A’ 也同时出现了。<br>“aAa” 是最长的美好子字符串。<br>示例 2：</p><p>输入：s &#x3D; “Bb”<br>输出：”Bb”<br>解释：”Bb” 是美好字符串，因为 ‘B’ 和 ‘b’ 都出现了。整个字符串也是原字符串的子字符串。<br>示例 3：</p><p>输入：s &#x3D; “c”<br>输出：””<br>解释：没有美好子字符串。<br>示例 4：</p><p>输入：s &#x3D; “dDzeE”<br>输出：”dD”<br>解释：”dD” 和 “eE” 都是最长美好子字符串。<br>由于有多个美好子字符串，返回 “dD” ，因为它出现得最早。</p><p>提示：</p><p>1 &lt;&#x3D; s.length &lt;&#x3D; 100<br>s 只包含大写和小写英文字母。</p><h4 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h4><p>用n2复杂度去遍历，判断的时候有个小技巧是用26个二进制分别代表大写的字母和小写的字母，然后判断两个相不相等</p><h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4><pre><code class="hljs golang"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">longestNiceSubstring</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span> &#123;    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(s) &lt;=<span class="hljs-number">1</span>&#123;        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>    &#125;    length := <span class="hljs-number">-1</span>    start := <span class="hljs-number">-1</span>    <span class="hljs-keyword">var</span> a,b <span class="hljs-type">int</span>    <span class="hljs-keyword">var</span> n <span class="hljs-type">int</span>    n = <span class="hljs-built_in">len</span>(s)    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;n ;i++&#123;        a,b = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>        <span class="hljs-keyword">for</span> j:=i; j&lt;n;j++&#123;            <span class="hljs-keyword">if</span> s[j]&gt;=<span class="hljs-string">&#x27;a&#x27;</span> &amp;&amp; s[j] &lt;=<span class="hljs-string">&#x27;z&#x27;</span>&#123;                a |= <span class="hljs-number">1</span>&lt;&lt;(s[j]-<span class="hljs-string">&#x27;a&#x27;</span>)            &#125;            <span class="hljs-keyword">if</span> s[j]&gt;=<span class="hljs-string">&#x27;A&#x27;</span> &amp;&amp; s[j]&lt;=<span class="hljs-string">&#x27;Z&#x27;</span>&#123;                b |= <span class="hljs-number">1</span>&lt;&lt;(s[j] - <span class="hljs-string">&#x27;A&#x27;</span>)            &#125;            <span class="hljs-keyword">if</span> a == b&amp;&amp; a != <span class="hljs-number">0</span> &amp;&amp;j-i &gt;length&#123;                length = j-i                start = i            &#125;                   &#125;    &#125;    res := <span class="hljs-string">&quot;&quot;</span>    <span class="hljs-keyword">if</span> start == <span class="hljs-number">-1</span>&#123;        <span class="hljs-keyword">return</span> res    &#125;    <span class="hljs-keyword">for</span> i:=start;i&lt;=start+length;i++&#123;        res += <span class="hljs-type">string</span>(s[i])    &#125;    <span class="hljs-keyword">return</span> res&#125;</code></pre><h4 id="代码效率："><a href="#代码效率：" class="headerlink" title="代码效率："></a>代码效率：</h4><p class="note note-primary"; style="font-size:22px">   执行用时：0 ms, 在所有 Go 提交中击败了100.00%的用户<br>   内存消耗：1.8 MB, 在所有 Go 提交中击败了83.39%</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>力扣刷题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>array</tag>
+      
+      <tag>golang</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>110. 平衡二叉树</title>
     <link href="/2022/01/21/%E5%8A%9B%E6%89%A3/110.%20%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     <url>/2022/01/21/%E5%8A%9B%E6%89%A3/110.%20%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
@@ -5715,6 +5769,56 @@
       <tag>golang</tag>
       
       <tag>二叉树</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1143 Lowest Common Ancestor (30 分)</title>
+    <link href="/2022/01/21/PAT%E7%94%B2/1143%20Lowest%20Common%20Ancestor%20(30%20%E5%88%86)/"/>
+    <url>/2022/01/21/PAT%E7%94%B2/1143%20Lowest%20Common%20Ancestor%20(30%20%E5%88%86)/</url>
+    
+    <content type="html"><![CDATA[<h3 id="Lowest-Common-Ancestor"><a href="#Lowest-Common-Ancestor" class="headerlink" title="Lowest Common Ancestor"></a><font size=6px>Lowest Common Ancestor</font></h3><h4 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h4><p>The lowest common ancestor (LCA) of two nodes U and V in a tree is the deepest node that has both U and V as descendants.</p><p>A binary search tree (BST) is recursively defined as a binary tree which has the following properties:</p><ul><li>The left subtree of a node contains only nodes with keys less than the node’s key.</li><li>The right subtree of a node contains only nodes with keys greater than or equal to the node’s key.</li><li>Both the left and right subtrees must also be binary search trees.</li></ul><p>Given any two nodes in a BST, you are supposed to find their LCA.</p><h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. For each case, the first line gives two positive integers: M (≤ 1,000), the number of pairs of nodes to be tested; and N (≤ 10,000), the number of keys in the BST, respectively. In the second line, N distinct integers are given as the preorder traversal sequence of the BST. Then M lines follow, each contains a pair of integer keys U and V. All the keys are in the range of <strong>int</strong>.</p><h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each given pair of U and V, print in a line <code>LCA of U and V is A.</code> if the LCA is found and <code>A</code> is the key. But if <code>A</code> is one of U and V, print <code>X is an ancestor of Y.</code> where <code>X</code> is <code>A</code> and <code>Y</code> is the other node. If U or V is not found in the BST, print in a line <code>ERROR: U is not found.</code> or <code>ERROR: V is not found.</code> or <code>ERROR: U and V are not found.</code>.</p><h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><pre><code class="hljs in">6 86 3 1 2 5 4 8 72 58 71 912 -30 899 99</code></pre><h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><pre><code class="hljs out">LCA of 2 and 5 is 3.8 is an ancestor of 7.ERROR: 9 is not found.ERROR: 12 and -3 are not found.ERROR: 0 is not found.ERROR: 99 and 99 are not found.</code></pre><h4 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h4><p>找到公共祖先，可以指向一个father节点，从下往上遍历，第二个数遍历的时候如果发现有个节点已经被访问了，就可以判断这个就是最小公共节点。</p><h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4><pre><code class="hljs go">#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;<span class="hljs-keyword">map</span>&gt;using namespace std;<span class="hljs-keyword">map</span>&lt;<span class="hljs-type">int</span>, <span class="hljs-type">bool</span>&gt; mp;<span class="hljs-type">int</span> main() &#123;    <span class="hljs-type">int</span> m, n, u, v, a;    scanf(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;m, &amp;n);    vector&lt;<span class="hljs-type">int</span>&gt; pre(n);    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;        scanf(<span class="hljs-string">&quot;%d&quot;</span>, &amp;pre[i]);        mp[pre[i]] = <span class="hljs-literal">true</span>;    &#125;    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;        scanf(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;u, &amp;v);        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;            a = pre[j];            <span class="hljs-keyword">if</span> ((a &gt;= u &amp;&amp; a &lt;= v) || (a &gt;= v &amp;&amp; a &lt;= u)) <span class="hljs-keyword">break</span>;        &#125;         <span class="hljs-keyword">if</span> (mp[u] == <span class="hljs-literal">false</span> &amp;&amp; mp[v] == <span class="hljs-literal">false</span>)            printf(<span class="hljs-string">&quot;ERROR: %d and %d are not found.\n&quot;</span>, u, v);        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (mp[u] == <span class="hljs-literal">false</span> || mp[v] == <span class="hljs-literal">false</span>)            printf(<span class="hljs-string">&quot;ERROR: %d is not found.\n&quot;</span>, mp[u] == <span class="hljs-literal">false</span> ? u : v);        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (a == u || a == v)            printf(<span class="hljs-string">&quot;%d is an ancestor of %d.\n&quot;</span>, a, a == u ? v : u);        <span class="hljs-keyword">else</span>            printf(<span class="hljs-string">&quot;LCA of %d and %d is %d.\n&quot;</span>, u, v, a);    &#125;    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>PAT刷题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>c++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1151 LCA in a Binary Tree (30 分)</title>
+    <link href="/2022/01/21/PAT%E7%94%B2/1151%20LCA%20in%20a%20Binary%20Tree%20(30%20%E5%88%86)/"/>
+    <url>/2022/01/21/PAT%E7%94%B2/1151%20LCA%20in%20a%20Binary%20Tree%20(30%20%E5%88%86)/</url>
+    
+    <content type="html"><![CDATA[<h3 id="LCA-in-a-Binary-Tree"><a href="#LCA-in-a-Binary-Tree" class="headerlink" title="LCA in a Binary Tree"></a><font size=6px>LCA in a Binary Tree</font></h3><h4 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h4><p>The lowest common ancestor (LCA) of two nodes U and V in a tree is the deepest node that has both U and V as descendants.</p><p>Given any two nodes in a binary tree, you are supposed to find their LCA.</p><h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. For each case, the first line gives two positive integers: M (≤ 1,000), the number of pairs of nodes to be tested; and N (≤ 10,000), the number of keys in the binary tree, respectively. In each of the following two lines, N distinct integers are given as the inorder and preorder traversal sequences of the binary tree, respectively. It is guaranteed that the binary tree can be uniquely determined by the input sequences. Then M lines follow, each contains a pair of integer keys U and V. All the keys are in the range of <strong>int</strong>.</p><h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each given pair of U and V, print in a line <code>LCA of U and V is A.</code> if the LCA is found and <code>A</code> is the key. But if <code>A</code> is one of U and V, print <code>X is an ancestor of Y.</code> where <code>X</code> is <code>A</code> and <code>Y</code> is the other node. If U or V is not found in the binary tree, print in a line <code>ERROR: U is not found.</code> or <code>ERROR: V is not found.</code> or <code>ERROR: U and V are not found.</code>.</p><h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><pre><code class="hljs in">6 87 2 3 4 6 5 1 85 3 7 2 6 4 8 12 68 17 912 -30 899 99</code></pre><h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><pre><code class="hljs out">LCA of 2 and 6 is 3.8 is an ancestor of 1.ERROR: 9 is not found.ERROR: 12 and -3 are not found.ERROR: 0 is not found.ERROR: 99 and 99 are not found.</code></pre><h4 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h4><p>根据前序和中序构建树，然后找两个人的公共祖先</p><h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4><pre><code class="hljs go">#include&lt;stdio.h&gt;#include&lt;vector&gt;#include&lt;<span class="hljs-type">string</span>.h&gt;#include&lt;<span class="hljs-keyword">map</span>&gt;using namespace std;typedef <span class="hljs-keyword">struct</span> node&#123;<span class="hljs-type">int</span> data;node *lchild,*rchild;&#125;node;<span class="hljs-keyword">map</span>&lt;<span class="hljs-type">int</span>,node*&gt;mp;<span class="hljs-type">int</span> in[<span class="hljs-number">1000007</span>],pre[<span class="hljs-number">1000007</span>];node* build(<span class="hljs-type">int</span> inl,<span class="hljs-type">int</span> inr,<span class="hljs-type">int</span> prl,<span class="hljs-type">int</span> prr)&#123;<span class="hljs-keyword">if</span>(inl&gt;inr||prl&gt;prr)&#123;<span class="hljs-keyword">return</span> NULL;&#125;node* root=<span class="hljs-built_in">new</span> node;<span class="hljs-type">int</span> temp,ky;root-&gt;data=in[inl];<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=prl;i&lt;=prr;i++)&#123;<span class="hljs-keyword">if</span>(pre[i]==in[inl])&#123;temp=i;<span class="hljs-keyword">break</span>;&#125;&#125;    mp[in[inl]]=root;ky=temp-prl;root-&gt;lchild=build(inl+<span class="hljs-number">1</span>,inl+ky,prl,temp<span class="hljs-number">-1</span>);root-&gt;rchild=build(inl+<span class="hljs-number">1</span>+ky,inr,temp+<span class="hljs-number">1</span>,prr);<span class="hljs-keyword">return</span> root;&#125;node* lcd(node* root,node* a,node* b)&#123;<span class="hljs-keyword">if</span>(root==NULL|root==a||root==b)&#123;<span class="hljs-keyword">return</span> root;&#125;node* l=lcd(root-&gt;lchild,a,b);node* r=lcd(root-&gt;rchild,a,b);<span class="hljs-keyword">if</span>(l==NULL)&#123;<span class="hljs-comment">//如果在两边就会返回根节点，在一边的就会返回子节点。</span><span class="hljs-keyword">return</span> r;&#125;<span class="hljs-keyword">if</span>(r==NULL)&#123;<span class="hljs-keyword">return</span> l;&#125;<span class="hljs-keyword">return</span> root;&#125;<span class="hljs-type">int</span> main()&#123;<span class="hljs-type">int</span> m,n,a,b;node *root;scanf(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;m,&amp;n);<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;scanf(<span class="hljs-string">&quot;%d&quot;</span>,&amp;pre[i]);&#125;<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;scanf(<span class="hljs-string">&quot;%d&quot;</span>,&amp;in[i]);&#125;root=build(<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>);<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;scanf(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;a,&amp;b);<span class="hljs-keyword">if</span>(!mp[a]&amp;&amp;!mp[b])&#123;printf(<span class="hljs-string">&quot;ERROR: %d and %d are not found.\n&quot;</span>,a,b);&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!mp[a])&#123;printf(<span class="hljs-string">&quot;ERROR: %d is not found.\n&quot;</span>,a);&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!mp[b])&#123;printf(<span class="hljs-string">&quot;ERROR: %d is not found.\n&quot;</span>,b);&#125;<span class="hljs-keyword">else</span>&#123;node* p=lcd(root,mp[a],mp[b]);<span class="hljs-keyword">if</span>(p-&gt;data==a)&#123;printf(<span class="hljs-string">&quot;%d is an ancestor of %d.\n&quot;</span>,a,b);&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(p-&gt;data==b)&#123;printf(<span class="hljs-string">&quot;%d is an ancestor of %d.\n&quot;</span>,b,a);&#125;<span class="hljs-keyword">else</span>&#123;printf(<span class="hljs-string">&quot;LCA of %d and %d is %d.\n&quot;</span>,a,b,p-&gt;data);&#125;&#125;&#125;<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>PAT刷题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>c++</tag>
       
     </tags>
     
