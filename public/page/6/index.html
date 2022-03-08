@@ -189,6 +189,44 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%8D%8F%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/">进程线程和协程的区别</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%8D%8F%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/">
+          
+          
+            
+          
+          进程是操作系统分配资源的最小单位
+线程是操作系统所能调度执行的最小单位
+协程是用户态的轻量级线程，操作系统所不能开辟的，但是可以由程序控制
+一个进程中有多个线程，一个线程里面可以有多个协程，因为进程是最大的了，进程切换需要的开销很大，但是进程挂了，其他进程因为保护机制会不受影响，但是这个进程里面的线程协程也都会挂掉。
+协程的优势1、极高的执行效率，因为子程序切换不是线程切换，而是程序自身切换，没有
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/java%E7%BD%91%E6%98%93%E5%90%8E%E7%AB%AF%E4%B8%80%E9%9D%A2%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/"></a>
       </h1>
 
@@ -554,49 +592,11 @@ func main() &#123;
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/golang%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/"></a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/golang%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
-          
-          
-            
-          
-          
-title；golang内存分配go语言启动时会分配一块内存，然后切成小块进行管理，分成span，bitmap，arena，
-arena：将内存分成8kb的页（page），一起组成起来称mspan，成为go内存管理的基本单元。
-bitmap：标记堆区使用的映射表，记录哪些区保存对象，哪些区包含指针
-spans:存放mspan指针，根据spans信息很容易找到mspan，可以在GC时更快速找到大块
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/5/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/7/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/5/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/7/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

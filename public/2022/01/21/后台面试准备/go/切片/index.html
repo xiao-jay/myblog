@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>切片 - My Story</title>
+  <title>切片（1.18版本的golang已经改变之前的分配方式） - My Story</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      317 字
+      449 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      7
        分钟
     </span>
   
@@ -229,10 +229,36 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">切片</h1>
+            <h1 style="display: none">切片（1.18版本的golang已经改变之前的分配方式）</h1>
             
             <div class="markdown-body" id="post-body">
-              <h4 id="1、切片扩容流程"><a href="#1、切片扩容流程" class="headerlink" title="1、切片扩容流程"></a>1、切片扩容流程</h4><p>如果超过容量，会重新扩一个内存，创建新的数组，并把指针指向这个数组，容量如果不超过1024会阔一倍，如果容量超过1024扩容量会每次增加25%。</p>
+              <h3 id="1-18版本golang-slice切片扩容代码"><a href="#1-18版本golang-slice切片扩容代码" class="headerlink" title="1.18版本golang slice切片扩容代码"></a>1.18版本golang slice切片扩容代码</h3><pre><code class="hljs haxe"><span class="hljs-keyword">new</span><span class="hljs-type">cap</span> :<span class="hljs-type"></span>= old.cap
+	doublecap :<span class="hljs-type"></span>= <span class="hljs-keyword">new</span><span class="hljs-type">cap</span> + <span class="hljs-keyword">new</span><span class="hljs-type">cap</span>
+	<span class="hljs-keyword">if</span> cap &gt; doublecap &#123;
+		<span class="hljs-keyword">new</span><span class="hljs-type">cap</span> = cap
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		const threshold = <span class="hljs-number">256</span>
+		<span class="hljs-keyword">if</span> old.cap &lt; threshold &#123;
+			<span class="hljs-keyword">new</span><span class="hljs-type">cap</span> = doublecap
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			<span class="hljs-comment">// Check 0 &lt; newcap to detect overflow</span>
+			<span class="hljs-comment">// and prevent an infinite loop.</span>
+			<span class="hljs-keyword">for</span> <span class="hljs-number">0</span> &lt; <span class="hljs-keyword">new</span><span class="hljs-type">cap</span> &amp;&amp; <span class="hljs-keyword">new</span><span class="hljs-type">cap</span> &lt; cap &#123;
+				<span class="hljs-comment">// Transition from growing 2x for small slices</span>
+				<span class="hljs-comment">// to growing 1.25x for large slices. This formula</span>
+				<span class="hljs-comment">// gives a smooth-ish transition between the two.</span>
+				<span class="hljs-keyword">new</span><span class="hljs-type">cap</span> += (<span class="hljs-keyword">new</span><span class="hljs-type">cap</span> + <span class="hljs-number">3</span>*threshold) / <span class="hljs-number">4</span>
+			&#125;
+			<span class="hljs-comment">// Set newcap to the requested cap when</span>
+			<span class="hljs-comment">// the newcap calculation overflowed.</span>
+			<span class="hljs-keyword">if</span> <span class="hljs-keyword">new</span><span class="hljs-type">cap</span> &lt;= <span class="hljs-number">0</span> &#123;
+				<span class="hljs-keyword">new</span><span class="hljs-type">cap</span> = cap
+			&#125;
+		&#125;
+	&#125;</code></pre>
+
+<p>明显看到不再是1024之后再每次增加百分之25了，</p>
+<h4 id="1、切片扩容流程"><a href="#1、切片扩容流程" class="headerlink" title="1、切片扩容流程"></a>1、切片扩容流程</h4><p>如果超过容量，会重新扩一个内存，创建新的数组，并把指针指向这个数组，容量如果不超过1024会阔一倍，如果容量超过1024扩容量会每次增加25%。</p>
 <pre><code class="hljs go"><span class="hljs-keyword">package</span> main
 
 <span class="hljs-keyword">import</span> (
@@ -534,7 +560,7 @@ func main() &#123;
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "切片&nbsp;",
+        "切片（1.18版本的golang已经改变之前的分配方式）&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
