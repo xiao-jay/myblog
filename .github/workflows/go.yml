@@ -1,0 +1,14 @@
+name: auto_deploy
+on:
+  push:
+    branches:
+      - master
+      - main
+jobs:
+  build:
+    name: CD
+    runs-on: ubuntu-latest
+    steps:
+      - name: webhook
+        run: |
+          curl ${{ secrets.WEBHOOK }}
