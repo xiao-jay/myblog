@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Hello World - My Story</title>
+  <title>杰杰boke</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -177,8 +177,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-01-21 21:37" pubdate>
-        2022年1月21日 晚上
+      <time datetime="2022-03-09 20:49" pubdate>
+        2022年3月9日 晚上
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      18 字
+      221 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      2
        分钟
     </span>
   
@@ -229,23 +229,41 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none"></h1>
             
             <div class="markdown-body" id="post-body">
-              <p class="note note-primary">这是我第一 篇blog，正式开启我的博客之路啦。</p>
+              <hr>
+<h2 id="Title-内存对齐"><a href="#Title-内存对齐" class="headerlink" title="Title :内存对齐"></a>Title :内存对齐</h2><p>1、为什么要内存对齐</p>
+<p>​    处理器为了加速内存读取速度不是一个字节字节读取而是一块一块读取，一般会以双字节,四字节,8字节,16字节甚至32字节为单位来存取内存，我们将上述这些存取单位称为内存存取粒度.现在考虑4字节存取粒度的处理器取int类型变量（32位系统），该处理器只能从地址为4的倍数的内存开始读取数据。</p>
+<p>2、内存对齐规则</p>
+<pre><code class="hljs cpp"><span class="hljs-comment">//32位系统</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-keyword">struct</span>
+&#123;
+    <span class="hljs-type">int</span> i;    
+    <span class="hljs-type">char</span> c1;  
+    <span class="hljs-type">char</span> c2;  
+&#125;x1;
 
+<span class="hljs-keyword">struct</span>&#123;
+    <span class="hljs-type">char</span> c1;  
+    <span class="hljs-type">int</span> i;    
+    <span class="hljs-type">char</span> c2;  
+&#125;x2;
 
+<span class="hljs-keyword">struct</span>&#123;
+    <span class="hljs-type">char</span> c1;  
+    <span class="hljs-type">char</span> c2; 
+    <span class="hljs-type">int</span> i;    
+&#125;x3;
 
-
-
-
-
-
-
-
-
-
-
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,<span class="hljs-built_in">sizeof</span>(x1));  <span class="hljs-comment">// 输出8</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,<span class="hljs-built_in">sizeof</span>(x2));  <span class="hljs-comment">// 输出12</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,<span class="hljs-built_in">sizeof</span>(x3));  <span class="hljs-comment">// 输出8</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
 
 
             </div>
@@ -263,18 +281,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/makedown%E8%AF%AD%E6%B3%95/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">makedown基础语法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87%20Offer%2004.%20%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/">
-                        <span class="hidden-mobile">剑指 Offer 04. 二维数组中的查找</span>
+                      <a href="/2022/03/06/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/go%20map/">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -293,8 +305,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://example.com/2022/01/21/hello-world/';
-        this.page.identifier = '/2022/01/21/hello-world/';
+        this.page.url = 'http://example.com/2022/03/09/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/';
+        this.page.identifier = '/2022/03/09/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/';
       };
       function loadDisqus() {
         (function () {
@@ -486,7 +498,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Hello World&nbsp;",
+        "&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
