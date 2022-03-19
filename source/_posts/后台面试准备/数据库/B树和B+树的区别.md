@@ -1,5 +1,9 @@
 ---
 title: B树、B+树、红黑树、AVL树
+excerpt: 所在模块：数据库
+tags: [数据库]
+categories: 后端面试
+banner_img: /img/壁纸.jpg
 ---
 
 #### 红黑树
@@ -24,7 +28,9 @@ title: B树、B+树、红黑树、AVL树
 
 2-3树是B树的一种特例，二叉搜索树搜索效率高，但是为了保持平衡需要的代价太大，所以人想出了一个结点允许多个值的数据结构-B树
 
- ![B树](http://hkctfsys.com/img/B%E6%A0%91.png)
+ ![B树](https://tva1.sinaimg.cn/large/e6c9d24ely1h0e0zmzuq0j20k408daa9.jpg)
+
+
 
 ##### 特点：
 
@@ -32,9 +38,13 @@ title: B树、B+树、红黑树、AVL树
 
 2、每个节点的元素从小到大排列
 
+
+
+操作系统索引表也用了b+树
+
 #### B+树
 
-![b+树png](http://hkctfsys.com/img/b%E5%8A%A0%E6%A0%91.png)
+![b+树png](https://tva1.sinaimg.cn/large/e6c9d24ely1h0e10thk89j20mx094weu.jpg)
 
 ##### 特点：
 
@@ -45,6 +55,8 @@ title: B树、B+树、红黑树、AVL树
 3、非叶子节点只有key，没有value，叶子节点有key，value
 
 #### B树和B+树的区别，为什么mysql会选b+树
+
+**卫星数据：**指索引元素所指向的数据记录，比如数据库中的某一行。
 
 1、B+树的中间节点没有卫星数据，同样大小的磁盘页可以容纳更多的节点元素。意味着，数据量相同的情况下，B+树的结构比B树更加矮胖，因此查询时IO次数更少，B+树更加的矮胖一点，磁盘IO操作少，查询速度比B快
 
