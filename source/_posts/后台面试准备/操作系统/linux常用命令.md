@@ -1,5 +1,9 @@
 ---
 title: linux常用命令
+excerpt: 所在模块：操作系统
+tags: [操作系统]
+categories: 后台面试
+banner_img: /img/壁纸.jpg
 ---
 
 1、ls (list) 查看linux文件夹包含的文件
@@ -96,6 +100,12 @@ u 表示该档案的拥有者，g 表示与该档案的拥有者属于同一个�
 
 chmod	a+x	t.log	增加文件t.log所有用户可执行权限
 
+chmod 777 +文件 就是给这个文件所以人的读、写、执行权限
+
+```
+读权限（read，r）的值是4，写权限（write，w）的值是2，执行权限（execute，x）的值是1
+```
+
 19、tar	用于压缩和解压文件，本身只有打包功能，打包是将一大堆文件或者目录变成一个总的文件
 
 常用参数：
@@ -133,6 +143,8 @@ chmod	a+x	t.log	增加文件t.log所有用户可执行权限
 22、du命令
 
 23、ln	（link）为文件在另外一个位置建立一个同步的链接，默认为硬链接
+
+[硬链接和软链接](http://sjy.xn--6qq986b3xl/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%A1%AC%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BD%AF%E8%BF%9E%E6%8E%A5/)
 
 dmesg
 
