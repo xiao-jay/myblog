@@ -10,9 +10,11 @@ banner_img: /img/壁纸.jpg
 
 浏览器解析域名得到对应的IP地址
 
-DNS解析过程
+[DNS解析过程](http://sjy.xn--6qq986b3xl/2022/03/20/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/DNS%E8%A7%A3%E6%9E%90/)
 
 ### 2、TCP三次握手
+
+[三次握手详解](http://sjy.xn--6qq986b3xl/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/)
 
 ### 3、建立连接发起HTTP请求
 

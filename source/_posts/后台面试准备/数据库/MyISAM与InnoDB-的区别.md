@@ -2,7 +2,7 @@
 title: MyISAM与InnoDB的区别
 excerpt: 所在模块：数据库
 tags: [数据库]
-categories: 后台面试
+categories: 后端面试
 banner_img: /img/壁纸.jpg
 ---
 

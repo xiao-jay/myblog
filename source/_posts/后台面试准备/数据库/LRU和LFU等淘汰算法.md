@@ -2,7 +2,7 @@
 title: LRU和LFU等淘汰算法
 excerpt: 介绍了LRU和LFU算法，和LRU在mysql数据库中buffer pool中的应用
 tags: [数据库]
-categories: 后台面试
+categories: 后端面试
 banner_img: /img/壁纸.jpg 
 ---
 

@@ -2,7 +2,7 @@
 title: radis
 excerpt: radis的基本数据类型和介绍了为什么radis那么快，介绍一下缓存可能会出现的缓存雪崩和缓存穿透的概念
 tags: [数据库]
-categories: 后台面试
+categories: 后端面试
 banner_img: /img/壁纸.jpg
 ---
 
