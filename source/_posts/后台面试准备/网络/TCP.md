@@ -93,7 +93,7 @@ TIME_WAIT产生条件：TCP四次挥手中，第一个发送FIN=1的TCP报文的
 
 - 使用http1.1中的持久连接，传输完一个数据后不关闭tcp连接，可以复用tcp链接。
 
-- 使用http2.0中tcp多路复用技术
+- [使用http2.0中tcp多路复用技术](http://sjy.xn--6qq986b3xl/2022/03/20/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/HTTP%20%E5%92%8C%20HTTPS%20/)
 
   
 
