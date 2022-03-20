@@ -1,5 +1,9 @@
 ---
 title: JAVA的垃圾回收
+excerpt: 所在模块：java
+tags: [java]
+categories: 后端面试
+banner_img: /img/壁纸.jpg
 ---
 
 1、怎么样进行垃圾回收

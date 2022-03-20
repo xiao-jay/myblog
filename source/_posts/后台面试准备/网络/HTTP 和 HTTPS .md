@@ -1,16 +1,14 @@
 ---
-title: HTTP 和 HTTPS 的区别
+title: HTTP 和 HTTPS 
+excerpt: 所在模块：计算机网络
+tags: [计算机网络]
+categories: 后端面试
+banner_img: /img/壁纸.jpg
 ---
 
-#### HTTP和HTTPS的区别
+#### HTTP
 
- http是超文本传输协议，最开始是为了方便传输html而创建的，传输的信息都是没经过加密的，并且是无状态的，连接通过TCP连接，端口为80，安全性很差，但是连接很简单，速度快减少界面加载延时
-
-https是经过ssl证书认证并且在传输过程加密的一种传输方式，端口为443安全性大大增加
-
-安全的基础是ssl协议，连接方式不同（待补充），https是http+ssl协议进行构建的加密传输、身份认证的网络协议，比http协议安全很多，连接方式通常也是tcp，也有可能是SCTP。
-
-ssl由权威机构颁发，ssl是一个非对称加密，有一个公钥，和一个私钥，用公钥加密后的信息只能由私钥解密，用私钥加密的数据只能公钥解密,公钥放在服务器，私钥放在个人主机。
+ 	http是超文本传输协议，最开始是为了方便传输html而创建的，传输的信息都是没经过加密的，并且是无状态的，连接通过TCP连接，端口为80，安全性很差，但是连接很简单，速度快减少界面加载延时
 
 #### http缺点
 
@@ -20,9 +18,9 @@ ssl由权威机构颁发，ssl是一个非对称加密，有一个公钥，和�
 
 3、通信使用明文，可能信息被窃听
 
-![http请求报文](http://hkctfsys.com/img/http%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0gi9djnslj20g20btdg9.jpg)
 
-![http报文](http://hkctfsys.com/img/http%E6%8A%A5%E6%96%87.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0gi9j8u5uj20re0iejsd.jpg)
 
 #### http常见状态码
 
@@ -35,6 +33,16 @@ ssl由权威机构颁发，ssl是一个非对称加密，有一个公钥，和�
 | 403 Forbidden             | 服务器收到并且理解请求，但是拒绝提供服务 |
 | 404 Not Found             | 客户端所要找的资源找不到                 |
 | 500 Internal Server Error | 服务器错误                               |
+
+### HTTPS
+
+https是经过ssl证书认证并且在传输过程加密的一种传输方式，端口为443安全性大大增加，https = http+ssl加密
+
+### HTTP和HTTPS的区别
+
+安全的基础是ssl协议，连接方式不同（待补充），https是http+ssl协议进行构建的加密传输、身份认证的网络协议，比http协议安全很多，连接方式通常也是tcp，也有可能是SCTP。
+
+ssl由权威机构颁发，ssl是一个非对称加密，有一个公钥，和一个私钥，用公钥加密后的信息只能由私钥解密，用私钥加密的数据只能公钥解密,公钥放在服务器，私钥放在个人主机。
 
 #### Get和Post的区别
 

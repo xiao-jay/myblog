@@ -2,7 +2,7 @@
 title: 剑指 Offer 12. 矩阵中的路径
 excerpt: 所在模块：array
 tags: [golang,array]
-categories: 力扣刷题
+categories: 剑指offer
 banner_img: /img/壁纸.jpg
 ---
 

@@ -12,13 +12,13 @@ banner_img: /img/壁纸.jpg
 
 #### 1、搜索windows工具搜到远程桌面连接工具，用远程桌面连接连接到服务器，然后输入设置的账号密码
 
-![远程桌面连接](http://hkctfsys.com/img/远程桌面连接.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0geh1147mj20d808y0te.jpg)
 
 #### 2、把IE增强的安全配置给关了（安全就代表麻烦），win->服务器管理器->IE增强的安全配置：启动点进去然后关闭
 
 #### 3、下载[宝塔](https://www.bt.cn/),选windows版本，点下载，用来集成配置服务器的好工具
 
-![宝塔进入界面](http://hkctfsys.com/img/宝塔进入界面.png)
+、![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0geo2ismyj20is0eiabx.jpg)
 
 #### 4、点击打开，登陆，创建一个宝塔账号，然后，进入，选Apach和Nginx套餐都可以
 
@@ -28,11 +28,11 @@ banner_img: /img/壁纸.jpg
 
 node下载安装有一个注意点是,到这一步要选Add To Path
 
-![node安装注意事项](http://hkctfsys.com/img/node安装注意事项.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0gelil50mj20dz0b1dh7.jpg)
 
 #### 6、右键打开git，点击gitbosh安装hexo，创建一个hexo名字的或者任何名字的文件夹，进去，然后右击点git bosh
 
-![gitbosh](http://hkctfsys.com/img/gitbosh.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0gela2e7oj208a0a7mxd.jpg)
 
 ```undefined
 npm install -g hexo-cli //如果没反应可以到cmd运行这个代码
@@ -58,7 +58,7 @@ hexo s
 
 
 
-![hexo界面](http://hkctfsys.com/img/hexo 界面.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0geojqhh7j21800ouad9.jpg)
 
 #### 7、下载和配置Nginx
 
@@ -83,16 +83,16 @@ server {
 
 下面介绍为什么要下载nignx和为什么要把root 地址改成hexo的public文件夹，因为source文件夹中makedown文件执行hexo g被编译成html文件放在public文件夹中，并且把网站的根目录指向public文件夹，用Nginx反向代理使得人们可以访问我这个网站。
 
-![http://hkctfsys.com/img/Nginx%E5%8E%9F%E7%90%86.png](http://hkctfsys.com/img/Nginx原理.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0gene2lewj20m80dcjro.jpg)
 
 #### 8、接下来让网站根目录指向public文件夹，打开宝塔软件,信息输入密码之后点保存，然后通过面板地址，http: f/hkctfsys. com: 8990/OEsp376s（这是我的面板地址，在面板最上面找）
 
-![http://hkctfsys.com/img/%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E8%AE%BE%E7%BD%AE.png](http://hkctfsys.com/img/宝塔面板设置.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0gekb9somj20jh0gmq4t.jpg)
 
 然后点开网站->添加站点,把根目录指向hexo的public文件夹，大功告成啦
 
-![http://hkctfsys.com/img/%E5%AE%9D%E5%A1%94%E6%B7%BB%E5%8A%A0%E7%AB%99%E7%82%B9.png](http://hkctfsys.com/img/宝塔添加站点.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0gek24os0j216z0mxjth.jpg)
 
 现在在浏览器里面输入你的域名，可以正常显示了
 
-![http://hkctfsys.com/img/%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5.png](http://hkctfsys.com/img/博客首页.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h0gekr3d8lj21hc0szgt0.jpg)

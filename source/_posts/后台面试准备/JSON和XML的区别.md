@@ -1,5 +1,9 @@
 ---
 title: JSON和XML的区别
+excerpt: JSON和XML的区别
+tags: [json]
+categories: json
+banner_img: /img/壁纸.jpg
 ---
 
 **(1)XML定义**
