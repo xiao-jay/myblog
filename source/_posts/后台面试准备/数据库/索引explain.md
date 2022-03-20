@@ -6,6 +6,8 @@ categories: 后端面试
 banner_img: /img/壁纸.jpg
 ---
 
+有两个重要的属性，type和extre，type是类型，越左边越好。
+
 **type：**system > const > eq_ref > ref > range > index > ALL
 
 **extra：**
@@ -38,9 +40,9 @@ explain ``select` `* ``from` `user` `where` `sex=``'no'``;
 
 　　常见的优化方法为，在where过滤属性上添加索引。
 
-*画外音：**本例中，sex字段区分度不高，添加索引对性能提升有限。*
+画外音：本例中，sex字段区分度不高，添加索引对性能提升有限。*
 
- 
+
 
 **二、【Using index】**　　
 
