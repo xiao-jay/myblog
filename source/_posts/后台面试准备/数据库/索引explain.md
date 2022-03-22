@@ -10,6 +10,18 @@ banner_img: /img/壁纸.jpg
 
 **type：**system > const > eq_ref > ref > range > index > ALL
 
+system是查已经放入内存的系统表
+
+const命中主键索引并且返回常数值
+
+eq_ref是命中主键索引或者唯一索引
+
+ref是命中普通索引
+
+range是索引上面的范围查询
+
+index是使用索引的全表查询，和all速度差不多，官网拍比all快是因为查出来的数据是有序的吧。
+
 **extra：**
 
 **Using where】**

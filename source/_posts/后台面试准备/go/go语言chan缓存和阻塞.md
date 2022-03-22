@@ -1,5 +1,9 @@
 ---
 title: go语言chan缓存和阻塞
+excerpt: 所在模块：golang
+tags: [golang]
+categories: 后端面试
+banner_img: /img/壁纸.jpg
 ---
 
 问题：下面迭代会有什么问题
