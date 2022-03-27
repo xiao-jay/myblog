@@ -1,5 +1,9 @@
 ---
 title: LINUX和Windows的区别（从底层来说）
+excerpt: 所在模块：操作系统
+tags: [操作系统]
+categories: 后端面试
+banner_img: /img/壁纸.jpg
 ---
 
 先说一下现象，Linux是服务器和嵌入式的主流操作系统,Windows是个人pc领域的绝对王者
