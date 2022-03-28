@@ -2,7 +2,7 @@
 title: linux硬连接和软连接
 excerpt: 所在模块：操作系统
 tags: [操作系统]
-categories: 后台面试
+categories: 后端面试
 banner_img: /img/壁纸.jpg
 ---
 
