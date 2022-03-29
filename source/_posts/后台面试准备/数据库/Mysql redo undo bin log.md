@@ -10,7 +10,7 @@ banner_img: /img/壁纸.jpg
 
 重做日志
 
-　　作用：确保事务的持久性。防止在发生故障的时间点，尚有脏页未写入磁盘，在重启 mysql 服务的时候，根据 redo log 进行重做，从而达到事务的持久性这一特性。
+　　作用：确保事务的持久性。防止在发生故障的时间点，尚有脏页未写入磁盘，（刷脏页是个随机IO），在重启 mysql 服务的时候，根据 redo log 进行重做，从而达到事务的持久性这一特性。
 
 ### bin log
 
@@ -51,6 +51,8 @@ undo 日志用于记录事务开始前的状态，用于事务失败时的回滚
 （3）内容不同：redo log是物理日志，内容基于磁盘的Page；binlog的内容是二进制的，根据binlog_format参数的不同，可能基于sql语句、基于数据本身或者二者的混合。
 
 （4）写入时机不同：binlog在事务提交时写入；redo log的写入时机相对多元：
+
+![](https://img-blog.csdnimg.cn/20200509170444156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h4MTIzNjk4,size_16,color_FFFFFF,t_70)
 
 前面曾提到：当事务提交时会调用fsync对redo log进行刷盘；这是默认情况下的策略，修改innodb_flush_log_at_trx_commit参数可以改变该策略，但事务的持久性将无法保证。
 除了事务提交时，还有其他刷盘时机：如master thread每秒刷盘一次redo log等，这样的好处是不一定要等到commit时刷盘，commit速度大大加快。
