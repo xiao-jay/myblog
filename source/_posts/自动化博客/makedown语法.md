@@ -2,7 +2,7 @@
 title: makedown基础语法
 excerpt: 适合最基础的人看，即看即会
 tags: [makedown]
-categories: makedown
+categories: 自动化博客
 ---
 
  #  1、字体大小

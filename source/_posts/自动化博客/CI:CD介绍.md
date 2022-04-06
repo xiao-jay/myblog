@@ -2,7 +2,7 @@
 title: CI/CD介绍
 excerpt: 介绍CI/CD概念
 tags: [CI/CD]
-categories: CI/CD
+categories: 自动化博客
 ---
 
 持续集成，持续交付和持续部署是人们谈论现代开发实践时常提到的几个概念，三者究竟是什么，又有何联系和区别呢？我们翻译了以下这篇文章来探讨这些问题。

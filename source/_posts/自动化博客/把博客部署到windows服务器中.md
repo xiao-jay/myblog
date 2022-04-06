@@ -1,8 +1,8 @@
 ---
 title: 把hexo博客部署到windows服务器中
 excerpt: 八步教你把博客部署到windows服务器中
-tags: [生活杂记]
-categories: 生活杂记
+tags: [自动化博客]
+categories: 自动化博客
 banner_img: /img/壁纸.jpg
 ---
 

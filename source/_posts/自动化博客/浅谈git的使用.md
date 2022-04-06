@@ -3,7 +3,7 @@ title: 浅谈git的使用
 excerpt: 配置环境和最基本的git使用
 index_img: /img/git.jpg
 tags: [git]
-categories: git
+categories: categories: 自动化博客
 ---
 
 ## <p class="note note-primary">观前提醒：我写这个主要是来巩固我学的git操作</p>
