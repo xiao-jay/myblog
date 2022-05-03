@@ -102,9 +102,10 @@ for i in `kubeadm config images list`; do
 done;
 ```
 
-5、更改kubelet参数
+5、更改kubelet参数(只有centos需要)
 
 ```
+
 vi /etc/sysconfig/kubelet
 
 改为如下参数
@@ -148,6 +149,15 @@ iptables -t nat -A OUTPUT -d 192.168.0.1 -j DNAT --to-destination 152.132.125.96
 ```
 
 注：第一个ip是master节点的内网ip，后一个ip是外网Ip
+
+
+
+node 节点运行失败怎么卸载
+
+```
+kubeadm reset
+rm -rf /etc/kubernetes/
+```
 
 
 
