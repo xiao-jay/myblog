@@ -88,7 +88,7 @@ sudo systemctl restart docker
 3、使用swap会影响性能。kubelet禁用swap
 
 ```
- vim /etc/fstab，注释掉swap那一行
+ sudo vim /etc/fstab，注释掉swap那一行
 ```
 
 4、下载所需要的镜像
@@ -106,7 +106,7 @@ done;
 
 ```
 
-vi /etc/sysconfig/kubelet
+sudo vi /etc/sysconfig/kubelet
 
 改为如下参数
 KUBELET_EXTRA_ARGS=--cgroup-driver=systemd
@@ -115,13 +115,13 @@ KUBELET_EXTRA_ARGS=--cgroup-driver=systemd
 6、
 
 ```
-kubeadm init --image-repository registry.aliyuncs.com/google_containers --pod-network-cidr=10.244.0.0/16
+sudo kubeadm init --image-repository=registry.aliyuncs.com/google_containers --pod-network-cidr 10.244.0.0/16
 ```
 
 如果安装失败，可以使用下面命令重置
 
 ```
-kubeadm reset
+sudo kubeadm reset
 ```
 
 然后会得到token 需要保存下来
@@ -155,7 +155,7 @@ iptables -t nat -A OUTPUT -d 192.168.0.1 -j DNAT --to-destination 152.132.125.96
 node 节点运行失败怎么卸载
 
 ```
-kubeadm reset
+s
 rm -rf /etc/kubernetes/
 ```
 
@@ -201,7 +201,126 @@ grep 截取一下,可以看得出来kubelet默认 cgoup 驱动为systemd
 
 root@controlplane:~# cat /var/lib/kubelet/config.yaml |grep group
 cgroupDriver: systemd
+
+重启kubelet （optional）
+sudo systemctl restart kubelet
+
+
+
+2、msg=”getting status of runtime: rpc error: code = Unimplemented desc = unknown service runtime.v1alpha2.RuntimeService”
+
+解决方法:
+
+```rm /etc/containerd/config.toml```
+```systemctl restart containerd```
+
+rm -fr  $HOME/.kube/config
+#  --apiserver-advertise-address  更改后的地址
+sudo kubeadm init \
+--apiserver-advertise-address=10.0.1.162 \
+--image-repository registry.aliyuncs.com/google_containers \
+--kubernetes-version=v1.24.2 \
+--pod-network-cidr=10.244.0.0/16 \
+--service-cidr=10.96.0.0/12 
+
+
+
+docker 配置
+
+{
+    "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    },
+    "registry-mirrors": ["https://m3719grz.mirror.aliyuncs.com"]
+}
+~   
+
+
+
+3、kubelet 出现找不到Error getting node" err="node \"master\" not found
+
+执行 crictl images 发现 pause 的 TAG 是 3.5 没有 3.2，随即执行重新拉起镜像：
+
+```
+[root@k8s-master ~]# crictl images
+IMAGE                                                             TAG                 IMAGE ID            SIZE
+registry.aliyuncs.com/google_containers/coredns                   v1.8.4              8d147537fb7d1       13.7MB
+registry.aliyuncs.com/google_containers/coredns                   latest              8d147537fb7d1       13.7MB
+registry.aliyuncs.com/google_containers/etcd                      3.5.0-0             0048118155842       99.9MB
+registry.aliyuncs.com/google_containers/kube-apiserver            v1.22.1             f30469a2491a5       31.3MB
+registry.aliyuncs.com/google_containers/kube-controller-manager   v1.22.1             6e002eb89a881       29.8MB
+registry.aliyuncs.com/google_containers/kube-proxy                v1.22.1             36c4ebbc9d979       35.9MB
+registry.aliyuncs.com/google_containers/kube-scheduler            v1.22.1             aca5ededae9c8       15MB
+registry.aliyuncs.com/google_containers/pause                     3.5                 ed210e3e4a5ba       301kB
+[root@k8s-master ~]# crictl pull registry.aliyuncs.com/google_containers/pause:3.2
+Image is up to date for sha256:80d28bedfe5dec59da9ebf8e6260224ac9008ab5c11dbbe16ee3ba3e4439ac2c
+[root@k8s-master ~]# ctr -n k8s.io i tag --force registry.aliyuncs.com/google_containers/pause:3.2 k8s.gcr.io/pause:3.2
+k8s.gcr.io/pause:3.2
+[root@k8s-master ~]# crictl images
+IMAGE                                                             TAG                 IMAGE ID            SIZE
+registry.aliyuncs.com/google_containers/coredns                   v1.8.4              8d147537fb7d1       13.7MB
+registry.aliyuncs.com/google_containers/coredns                   latest              8d147537fb7d1       13.7MB
+registry.aliyuncs.com/google_containers/etcd                      3.5.0-0             0048118155842       99.9MB
+registry.aliyuncs.com/google_containers/kube-apiserver            v1.22.1             f30469a2491a5       31.3MB
+registry.aliyuncs.com/google_containers/kube-controller-manager   v1.22.1             6e002eb89a881       29.8MB
+registry.aliyuncs.com/google_containers/kube-proxy                v1.22.1             36c4ebbc9d979       35.9MB
+registry.aliyuncs.com/google_containers/kube-scheduler            v1.22.1             aca5ededae9c8       15MB
+registry.aliyuncs.com/google_containers/pause                     3.2                 80d28bedfe5de       300kB
+k8s.gcr.io/pause                                                  3.2                 80d28bedfe5de       300kB
+registry.aliyuncs.com/google_containers/pause 
+```
+
+执行kubeadm reset和init就好了
+
+
+
+
+
+## 在部署时忘记了token密码怎么办？
+
+首先，在每个节点上 执行 kubeadm reset命令即可，重新获取token（需要重新安装flanner网络组件）
+关于如何重置k8s集群可以参考：重置kubernetes集群
+
+1.重新生成新的token
+默认token的有效期为24小时，当过期之后，该token就不可用了，在master节点上执行 kubeadm token create
+
+$ kubeadm token create
+c9afga.w3fue0yh3gzxczic
 1
 2
-重启kubelet （optional）
-systemctl restart kubelet
+查看token
+
+$ kubeadm token list
+TOKEN                     TTL       EXPIRES                     USAGES                   DESCRIPTION   EXTRA GROUPS
+c9afga.w3fue0yh3gzxczic   23h       2019-07-26T14:30:54+08:00   authentication,signing   <none>        system:bootstrappers:kubeadm:default-node-token
+　　
+
+2.获取ca证书sha256编码hash值
+
+$ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+8b79b6461e58c07333cb2851fe74fd4374af8bbbe0bf7e040b415b86ad4fb89d
+3.节点加入集群
+先清理环境，然后再kubeadm join （Node节点上执行）
+
+$ kubeadm reset
+
+$ sudo kubeadm join 10.0.1.162:6443 --token w7suuo.qmru2iw4mbo4fcyc \
+   --discovery-token-ca-cert-hash sha256:3761c32d1ffbc5fa397e1fce570b02cec5b7ea0bd059ce402cebf966f4e0c1b5
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cuda-vector-add
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: cuda-vector-add
+      image: "k8s.gcr.io/cuda-vector-add:v0.1"
+      resources:
+        limits:
+          nvidia.com/gpu: 1 # requesting 1 GPU
+```
