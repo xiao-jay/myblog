@@ -155,7 +155,6 @@ iptables -t nat -A OUTPUT -d 192.168.0.1 -j DNAT --to-destination 152.132.125.96
 node 节点运行失败怎么卸载
 
 ```
-s
 rm -rf /etc/kubernetes/
 ```
 
@@ -289,8 +288,6 @@ registry.aliyuncs.com/google_containers/pause
 
 $ kubeadm token create
 c9afga.w3fue0yh3gzxczic
-1
-2
 查看token
 
 $ kubeadm token list
@@ -307,8 +304,10 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outf
 
 $ kubeadm reset
 
-$ sudo kubeadm join 10.0.1.162:6443 --token w7suuo.qmru2iw4mbo4fcyc \
-   --discovery-token-ca-cert-hash sha256:3761c32d1ffbc5fa397e1fce570b02cec5b7ea0bd059ce402cebf966f4e0c1b5
+```
+sudo kubeadm join 10.0.1.162:6443  --token os3a1x.opjp7josfvxqagbt \
+ 	--discovery-token-ca-cert-hash sha256:3761c32d1ffbc5fa397e1fce570b02cec5b7ea0bd059ce402cebf966f4e0c1b5
+```
 
 ```yaml
 apiVersion: v1
