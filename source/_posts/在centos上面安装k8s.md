@@ -305,7 +305,7 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outf
 $ kubeadm reset
 
 ```
-sudo kubeadm join 10.0.1.162:6443  --token os3a1x.opjp7josfvxqagbt \
+sudo kubeadm join 10.0.1.162:6443  --token uuz9bs.9u4fdpycvf9tx3gk \
  	--discovery-token-ca-cert-hash sha256:3761c32d1ffbc5fa397e1fce570b02cec5b7ea0bd059ce402cebf966f4e0c1b5
 ```
 
