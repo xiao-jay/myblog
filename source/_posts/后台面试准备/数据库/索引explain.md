@@ -90,6 +90,8 @@ Extra为Using index condition说明，确实命中了索引，但不是所有的
 
 **问题来了，如何优化为Using index呢？**
 
+添加聚簇索引，使所有列在索引中。
+
 **四、【Using filesort】**
 
 [![img](https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091428454-1485068081.png)](https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091428454-1485068081.png)

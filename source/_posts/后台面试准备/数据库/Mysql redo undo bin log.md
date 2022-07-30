@@ -22,8 +22,6 @@ banner_img: /img/壁纸.jpg
 
 　　binlog 有三种模式：Statement（基于 SQL 语句的复制）、Row（基于行的复制） 以及 Mixed（混合模式）
 
-
-
 ### undo log
 
 回滚日志
