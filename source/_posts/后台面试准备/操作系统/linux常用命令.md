@@ -146,6 +146,18 @@ chmod 777 +文件 就是给这个文件所以人的读、写、执行权限
 
 [硬链接和软链接](http://sjy.xn--6qq986b3xl/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%A1%AC%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BD%AF%E8%BF%9E%E6%8E%A5/)
 
+24、netstat
+
+-t：显示TCP端口
+
+-u：显示udp端口
+
+-n:  不进行DNS轮询，显示IP加快速度
+
+-a： 显示所有socket
+
+-p：显示标识符和程序名称
+
 dmesg
 
 isomod

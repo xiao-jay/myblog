@@ -1,6 +1,6 @@
 ---
 title: 剑指 Offer 35. 复杂链表的复制
-excerpt: 所在模块: 链表
+excerpt: 所在模块：链表
 tags: [go,链表]
 categories: 剑指offer
 banner_img: /img/壁纸.jpg
@@ -100,6 +100,5 @@ func copyRandomList(head *Node) *Node {
    执行用时：4 ms, 在所有 Go 提交中击败了100.00%的用户<br>
    内存消耗：3.5 MB, 在所有 Go 提交中击败了38.17%的用户
 </p>
-
 
 
