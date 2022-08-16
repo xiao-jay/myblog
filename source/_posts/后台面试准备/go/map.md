@@ -39,6 +39,16 @@ map分为hmap和bmap，hmap是一个哈希表，bmap是一个数组，golang用�
 
 bmap 是存放 k-v 的地方，我们把视角拉近，仔细看 bmap 的内部组成。
 
+```
+type bmap struct {
+    topbits  [8]uint8
+    keys     [8]keytype
+    values   [8]valuetype
+    pad      uintptr
+    overflow uintptr
+}
+```
+
 ![img](https://user-images.githubusercontent.com/7698088/57577391-f88f1d80-74a7-11e9-893c-4783dc4fb35e.png)
 
 
@@ -159,6 +169,60 @@ count 就是 map 的元素个数，2^B 表示 bucket 数量。
 
 1. 装载因子超过阈值，源码里定义的阈值是 6.5。
 2. overflow 的 bucket 数量过多：当 B 小于 15，也就是 bucket 总数 2^B 小于 2^15 时，如果 overflow 的 bucket 数量超过 2^B；当 B >= 15，也就是 bucket 总数 2^B 大于等于 2^15，如果 overflow 的 bucket 数量超过 2^15。
+
+```
+// src/runtime/hashmap.go/mapassign
+
+// 触发扩容时机
+if !h.growing() && (overLoadFactor(int64(h.count), h.B) || tooManyOverflowBuckets(h.noverflow, h.B)) {
+        hashGrow(t, h)
+    }
+
+// 装载因子超过 6.5
+func overLoadFactor(count int64, B uint8) bool {
+    return count >= bucketCnt && float32(count) >= loadFactor*float32((uint64(1)<<B))
+}
+
+// overflow buckets 太多
+func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
+    if B < 16 {
+        return noverflow >= uint16(1)<<B
+    }
+    return noverflow >= 1<<15
+}
+```
+
+
+
+再来看看真正执行搬迁工作的 growWork() 函数。
+
+```
+func growWork(t *maptype, h *hmap, bucket uintptr) {
+    // 确认搬迁老的 bucket 对应正在使用的 bucket
+    evacuate(t, h, bucket&h.oldbucketmask())
+
+    // 再搬迁一个 bucket，以加快搬迁进程
+    if h.growing() {
+        evacuate(t, h, h.nevacuate)
+    }
+}
+```
+
+h.growing() 函数非常简单：
+
+```
+func (h *hmap) growing() bool {
+
+    return h.oldbuckets != nil
+
+}
+```
+
+如果 `oldbuckets` 不为空，说明还没有搬迁完毕，还得继续搬。
+
+
+
+TODO:evacuate函数干了什么下次看懂源码再写，一个搬迁的细节是搬到大内存去的时候得重新hash计算放到哪个bucket中，因为比原来多了一位。
 
 
 
