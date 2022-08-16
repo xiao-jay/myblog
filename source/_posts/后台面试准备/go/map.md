@@ -43,111 +43,85 @@ bmap 是存放 k-v 的地方，我们把视角拉近，仔细看 bmap 的内部�
 
 
 
-
-
-
-
 ### 创建map
 
 从语法层面上来说，创建 map 很简单：
 
+```
 ageMp := make(map[string]int)
 
 // 指定 map 长度
 
 ageMp := make(map[string]int, 8)
-
-
-
 // ageMp 为 nil，不能向其添加元素，会直接panic
 
 var ageMp map[string]int
-
-
+```
 
 通过汇编语言可以看到，实际上底层调用的是 `makemap` 函数，主要做的工作就是初始化 `hmap` 结构体的各种字段，例如计算 B 的大小，设置哈希种子 hash0 等等。
 
-```
-func makemap(t *maptype, hint int64, h *hmap, bucket unsafe.Pointer) *hmap {
-
-​    // 省略各种条件检查...
-
-
-
-​    // 找到一个 B，使得 map 的装载因子在正常范围内
-
-​    B := uint8(0)
-
-​    for ; overLoadFactor(hint, B); B++ {
-
-​    }
-
-
-
-​    // 初始化 hash table
-
-​    // 如果 B 等于 0，那么 buckets 就会在赋值的时候再分配
-
-​    // 如果长度比较大，分配内存会花费长一点
-
-​    buckets := bucket
-
-​    var extra *mapextra
-
-​    if B != 0 {
-
-​        var nextOverflow *bmap
-
-​        buckets, nextOverflow = makeBucketArray(t, B)
-
-​        if nextOverflow != nil {
-
-​            extra = new(mapextra)
-
-​            extra.nextOverflow = nextOverflow
-
-​        }
-
-​    }
-
-
-
-​    // 初始化 hamp
-
-​    if h == nil {
-
-​        h = (*hmap)(newobject(t.hmap))
-
-​    }
-
-​    h.count = 0
-
-​    h.B = B
-
-​    h.extra = extra
-
-​    h.flags = 0
-
-​    h.hash0 = fastrand()
-
-​    h.buckets = buckets
-
-​    h.oldbuckets = nil
-
-​    h.nevacuate = 0
-
-​    h.noverflow = 0
-
-
-
-​    return h
-
-}
-```
-
-
-
-
+    func makemap(t *maptype, hint int64, h *hmap, bucket unsafe.Pointer) *hmap {
+    
+     // 省略各种条件检查...
+    // 找到一个 B，使得 map 的装载因子在正常范围内
+    
+    B := uint8(0)
+    
+    for ; overLoadFactor(hint, B); B++ {
+    
+    }
+    // 初始化 hash table
+    
+    // 如果 B 等于 0，那么 buckets 就会在赋值的时候再分配
+    
+    // 如果长度比较大，分配内存会花费长一点
+    
+    buckets := bucket
+    
+    var extra *mapextra
+    
+    if B != 0 {
+    
+        var nextOverflow *bmap
+    
+        buckets, nextOverflow = makeBucketArray(t, B)
+    
+        if nextOverflow != nil {
+    
+            extra = new(mapextra)
+    
+            extra.nextOverflow = nextOverflow
+    
+        }
+    
+    }
+    // 初始化 hamp
+    
+    if h == nil {
+    
+        h = (*hmap)(newobject(t.hmap))
+    
+    }
+    
+    h.count = 0
+    
+    h.B = B
+    
+    h.extra = extra
+    
+    h.flags = 0
+    
+    h.hash0 = fastrand()
+    
+    h.buckets = buckets
+    
+    h.oldbuckets = nil
+    
+    h.nevacuate = 0
+    
+    h.noverflow = 0
+    return h
+    }
 
 
 
@@ -161,23 +135,34 @@ key 经过哈希计算后得到哈希值，共 64 个 bit 位（64位机，32位
 
  10010111 | 000011110110110010001111001010100010010110010101010 │ 01010
 
-
-
 用最后的 5 个 bit 位，也就是 `01010`，值为 10，也就是 10 号桶。这个操作实际上就是取余操作，但是取余开销太大，所以代码实现上用的位操作代替。
 
 再用哈希值的高 8 位，找到此 key 在 bucket 中的位置，这是在寻找已有的 key。最开始桶内还没有 key，新加入的 key 会找到第一个空位，放入。
 
 buckets 编号就是桶编号，当两个不同的 key 落在同一个桶中，也就是发生了哈希冲突。冲突的解决手段是用链表法：在 bucket 中，从前往后找到第一个空位。这样，在查找某个 key 时，先找到对应的桶，再去遍历 bucket 中的 key。
 
-这里参考曹大 github 博客里的一张图，原图是 ascii 图，geek 味十足，可以从参考资料找到曹大的博客，推荐大家去看看。
 
 
+### map扩容过程是怎么样的
+
+
+
+需要一个指标来判断是否要扩容，这就是`装载因子`。Go 源码里这样定义 `装载因子`：
+
+```
+loadFactor := count / (2^B)
+```
+
+count 就是 map 的元素个数，2^B 表示 bucket 数量。
+
+再来说触发 map 扩容的时机：在向 map 插入新 key 的时候，会进行条件检测，符合下面这 2 个条件，就会触发扩容：
+
+1. 装载因子超过阈值，源码里定义的阈值是 6.5。
+2. overflow 的 bucket 数量过多：当 B 小于 15，也就是 bucket 总数 2^B 小于 2^15 时，如果 overflow 的 bucket 数量超过 2^B；当 B >= 15，也就是 bucket 总数 2^B 大于等于 2^15，如果 overflow 的 bucket 数量超过 2^15。
 
 
 
 ## 问题
-
-
 
 ### 1、为什么map不可以寻址，map是怎么存储的
 

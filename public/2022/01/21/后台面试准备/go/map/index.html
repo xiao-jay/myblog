@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      987 字
+      1.1k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      14
        分钟
     </span>
   
@@ -258,94 +258,79 @@ type hmap struct &#123;
 <p>bmap 是存放 k-v 的地方，我们把视角拉近，仔细看 bmap 的内部组成。</p>
 <p><img src="https://user-images.githubusercontent.com/7698088/57577391-f88f1d80-74a7-11e9-893c-4783dc4fb35e.png" srcset="/img/loading.gif" alt="img"></p>
 <h3 id="创建map"><a href="#创建map" class="headerlink" title="创建map"></a>创建map</h3><p>从语法层面上来说，创建 map 很简单：</p>
-<p>ageMp :&#x3D; make(map[string]int)</p>
-<p>&#x2F;&#x2F; 指定 map 长度</p>
-<p>ageMp :&#x3D; make(map[string]int, 8)</p>
-<p>&#x2F;&#x2F; ageMp 为 nil，不能向其添加元素，会直接panic</p>
-<p>var ageMp map[string]int</p>
+<pre><code class="hljs go">ageMp := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+
+<span class="hljs-comment">// 指定 map 长度</span>
+
+ageMp := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>, <span class="hljs-number">8</span>)
+<span class="hljs-comment">// ageMp 为 nil，不能向其添加元素，会直接panic</span>
+
+<span class="hljs-keyword">var</span> ageMp <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span></code></pre>
+
 <p>通过汇编语言可以看到，实际上底层调用的是 <code>makemap</code> 函数，主要做的工作就是初始化 <code>hmap</code> 结构体的各种字段，例如计算 B 的大小，设置哈希种子 hash0 等等。</p>
-<pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">makemap</span><span class="hljs-params">(t *maptype, hint <span class="hljs-type">int64</span>, h *hmap, bucket unsafe.Pointer)</span></span> *hmap &#123;
+<pre><code>func makemap(t *maptype, hint int64, h *hmap, bucket unsafe.Pointer) *hmap &#123;
 
-​    <span class="hljs-comment">// 省略各种条件检查...</span>
+ // 省略各种条件检查...
+// 找到一个 B，使得 map 的装载因子在正常范围内
 
+B := uint8(0)
 
+for ; overLoadFactor(hint, B); B++ &#123;
 
-​    <span class="hljs-comment">// 找到一个 B，使得 map 的装载因子在正常范围内</span>
+&#125;
+// 初始化 hash table
 
-​    B := <span class="hljs-type">uint8</span>(<span class="hljs-number">0</span>)
+// 如果 B 等于 0，那么 buckets 就会在赋值的时候再分配
 
-​    <span class="hljs-keyword">for</span> ; overLoadFactor(hint, B); B++ &#123;
+// 如果长度比较大，分配内存会花费长一点
 
-​    &#125;
+buckets := bucket
 
+var extra *mapextra
 
+if B != 0 &#123;
 
-​    <span class="hljs-comment">// 初始化 hash table</span>
+    var nextOverflow *bmap
 
-​    <span class="hljs-comment">// 如果 B 等于 0，那么 buckets 就会在赋值的时候再分配</span>
+    buckets, nextOverflow = makeBucketArray(t, B)
 
-​    <span class="hljs-comment">// 如果长度比较大，分配内存会花费长一点</span>
+    if nextOverflow != nil &#123;
 
-​    buckets := bucket
+        extra = new(mapextra)
 
-​    <span class="hljs-keyword">var</span> extra *mapextra
+        extra.nextOverflow = nextOverflow
 
-​    <span class="hljs-keyword">if</span> B != <span class="hljs-number">0</span> &#123;
+    &#125;
 
-​        <span class="hljs-keyword">var</span> nextOverflow *bmap
+&#125;
+// 初始化 hamp
 
-​        buckets, nextOverflow = makeBucketArray(t, B)
+if h == nil &#123;
 
-​        <span class="hljs-keyword">if</span> nextOverflow != <span class="hljs-literal">nil</span> &#123;
+    h = (*hmap)(newobject(t.hmap))
 
-​            extra = <span class="hljs-built_in">new</span>(mapextra)
+&#125;
 
-​            extra.nextOverflow = nextOverflow
+h.count = 0
 
-​        &#125;
+h.B = B
 
-​    &#125;
+h.extra = extra
 
+h.flags = 0
 
+h.hash0 = fastrand()
 
-​    <span class="hljs-comment">// 初始化 hamp</span>
+h.buckets = buckets
 
-​    <span class="hljs-keyword">if</span> h == <span class="hljs-literal">nil</span> &#123;
+h.oldbuckets = nil
 
-​        h = (*hmap)(newobject(t.hmap))
+h.nevacuate = 0
 
-​    &#125;
-
-​    h.count = <span class="hljs-number">0</span>
-
-​    h.B = B
-
-​    h.extra = extra
-
-​    h.flags = <span class="hljs-number">0</span>
-
-​    h.hash0 = fastrand()
-
-​    h.buckets = buckets
-
-​    h.oldbuckets = <span class="hljs-literal">nil</span>
-
-​    h.nevacuate = <span class="hljs-number">0</span>
-
-​    h.noverflow = <span class="hljs-number">0</span>
-
-
-
-​    <span class="hljs-keyword">return</span> h
-
-&#125;</code></pre>
-
-
-
-
-
-
-
+h.noverflow = 0
+return h
+&#125;
+</code></pre>
 <h2 id="key-定位过程"><a href="#key-定位过程" class="headerlink" title="key 定位过程"></a>key 定位过程</h2><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h58uhkib28j20u01270vw.jpg" srcset="/img/loading.gif"></p>
 <p>key 经过哈希计算后得到哈希值，共 64 个 bit 位（64位机，32位机就不讨论了，现在主流都是64位机），计算它到底要落在哪个桶时，只会用到最后 B 个 bit 位。还记得前面提到过的 B 吗？如果 B &#x3D; 5，那么桶的数量，也就是 buckets 数组的长度是 2^5 &#x3D; 32。</p>
 <p>例如，现在有一个 key 经过哈希函数计算后，得到的哈希结果是：</p>
@@ -353,7 +338,15 @@ type hmap struct &#123;
 <p>用最后的 5 个 bit 位，也就是 <code>01010</code>，值为 10，也就是 10 号桶。这个操作实际上就是取余操作，但是取余开销太大，所以代码实现上用的位操作代替。</p>
 <p>再用哈希值的高 8 位，找到此 key 在 bucket 中的位置，这是在寻找已有的 key。最开始桶内还没有 key，新加入的 key 会找到第一个空位，放入。</p>
 <p>buckets 编号就是桶编号，当两个不同的 key 落在同一个桶中，也就是发生了哈希冲突。冲突的解决手段是用链表法：在 bucket 中，从前往后找到第一个空位。这样，在查找某个 key 时，先找到对应的桶，再去遍历 bucket 中的 key。</p>
-<p>这里参考曹大 github 博客里的一张图，原图是 ascii 图，geek 味十足，可以从参考资料找到曹大的博客，推荐大家去看看。</p>
+<h3 id="map扩容过程是怎么样的"><a href="#map扩容过程是怎么样的" class="headerlink" title="map扩容过程是怎么样的"></a>map扩容过程是怎么样的</h3><p>需要一个指标来判断是否要扩容，这就是<code>装载因子</code>。Go 源码里这样定义 <code>装载因子</code>：</p>
+<pre><code class="hljs apache"><span class="hljs-attribute">loadFactor</span> := count / (<span class="hljs-number">2</span>^B)</code></pre>
+
+<p>count 就是 map 的元素个数，2^B 表示 bucket 数量。</p>
+<p>再来说触发 map 扩容的时机：在向 map 插入新 key 的时候，会进行条件检测，符合下面这 2 个条件，就会触发扩容：</p>
+<ol>
+<li>装载因子超过阈值，源码里定义的阈值是 6.5。</li>
+<li>overflow 的 bucket 数量过多：当 B 小于 15，也就是 bucket 总数 2^B 小于 2^15 时，如果 overflow 的 bucket 数量超过 2^B；当 B &gt;&#x3D; 15，也就是 bucket 总数 2^B 大于等于 2^15，如果 overflow 的 bucket 数量超过 2^15。</li>
+</ol>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1、为什么map不可以寻址，map是怎么存储的"><a href="#1、为什么map不可以寻址，map是怎么存储的" class="headerlink" title="1、为什么map不可以寻址，map是怎么存储的"></a>1、为什么map不可以寻址，map是怎么存储的</h3><ol>
 <li>如果字典的元素不存在，则返回零值，而零值是不可变对象，如果能寻址问题就大了。</li>
 <li>而如果字典的元素存在，考虑到 Go 中 map 实现中元素的地址是变化的，这意味着寻址的结果也是无意义的。</li>
@@ -669,6 +662,36 @@ type hmap struct &#123;
       }
     );
   </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
 
 
 
