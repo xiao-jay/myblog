@@ -6,7 +6,7 @@ categories: 后端面试
 banner_img: /img/壁纸.jpg
 ---
 
-### map是怎么实现的
+## map是怎么实现的
 
 Go 语言采用的是哈希查找表，并且使用链表解决哈希冲突。
 
@@ -33,13 +33,127 @@ type hmap struct {
 }
 ```
 
+map分为hmap和bmap，hmap是一个哈希表，bmap是一个数组，golang用链表法解决哈希冲突，如果溢出会弄一个溢出bucket放进去。
 
 
-map分为hmap和bmap，是一个哈希表，是一个数组，golang用链表法解决哈希冲突，如果溢出会弄一个溢出bucket放进去，之后迁移进去，溢出把oldbucket放进newbucket，map类型是[int64]int8，key是int64，value是int8，所以是放七个key，然后连续7个value放在同一个byte里面节省空间
+
+bmap 是存放 k-v 的地方，我们把视角拉近，仔细看 bmap 的内部组成。
+
+![img](https://user-images.githubusercontent.com/7698088/57577391-f88f1d80-74a7-11e9-893c-4783dc4fb35e.png)
+
+
+
+
+
+
+
+### 创建map
+
+从语法层面上来说，创建 map 很简单：
+
+ageMp := make(map[string]int)
+
+// 指定 map 长度
+
+ageMp := make(map[string]int, 8)
+
+
+
+// ageMp 为 nil，不能向其添加元素，会直接panic
+
+var ageMp map[string]int
+
+
+
+通过汇编语言可以看到，实际上底层调用的是 `makemap` 函数，主要做的工作就是初始化 `hmap` 结构体的各种字段，例如计算 B 的大小，设置哈希种子 hash0 等等。
+
+```
+func makemap(t *maptype, hint int64, h *hmap, bucket unsafe.Pointer) *hmap {
+
+​    // 省略各种条件检查...
+
+
+
+​    // 找到一个 B，使得 map 的装载因子在正常范围内
+
+​    B := uint8(0)
+
+​    for ; overLoadFactor(hint, B); B++ {
+
+​    }
+
+
+
+​    // 初始化 hash table
+
+​    // 如果 B 等于 0，那么 buckets 就会在赋值的时候再分配
+
+​    // 如果长度比较大，分配内存会花费长一点
+
+​    buckets := bucket
+
+​    var extra *mapextra
+
+​    if B != 0 {
+
+​        var nextOverflow *bmap
+
+​        buckets, nextOverflow = makeBucketArray(t, B)
+
+​        if nextOverflow != nil {
+
+​            extra = new(mapextra)
+
+​            extra.nextOverflow = nextOverflow
+
+​        }
+
+​    }
+
+
+
+​    // 初始化 hamp
+
+​    if h == nil {
+
+​        h = (*hmap)(newobject(t.hmap))
+
+​    }
+
+​    h.count = 0
+
+​    h.B = B
+
+​    h.extra = extra
+
+​    h.flags = 0
+
+​    h.hash0 = fastrand()
+
+​    h.buckets = buckets
+
+​    h.oldbuckets = nil
+
+​    h.nevacuate = 0
+
+​    h.noverflow = 0
+
+
+
+​    return h
+
+}
+```
+
+
+
+
 
 
 
 ## key 定位过程
+
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h58uhkib28j20u01270vw.jpg)
 
 key 经过哈希计算后得到哈希值，共 64 个 bit 位（64位机，32位机就不讨论了，现在主流都是64位机），计算它到底要落在哪个桶时，只会用到最后 B 个 bit 位。还记得前面提到过的 B 吗？如果 B = 5，那么桶的数量，也就是 buckets 数组的长度是 2^5 = 32。
 
