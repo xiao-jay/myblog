@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.我爱你/img/%E7%81%AF%E5%85%89%E5%9F%8E%E5%B8%82.jpg') no-repeat center center;
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      453 字
+      501 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      5
        分钟
     </span>
   
@@ -259,12 +259,39 @@
 <p>​    每次使用判断类是否初始化，未初始化就初始化返回类，初始化了就直接返回，速度快但是无线程安全。</p>
 <p>双次确认懒汉式：</p>
 <p>​    在实例化的时候判断类是不是已经创建好了，如果没有再确认一次是否已经创建，速度快而且线程安全</p>
+<p>第二种线程安全懒汉式,用synchronized来实现同步</p>
+<pre><code class="hljs smali">public class Singleton &#123;
+      <span class="hljs-keyword"> private</span><span class="hljs-keyword"> static</span> Singleton<span class="hljs-built_in"> instance </span>= null;
+      <span class="hljs-keyword"> private</span> Singleton() &#123;
+       &#125;;
+      <span class="hljs-keyword"> public</span><span class="hljs-keyword"> static</span> synchronized Singleton getInstance() &#123;
+             <span class="hljs-built_in"> if </span>(instance == null) &#123;
+                    <span class="hljs-built_in"> instance </span>=<span class="hljs-built_in"> new </span>Singleton();
+              &#125;
+             <span class="hljs-built_in"> return </span>instance;
+       &#125;
+&#125;</code></pre>
+
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                  </div>
                 
               </div>
               
@@ -275,9 +302,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">三次握手，四次挥手</span>
+                        <span class="hidden-mobile">简单工厂模式</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -285,8 +312,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
-                        <span class="hidden-mobile">原型模式</span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/http%E5%AE%8C%E6%95%B4%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B/">
+                        <span class="hidden-mobile">一次完整的HTTP请求过程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -415,10 +442,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -427,7 +454,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

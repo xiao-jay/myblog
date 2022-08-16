@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.我爱你/img/%E7%81%AF%E5%85%89%E5%9F%8E%E5%B8%82.jpg') no-repeat center center;
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      226 字
+      335 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      3
        分钟
     </span>
   
@@ -233,6 +233,17 @@
             
             <div class="markdown-body" id="post-body">
               <p>用处：保证数据安全，处理并发访问</p>
+<p>首先对mysql锁进行划分：</p>
+<ol>
+<li>按照锁的粒度划分：行锁、表锁、页锁</li>
+<li>按照锁的使用方式划分：共享锁、排它锁（悲观锁的一种实现）</li>
+<li>还有两种思想上的锁：悲观锁、乐观锁。</li>
+<li>InnoDB中有几种行级锁类型：Record Lock、Gap Lock、Next-key Lock</li>
+<li>Record Lock：在索引记录上加锁</li>
+<li>Gap Lock：间隙锁</li>
+<li>Next-key Lock：Record Lock+Gap Lock</li>
+</ol>
+<p>InnoDB默认的是行级锁</p>
 <p>乐观锁定义：（现实中用的较多）默认用户访问正在改变的数据的概率很小，直到修改完成准备提交所作的修改才会将数据锁住修改为再释放。</p>
 <p>悲观锁定义：默认用户访问正在改变的数据的概率很大，会在数据修改时上锁，只有能数据修改后提交才能解锁让其他用户修改这个数据。使用悲观锁会让访问数据库的时间增加，并发性不好。</p>
 <p>共享读锁（S锁）：</p>
@@ -245,6 +256,20 @@
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
                 
               </div>
               
@@ -255,9 +280,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E5%92%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据库隔离</span>
+                        <span class="hidden-mobile">数据库事务和隔离级别</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -265,8 +290,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ArchLinux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-                        <span class="hidden-mobile">ArchLinux定时任务</span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E5%81%9A%E9%A1%B9%E7%9B%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98_%E8%80%81%E7%89%88/">
+                        <span class="hidden-mobile">项目遇到的问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -395,10 +420,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -407,7 +432,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

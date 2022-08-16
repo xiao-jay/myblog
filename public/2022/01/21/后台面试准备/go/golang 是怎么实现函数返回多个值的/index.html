@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.我爱你/img/%E7%81%AF%E5%85%89%E5%9F%8E%E5%B8%82.jpg') no-repeat center center;
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      682 字
+      523 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      5
        分钟
     </span>
   
@@ -232,86 +232,40 @@
             <h1 style="display: none">golang是怎么实现函数返回多个值的</h1>
             
             <div class="markdown-body" id="post-body">
-              <pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+              <p>Go语言是支持多值返回的。怎么实现的呢？让我们先看一看C语言是如果返回多个值的。在C中如果想返回多个值，通常会在调用函数中分配返回值的空间，并将返回值的指针传给被调函数。</p>
+<pre><code class="hljs c"><span class="hljs-type">int</span> ret1, ret2;
+f(a, b, &amp;ret1, &amp;ret2)</code></pre>
 
-<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+<p>被调函数被定义为下面形式，在函数中会修改ret1和ret2。对指针参数所指向的内容的修改会被返回到调用函数，用这种方式实现多值返回。</p>
+<pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">f</span><span class="hljs-params">(<span class="hljs-type">int</span> arg1, <span class="hljs-type">int</span> arg2, <span class="hljs-type">int</span> *ret1, <span class="hljs-type">int</span> *ret2)</span>;</code></pre>
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">test</span><span class="hljs-params">(i, j <span class="hljs-type">int</span>)</span></span> (<span class="hljs-type">int</span>, <span class="hljs-type">int</span>) &#123;
-	a := i + j
-	b := i - j
-	<span class="hljs-keyword">return</span> a, b
-&#125;
+<p>所以，从表面上看Go的多值返回只不过像是这种实现方式的一个语法糖衣。其实简单的这么理解也没什么影响，但实际上Go不是这么干的，Go和我们常用的C编译器的函数调用协议是不同的。</p>
+<p>假设我们定义一个Go函数如下：</p>
+<pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">f</span><span class="hljs-params">(arg1, arg2 <span class="hljs-type">int</span>)</span></span> (ret1, ret2 <span class="hljs-type">int</span>)</code></pre>
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-	a, b := test(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
-	fmt.Println(a, b)
-&#125;</code></pre>
+<p>Go的做法是在传入的参数之上留了两个空位，被调者直接将返回值放在这两空位，函数f调用前其内存布局是这样的：</p>
+<pre><code class="hljs llvm">为<span class="hljs-keyword">ret</span><span class="hljs-number">2</span>保留空位
+为<span class="hljs-keyword">ret</span><span class="hljs-number">1</span>保留空位
+参数<span class="hljs-number">3</span>
+参数<span class="hljs-number">2</span>
+参数<span class="hljs-number">1</span>  &lt;-SP</code></pre>
 
-<p>例子很简单，主要是说明golang多值返回的过程，下面编译成汇编</p>
-<pre><code class="hljs maxima"><span class="hljs-built_in">go</span> tool <span class="hljs-built_in">compile</span> -S test.<span class="hljs-built_in">go</span> &gt; test.s</code></pre>
+<p>调用之后变为：</p>
+<pre><code class="hljs armasm">为ret2保留空位
+为ret1保留空位
+参数<span class="hljs-number">2</span>
+参数<span class="hljs-number">1</span>  &lt;-<span class="hljs-built_in">FP</span>
+保存<span class="hljs-built_in">PC</span> &lt;-<span class="hljs-built_in">SP</span>
+f的栈
+<span class="hljs-symbol">...</span></code></pre>
 
-<pre><code class="hljs x86asm"><span class="hljs-string">&quot;&quot;</span>.test STEXT size=<span class="hljs-number">16</span> args=<span class="hljs-number">0x10</span> locals=<span class="hljs-number">0x0</span> funcid=<span class="hljs-number">0x0</span> <span class="hljs-meta">align</span>=<span class="hljs-number">0x0</span> leaf
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">00000</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">5</span>)	TEXT	<span class="hljs-string">&quot;&quot;</span>.test(SB), LEAF|NOFRAME|ABIInternal, <span class="hljs-number">$0</span>-<span class="hljs-number">16</span>
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">00000</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">5</span>)	FUNCDATA	ZR, gclocals·33cdeccccebe80329f1fdbee7f5874cb(SB)
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">00000</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">5</span>)	FUNCDATA	<span class="hljs-number">$1</span>, gclocals·33cdeccccebe80329f1fdbee7f5874cb(SB)
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">00000</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">5</span>)	FUNCDATA	<span class="hljs-number">$5</span>, <span class="hljs-string">&quot;&quot;</span>.test<span class="hljs-number">.</span>arginfo1(SB)
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">00000</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">5</span>)	FUNCDATA	<span class="hljs-number">$6</span>, <span class="hljs-string">&quot;&quot;</span>.test<span class="hljs-number">.</span>argliveinfo(SB)
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">00000</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">5</span>)	PCDATA	<span class="hljs-number">$3</span>, <span class="hljs-number">$1</span>
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">00000</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">6</span>)	<span class="hljs-keyword">ADD</span>	<span class="hljs-built_in">R1</span>, <span class="hljs-built_in">R0</span>, <span class="hljs-built_in">R2</span>
-	<span class="hljs-number">0x0004</span> <span class="hljs-number">00004</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">7</span>)	<span class="hljs-keyword">SUB</span>	<span class="hljs-built_in">R1</span>, <span class="hljs-built_in">R0</span>, <span class="hljs-built_in">R1</span>
-	<span class="hljs-number">0x0008</span> <span class="hljs-number">00008</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">8</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-built_in">R2</span>, <span class="hljs-built_in">R0</span>
-	<span class="hljs-number">0x000c</span> <span class="hljs-number">00012</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">8</span>)	<span class="hljs-keyword">RET</span>	(R30)
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">02</span> <span class="hljs-number">00</span> <span class="hljs-number">01</span> 8b <span class="hljs-number">01</span> <span class="hljs-number">00</span> <span class="hljs-number">01</span> cb e0 <span class="hljs-number">03</span> <span class="hljs-number">02</span> aa c0 <span class="hljs-number">03</span> 5f d6  .............._.
-<span class="hljs-string">&quot;&quot;</span>.main STEXT size=<span class="hljs-number">144</span> args=<span class="hljs-number">0x0</span> locals=<span class="hljs-number">0x58</span> funcid=<span class="hljs-number">0x0</span> <span class="hljs-meta">align</span>=<span class="hljs-number">0x0</span>
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">00000</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	TEXT	<span class="hljs-string">&quot;&quot;</span>.main(SB), ABIInternal, <span class="hljs-number">$96</span>-<span class="hljs-number">0</span>
-	<span class="hljs-number">0x0000</span> <span class="hljs-number">00000</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-number">16</span>(g), R16
-	<span class="hljs-number">0x0004</span> <span class="hljs-number">00004</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	PCDATA	<span class="hljs-number">$0</span>, $-<span class="hljs-number">2</span>
-	<span class="hljs-number">0x0004</span> <span class="hljs-number">00004</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-built_in">RSP</span>, R17
-	<span class="hljs-number">0x0008</span> <span class="hljs-number">00008</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	<span class="hljs-keyword">CMP</span>	R16, R17
-	<span class="hljs-number">0x000c</span> <span class="hljs-number">00012</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	BLS	<span class="hljs-number">132</span>
-	<span class="hljs-number">0x0010</span> <span class="hljs-number">00016</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	PCDATA	<span class="hljs-number">$0</span>, $-<span class="hljs-number">1</span>
-	<span class="hljs-number">0x0010</span> <span class="hljs-number">00016</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	<span class="hljs-keyword">MOVD</span><span class="hljs-number">.</span>W	R30, -<span class="hljs-number">96</span>(<span class="hljs-built_in">RSP</span>)
-	<span class="hljs-number">0x0014</span> <span class="hljs-number">00020</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	<span class="hljs-keyword">MOVD</span>	R29, -<span class="hljs-number">8</span>(<span class="hljs-built_in">RSP</span>)
-	<span class="hljs-number">0x0018</span> <span class="hljs-number">00024</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	<span class="hljs-keyword">SUB</span>	<span class="hljs-number">$8</span>, <span class="hljs-built_in">RSP</span>, R29
-	<span class="hljs-number">0x001c</span> <span class="hljs-number">00028</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	FUNCDATA	ZR, gclocals·69c1753bd5f81501d95132d08af04464(SB)
-	<span class="hljs-number">0x001c</span> <span class="hljs-number">00028</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	FUNCDATA	<span class="hljs-number">$1</span>, gclocals·ef901d0ae51b5399f7d4b5dfa3bc0b42(SB)
-	<span class="hljs-number">0x001c</span> <span class="hljs-number">00028</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	FUNCDATA	<span class="hljs-number">$2</span>, <span class="hljs-string">&quot;&quot;</span>.main<span class="hljs-number">.</span>stkobj(SB)
-	<span class="hljs-number">0x001c</span> <span class="hljs-number">00028</span> (&lt;unknown line number&gt;)	<span class="hljs-keyword">NOP</span>
-	<span class="hljs-number">0x001c</span> <span class="hljs-number">00028</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">12</span>)	STP	(ZR, ZR), <span class="hljs-string">&quot;&quot;</span>..autotmp_16-<span class="hljs-number">32</span>(<span class="hljs-built_in">SP</span>)
-	<span class="hljs-number">0x0020</span> <span class="hljs-number">00032</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	STP	(ZR, ZR), <span class="hljs-string">&quot;&quot;</span>..autotmp_16-<span class="hljs-number">16</span>(<span class="hljs-built_in">SP</span>)
-	<span class="hljs-number">0x0024</span> <span class="hljs-number">00036</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-number">$3</span>, <span class="hljs-built_in">R0</span>
-	<span class="hljs-number">0x0028</span> <span class="hljs-number">00040</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	PCDATA	<span class="hljs-number">$1</span>, <span class="hljs-number">$1</span>
-	<span class="hljs-number">0x0028</span> <span class="hljs-number">00040</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">CALL</span>	runtime<span class="hljs-number">.</span>convT64(SB)
-	<span class="hljs-number">0x002c</span> <span class="hljs-number">00044</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">MOVD</span>	$type<span class="hljs-number">.</span><span class="hljs-keyword">int</span>(SB), <span class="hljs-built_in">R1</span>
-	<span class="hljs-number">0x0034</span> <span class="hljs-number">00052</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-built_in">R1</span>, <span class="hljs-string">&quot;&quot;</span>..autotmp_16-<span class="hljs-number">32</span>(<span class="hljs-built_in">SP</span>)
-	<span class="hljs-number">0x0038</span> <span class="hljs-number">00056</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-built_in">R0</span>, <span class="hljs-string">&quot;&quot;</span>..autotmp_16-<span class="hljs-number">24</span>(<span class="hljs-built_in">SP</span>)
-	<span class="hljs-number">0x003c</span> <span class="hljs-number">00060</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-number">$1</span>, <span class="hljs-built_in">R0</span>
-	<span class="hljs-number">0x0040</span> <span class="hljs-number">00064</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">CALL</span>	runtime<span class="hljs-number">.</span>convT64(SB)
-	<span class="hljs-number">0x0044</span> <span class="hljs-number">00068</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">MOVD</span>	$type<span class="hljs-number">.</span><span class="hljs-keyword">int</span>(SB), <span class="hljs-built_in">R1</span>
-	<span class="hljs-number">0x004c</span> <span class="hljs-number">00076</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-built_in">R1</span>, <span class="hljs-string">&quot;&quot;</span>..autotmp_16-<span class="hljs-number">16</span>(<span class="hljs-built_in">SP</span>)
-	<span class="hljs-number">0x0050</span> <span class="hljs-number">00080</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">13</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-built_in">R0</span>, <span class="hljs-string">&quot;&quot;</span>..autotmp_16-<span class="hljs-number">8</span>(<span class="hljs-built_in">SP</span>)
-	<span class="hljs-number">0x0054</span> <span class="hljs-number">00084</span> (&lt;unknown line number&gt;)	<span class="hljs-keyword">NOP</span>
-	<span class="hljs-number">0x0054</span> <span class="hljs-number">00084</span> (&lt;unknown line number&gt;)	PCDATA	<span class="hljs-number">$0</span>, $-<span class="hljs-number">3</span>
-	<span class="hljs-number">0x0054</span> <span class="hljs-number">00084</span> ($GOROOT/src/fmt/print<span class="hljs-number">.</span>go:<span class="hljs-number">274</span>)	<span class="hljs-keyword">MOVD</span>	os<span class="hljs-number">.</span>Stdout(SB), <span class="hljs-built_in">R1</span>
-	<span class="hljs-number">0x0060</span> <span class="hljs-number">00096</span> ($GOROOT/src/fmt/print<span class="hljs-number">.</span>go:<span class="hljs-number">274</span>)	PCDATA	<span class="hljs-number">$0</span>, $-<span class="hljs-number">1</span>
-	<span class="hljs-number">0x0060</span> <span class="hljs-number">00096</span> ($GOROOT/src/fmt/print<span class="hljs-number">.</span>go:<span class="hljs-number">274</span>)	<span class="hljs-keyword">MOVD</span>	$go<span class="hljs-number">.</span>itab.*os<span class="hljs-number">.</span>File,io<span class="hljs-number">.</span>Writer(SB), <span class="hljs-built_in">R0</span>
-	<span class="hljs-number">0x0068</span> <span class="hljs-number">00104</span> ($GOROOT/src/fmt/print<span class="hljs-number">.</span>go:<span class="hljs-number">274</span>)	<span class="hljs-keyword">MOVD</span>	$<span class="hljs-string">&quot;&quot;</span>..autotmp_16-<span class="hljs-number">32</span>(<span class="hljs-built_in">SP</span>), <span class="hljs-built_in">R2</span>
-	<span class="hljs-number">0x006c</span> <span class="hljs-number">00108</span> ($GOROOT/src/fmt/print<span class="hljs-number">.</span>go:<span class="hljs-number">274</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-number">$2</span>, <span class="hljs-built_in">R3</span>
-	<span class="hljs-number">0x0070</span> <span class="hljs-number">00112</span> ($GOROOT/src/fmt/print<span class="hljs-number">.</span>go:<span class="hljs-number">274</span>)	<span class="hljs-keyword">MOVD</span>	<span class="hljs-built_in">R3</span>, <span class="hljs-built_in">R4</span>
-	<span class="hljs-number">0x0074</span> <span class="hljs-number">00116</span> ($GOROOT/src/fmt/print<span class="hljs-number">.</span>go:<span class="hljs-number">274</span>)	PCDATA	<span class="hljs-number">$1</span>, ZR
-	<span class="hljs-number">0x0074</span> <span class="hljs-number">00116</span> ($GOROOT/src/fmt/print<span class="hljs-number">.</span>go:<span class="hljs-number">274</span>)	<span class="hljs-keyword">CALL</span>	fmt<span class="hljs-number">.</span>Fprintln(SB)
-	<span class="hljs-number">0x0078</span> <span class="hljs-number">00120</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">14</span>)	<span class="hljs-keyword">MOVD</span>	-<span class="hljs-number">8</span>(<span class="hljs-built_in">RSP</span>), R29
-	<span class="hljs-number">0x007c</span> <span class="hljs-number">00124</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">14</span>)	<span class="hljs-keyword">MOVD</span><span class="hljs-number">.</span>P	<span class="hljs-number">96</span>(<span class="hljs-built_in">RSP</span>), R30
-	<span class="hljs-number">0x0080</span> <span class="hljs-number">00128</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">14</span>)	<span class="hljs-keyword">RET</span>	(R30)
-	<span class="hljs-number">0x0084</span> <span class="hljs-number">00132</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">14</span>)	<span class="hljs-keyword">NOP</span>
-	<span class="hljs-number">0x0084</span> <span class="hljs-number">00132</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	PCDATA	<span class="hljs-number">$1</span>, $-<span class="hljs-number">1</span>
-	<span class="hljs-number">0x0084</span> <span class="hljs-number">00132</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	PCDATA	<span class="hljs-number">$0</span>, $-<span class="hljs-number">2</span>
-	<span class="hljs-number">0x0084</span> <span class="hljs-number">00132</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	<span class="hljs-keyword">MOVD</span>	R30, <span class="hljs-built_in">R3</span>
-	<span class="hljs-number">0x0088</span> <span class="hljs-number">00136</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	<span class="hljs-keyword">CALL</span>	runtime<span class="hljs-number">.</span>morestack_noctxt(SB)
-	<span class="hljs-number">0x008c</span> <span class="hljs-number">00140</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	PCDATA	<span class="hljs-number">$0</span>, $-<span class="hljs-number">1</span>
-	<span class="hljs-number">0x008c</span> <span class="hljs-number">00140</span> (<span class="hljs-keyword">test</span><span class="hljs-number">.</span>go:<span class="hljs-number">11</span>)	<span class="hljs-keyword">JMP</span>	<span class="hljs-number">0</span>
-</code></pre>
+<p><img src="https://tiancaiamao.gitbooks.io/go-internals/content/zh/images/3.2.funcall.jpg?raw=true" srcset="/img/loading.gif" alt="img"></p>
+<p>Go的C编译器按是plan9的C编译器实现的，在被调函数中对参数值的修改是会返回到调用函数中的。在函数体中设置ret1和ret2的值，实际上会被编译成这样：</p>
+<pre><code class="hljs x86asm"><span class="hljs-keyword">MOVQ</span>    <span class="hljs-built_in">BX</span>,ret1+<span class="hljs-number">16</span>(FP)
+...
+<span class="hljs-keyword">MOVQ</span>    <span class="hljs-built_in">BX</span>,ret2+<span class="hljs-number">24</span>(FP)</code></pre>
 
+<p>对ret1+16(FP)的赋值其实是修改的调用函数的栈中的内容，这样就会将结果返回给调用函数了。这就是Go和C函数调用协议中很重要的一个区别：为了实现多值返回，Go是使用栈空间来返回值的。而常见的C语言是通过寄存器来返回值的。</p>
 
             </div>
             <hr>
@@ -321,10 +275,17 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/golang/">golang</a>
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
                     
                   </div>
                 
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/golang/">golang</a>
+                    
+                  </div>
                 
               </div>
               
@@ -345,8 +306,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/golang%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/golang%E8%AF%AD%E8%A8%80%E9%97%AE%E9%A2%98/">
+                        <span class="hidden-mobile">golang后台面试题目</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -475,10 +436,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -487,7 +448,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

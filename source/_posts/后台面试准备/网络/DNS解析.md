@@ -1,10 +1,4 @@
----
-title: DNS解析
-excerpt: 所在模块：计算机网络
-tags: [计算机网络]
-categories: 后端面试
-banner_img: /img/壁纸.jpg
----
+
 
 ### 域名(Domain)
 
@@ -144,3 +138,47 @@ TCP 作为可靠的传输协议，可以非常好的解决这个问题，通过�
 **隐性UR转发记录L**： 将域名指向一个`http(s)`协议地址，访问域名时，自动跳转至目标地址，隐性转发会隐藏真实的目标地址。例如：将www.liuht.cn显性转发到www.itbilu.com后，访问www.liuht.cn时，地址栏显示的地址仍然是：www.liuht.cn。
 
 参考文章：https://draveness.me/whys-the-design-dns-udp-tcp/
+
+
+
+
+
+## 什么是根域名服务器
+
+全球共有13台根域名服务器。这13台根域名服务器中名字分别为“A”至“M”，其中10台设置在美国，另外各有一台设置于英国、瑞典和日本。。其余12个均为辅根服务器，其中9个放置在美国，欧洲2个，位于英国和瑞典，亚洲1个，位于日本。所有根服务器均由美国政府授权的互联网域名与号码分配机构ICANN统一管理，负责全球互联网域名根服务器、域名体系和IP地址等的管理。这13台根服务器可以指挥Firefox或InternetExplorer这样的Web浏览器和电子邮件程序控制互联网通信。由于根服务器中有经美国政府批准的260个左右的互联网后缀（如．com、．net等）和一些国家的指定符（如法国的．fr、挪威的．no等），自成立以来，美国政府每年花费近50多亿美元用于根服务器的维护和运行，承担了世界上最繁重的网络任务和最巨大的网络风险。因此可以实事求是地说：没有美国，互联网将是死灰一片。世界对美国互联网的依赖性非常大，当然这也主要是由其技术的先进性和管理的科学性所决定的。所谓依赖性，从国际互联网的工作机理来体现的，就在于“根服务器”的问题。从理论上说，任何形式的标准域名要想被实现解析，按照技术流程，都必须经过全球“层级式”域名解析体系的工作，才能完成。
+
+“层级式”域名解析体系第一层就是根服务器，负责管理世界各国的域名信息，在根服务器下面是顶级域名服务器，即相关国家域名管理机构的数据库，如中国的CNNIC，然后是在下一级的域名数据库和ISP的缓存服务器。一个域名必须首先经过根数据库的解析后，才能转到顶级域名服务器进行解析。
+
+
+
+
+
+### 怎么样找到本地域名服务器
+
+它会首先迁移到您的 ISP 的 DNS 服务器。
+
+
+
+## 什么是 DNS 根服务器？
+
+[域名系统 (DNS) ](https://www.cloudflare.com/learning/dns/what-is-dns/)的管理通过使用不同的受管理分区或[“区域”](https://www.cloudflare.com/learning/dns/glossary/dns-zone)的层次结构构造，其根区域位于该层次结构的最顶部。根服务器是在根区域中运行的 DNS 域名服务器。这些服务器可以直接回答针对根区域内存储或缓存的记录的查询，还可以将其他请求引向相应的[顶级域 (TLD) 服务器](https://www.cloudflare.com/learning/dns/dns-server-types#tld-nameserver)。TLD 服务器是 DNS 层次结构中比根服务器低一级的 DNS 服务器组，它们是解析 DNS 查询的必要部分。
+
+![DNS 层次结构](https://www.cloudflare.com/img/learning/dns/glossary/dns-root-server/dns-root-server.png)
+
+在未缓存的 DNS 查询期间，每当用户在浏览器中输入网址，该操作都会触发 DNS 查找，并且所有 DNS 查找都从根区域开始。查找到达根区域后，将沿 DNS 系统的层次结构向下移动，首先到达 TLD 服务器，然后到达特定域（可能还有子域）的服务器，直到最终到达[权威性名称服务器](https://www.cloudflare.com/learning/dns/dns-server-types#authoritative-nameserver)，以查到正确的域名，其中包含要搜索的网站的数字 [IP 地址](https://www.cloudflare.com/learning/dns/glossary/what-is-my-ip-address/)。然后，该 IP 地址被返回给客户端。有趣的是，尽管需要许多步骤，但此过程仍可以非常快速地进行。
+
+根服务器是 Internet 基础设施的重要组成部分；没有它们，Web 浏览器和许多其他 Internet 工具将无法工作。有 13 个不同的 IP 地址为 DNS 根区域提供服务，并且全球有数百个冗余根服务器来处理对根区域的请求。
+
+## 为什么只有 13 个 DNS 根服务器地址？
+
+一个普遍的误解是，世界上只有 13 台根服务器。实际上根服务器有许多，但只有 13 个 IP 地址用于查询不同的根服务器网络。DNS 原始架构的限制要求根区域中最多只能有 13 个服务器地址。在 Internet 面世之初，这 13 个 IP 地址的每一个都只有一台服务器，其中大多数位于美国。
+
+如今，这 13 个 IP 地址中的每一个都有多个服务器，这些服务器使用 [Anycast 路由](https://www.cloudflare.com/learning/cdn/glossary/anycast-network/)基于负荷和距离分发请求。目前，地球上每座有人生活的大陆上都分布着 600 多台 DNS 根服务器。
+
+## 谁在操作 DNS 根服务器？
+
+互联网名称和数字地址分配机构 (ICANN) 为根区域中 13 个 IP 地址之一操作服务器，并将其他 12 个 IP 地址的操作委托给包括 NASA、马里兰大学和 Verisign（唯一运营两个根 IP 地址的组织）在内的多个组织。Cloudflare 帮助向名为 F-Root 的根服务器提供 DNS Anycast 服务；Cloudflare 根据与 ISC（F-Root 运营商）的合同提供其他 F-Root 实例。[了解有关 Cloudflare 如何支持 F-Root 的更多信息。](https://blog.cloudflare.com/f-root/)
+
+## 解析器如何找到 DNS 根服务器？
+
+由于 DNS 根区域位于 DNS 层次结构的顶部，因此递归解析器无法在 DNS 查找中被引导到这些位置。因此，每个 DNS 解析器都在其软件中内置了 13 个 IP 根服务器地址的列表。每次发起 DNS 查找时，递归器的第一个通信就是与这 13 个 IP 地址之一进行的。

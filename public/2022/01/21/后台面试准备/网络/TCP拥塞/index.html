@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.我爱你/img/%E7%81%AF%E5%85%89%E5%9F%8E%E5%B8%82.jpg') no-repeat center center;
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      584 字
+      600 字
     </span>
   
 
@@ -233,10 +233,10 @@
             
             <div class="markdown-body" id="post-body">
               <h5 id="为什么要TCP拥塞控制"><a href="#为什么要TCP拥塞控制" class="headerlink" title="为什么要TCP拥塞控制"></a>为什么要TCP拥塞控制</h5><h5 id="网络拥塞："><a href="#网络拥塞：" class="headerlink" title="网络拥塞："></a>网络拥塞：</h5><p>​    网络中对某一资源的需求量超过该资源所提供的可用部分，网络性能就会变坏，这种叫做网络拥塞，若出现拥塞不进行控制，随着网络请求的增加会导致吞吐量越来越小，最后会导致吞吐量为0，形成死锁，TCP拥塞控制就是要解决这个问题。</p>
-<p><img src="http://hkctfsys.com/img/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6.png" srcset="/img/loading.gif" alt="tcp拥塞控制"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0gigbu8loj21080kemz8.jpg" srcset="/img/loading.gif"></p>
 <h5 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h5><h6 id="1、慢开始，拥塞避免"><a href="#1、慢开始，拥塞避免" class="headerlink" title="1、慢开始，拥塞避免"></a>1、慢开始，拥塞避免</h6><p>​    发送方维持一个动态大小的拥塞窗口cwnd（congestion window），假设初始设置慢启动阈值为sstresh16，慢开始起始cwnd为1，服务端返回一个确认报文，每次乘以2，第二次发送2个报文，服务端返回两个确认报文，直到慢启动阈值16为止，开始拥塞避免，每次只加一，服务器返回相同数量的确认报文，直到网络拥塞</p>
 <p>怎么确认网络已经拥塞了？</p>
-<p>假设24个报文在传输过程中有4个报文丢失，有4个报文重传计时器超时，缺失四个数量的确认报文，表示了网络拥塞，然后把慢启动阈值设为网络拥塞时的cwnd的一半，再重置cwnd为1执行慢启动，到达慢启动阈值就开始拥塞避免。</p>
+<p>假设24个报文在传输过程中有4个报文丢失，有4个报文重传计时器超时，缺失四个数量的确认报文，表示了网络拥塞，然后把慢启动阈值设为网络拥塞时的cwnd的一半，再重置cwnd为一半执行拥塞避免。（之前的版本是觉察到网络拥塞就再执行慢启动，现在已经废除了）</p>
 <h6 id="2、快重传，快恢复"><a href="#2、快重传，快恢复" class="headerlink" title="2、快重传，快恢复"></a>2、快重传，快恢复</h6><p>​    快重传就是让发送方尽快进行重传，在重传计时器超时之前完成重传，假设在发送M3报文后发生了数据报文丢失，没有立即发送确认报文，就发送M4,M5,M6报文，每接收方接收到一次报文，就发送一个确认M3报文，接收到连续三个的确认报文，发送方就知道现在网络是不拥塞的，立即重传M3，接收方回复收到M6，避免重复传，之后从M7开始重新传报文，服务端发送确认M7报文。</p>
 <p>​    快恢复是发送方一但接收三次重复的确认报文，会开始快恢复</p>
 <p>1、发送发会把sstresh慢开始门限值设为当前的cwnd拥塞窗口的一半，开始执行避免拥塞算法</p>
@@ -247,6 +247,20 @@
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
                 
               </div>
               
@@ -257,9 +271,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0/">
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%B1%82%E8%AF%A6%E6%83%85/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">TCP四次挥手出现大量time_wait是什么原因</span>
+                        <span class="hidden-mobile">网络协议层详情</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -267,8 +281,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/http%E5%AE%8C%E6%95%B4%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B/">
-                        <span class="hidden-mobile">一次完整的HTTP请求过程</span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/HTTP%20%E5%92%8C%20HTTPS%20/">
+                        <span class="hidden-mobile">HTTP 和 HTTPS</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -397,10 +411,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -409,7 +423,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

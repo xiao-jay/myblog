@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      650 字
+      896 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      12
        分钟
     </span>
   
@@ -290,6 +290,60 @@
 </p>
 
 
+<h2 id="后面第二次又因为每日一题做到了，就再做了一次"><a href="#后面第二次又因为每日一题做到了，就再做了一次" class="headerlink" title="后面第二次又因为每日一题做到了，就再做了一次"></a>后面第二次又因为每日一题做到了，就再做了一次</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路:"></a>思路:</h3><p>硬模拟就行了，代码丑但是竟然效率还高了</p>
+<pre><code class="hljs kotlin">func validUtf8(<span class="hljs-keyword">data</span> []int) bool &#123;
+    cnt :=<span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;len(<span class="hljs-keyword">data</span>);&#123;
+        <span class="hljs-keyword">if</span> cnt != <span class="hljs-number">0</span>&#123;
+            <span class="hljs-comment">// 后面的数字个数符不符合</span>
+            <span class="hljs-keyword">if</span> i+cnt &gt;len(<span class="hljs-keyword">data</span>)&#123;
+               
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">for</span> j:=i;j&lt;i+cnt;j++&#123;
+                    <span class="hljs-keyword">if</span> <span class="hljs-keyword">data</span>[j]&lt;<span class="hljs-number">128</span> || <span class="hljs-keyword">data</span>[j]&gt;<span class="hljs-number">191</span>&#123;
+                        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+                    &#125;
+                &#125;
+                i += cnt
+                cnt = <span class="hljs-number">0</span>
+                <span class="hljs-keyword">continue</span>
+            &#125;
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">data</span>[i]&lt;<span class="hljs-number">128</span>&#123;
+            i++
+            <span class="hljs-keyword">continue</span>
+        &#125;
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">data</span>[i] &gt;<span class="hljs-number">247</span>&#123;
+            
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>  (<span class="hljs-keyword">data</span>[i] &amp; <span class="hljs-number">240</span>) == <span class="hljs-number">240</span>&#123;
+                cnt = <span class="hljs-number">3</span>
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">data</span>[i] &amp; <span class="hljs-number">224</span>) == <span class="hljs-number">224</span>&#123;
+            cnt = <span class="hljs-number">2</span>
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">data</span>[i] &amp; <span class="hljs-number">192</span> == <span class="hljs-number">192</span>)&#123;
+            cnt = <span class="hljs-number">1</span>
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        &#125;
+        i++
+    &#125;
+    <span class="hljs-keyword">if</span> cnt != <span class="hljs-number">0</span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+
+&#125;</code></pre>
+
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;note note-primary&quot;</span>; <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-size:22px&quot;</span>&gt;</span>
+   执行用时：8 ms, 在所有 Go 提交中击败了97.44%的用户<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+   内存消耗：5 MB, 在所有 Go 提交中击败了92.31%的用户
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+
+
+
+
+
+
             </div>
             <hr>
             <div>
@@ -306,9 +360,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/array/">array</a>
-                    
                       <a class="hover-with-bg" href="/tags/golang/">golang</a>
+                    
+                      <a class="hover-with-bg" href="/tags/array/">array</a>
                     
                   </div>
                 
@@ -331,8 +385,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%8A%9B%E6%89%A3/43.%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%B9%98/">
-                        <span class="hidden-mobile">43. 字符串相乘</span>
+                      <a href="/2022/01/21/%E5%8A%9B%E6%89%A3/432.%20%E5%85%A8%20O(1)%20%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="hidden-mobile">432. 全 O(1) 的数据结构</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -461,10 +515,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -473,7 +527,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

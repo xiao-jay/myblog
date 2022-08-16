@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.我爱你/img/%E7%81%AF%E5%85%89%E5%9F%8E%E5%B8%82.jpg') no-repeat center center;
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      214 字
+      577 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        分钟
     </span>
   
@@ -232,19 +232,48 @@
             <h1 style="display: none">linux硬连接和软连接</h1>
             
             <div class="markdown-body" id="post-body">
-              <h4 id="硬连接"><a href="#硬连接" class="headerlink" title="硬连接"></a>硬连接</h4><p>Linux 下的文件是通过索引节点（inode）识别文件，硬链接可以认为为一个指针指向文件索引节点，系统并不分配inode，文件链接数加一。</p>
-<p>不足：1、不可以在不同文件系统的文件间建立链接</p>
+              <p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0ff2yhqszj20ng0irgn5.jpg" srcset="/img/loading.gif"></p>
+<h4 id="硬连接"><a href="#硬连接" class="headerlink" title="硬连接"></a>硬连接</h4><p>Linux 下的文件是通过索引节点（inode）识别文件，硬链接可以认为为一个指针指向文件索引节点，系统并不分配inode，文件链接数加一。</p>
+<ul>
+<li>删除硬链接文件或者删除源文件任意之一，文件实体并未被删除；</li>
+<li>只有删除了源文件和所有对应的硬链接文件，文件实体才会被删除；</li>
+<li>硬链接文件是文件的另一个入口；</li>
+<li>可以通过给文件设置硬链接文件来防止重要文件被误删；</li>
+</ul>
+<p><strong>不足：</strong></p>
+<p>1、不可以在不同文件系统的文件间建立链接</p>
 <p>2、只有超级用户才可以为目录创建硬链接</p>
 <h4 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h4><p>没有任何文件系统的限制，任何用户可以创建指向目录的符号链接，有更大灵活性，可以跨越不同机器</p>
+<ul>
+<li>软链接里面存放的是源文件的路径，指向源文件；</li>
+<li>删除源文件，软链接依然存在，但无法访问源文件内容；</li>
+<li>软链接失效时一般是白字红底闪烁；</li>
+<li>创建软链接命令 ln -s 源文件 软链接文件；</li>
+<li>软链接和源文件是不同的文件，文件类型也不同，inode号也不同</li>
+</ul>
 <p>缺点：</p>
 <p>1、链接文件包含有源文件的路径信息，需要系统分配额外的空间用于建立新的索引节点和保存原文件的路径。</p>
-<p>删除硬链接文件，不会删除原文件，删除软链接文件，会把原文件删除。</p>
+<h4 id="硬链接和软链接的区别"><a href="#硬链接和软链接的区别" class="headerlink" title="硬链接和软链接的区别"></a>硬链接和软链接的区别</h4><p>​    原理上，硬链接和源文件的inode节点号相同，两者互为硬链接。软连接和源文件的inode节点号不同，进而指向的block也不同，软连接block中存放了源文件的路径名。 实际上，硬链接和源文件是同一份文件，而软连接是独立的文件，类似于快捷方式，存储着源文件的位置信息便于指向。 使用限制上，不能对目录创建硬链接，不能对不同文件系统创建硬链接，不能对不存在的文件创建硬链接；可以对目录创建软连接，可以跨文件系统创建软连接，可以对不存在的文件创建软连接。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
                 
               </div>
               
@@ -265,8 +294,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%8D%8F%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/">
-                        <span class="hidden-mobile">进程线程和协程的区别</span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/LINUX%E5%92%8CWindows%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E4%BB%8E%E5%BA%95%E5%B1%82%E6%9D%A5%E8%AF%B4%EF%BC%89/">
+                        <span class="hidden-mobile">LINUX和Windows的区别（从底层来说）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -395,10 +424,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -407,7 +436,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

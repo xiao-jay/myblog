@@ -189,21 +189,18 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/09/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/"></a>
+        <a href="/2022/06/23/k8s/%E5%9C%A8k8s%E4%B8%8A%E9%9D%A2%E5%AE%89%E8%A3%85nevida-docker2/"></a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/03/09/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/">
+        <a href="/2022/06/23/k8s/%E5%9C%A8k8s%E4%B8%8A%E9%9D%A2%E5%AE%89%E8%A3%85nevida-docker2/">
           
           
             
           
-          
-Title :内存对齐1、为什么要内存对齐
-​    处理器为了加速内存读取速度不是一个字节字节读取而是一块一块读取，一般会以双字节,四字节,8字节,16字节甚至32字节为单位来存取内存，我们将上述这些存取单位称为内存存取粒度.现在考虑4字节存取粒度的处理器取int类型变量（32位系统），该处理器只能从地址为4的倍数的内存开始读取数据。
-2、内存对齐规则
-//32位系统
-#include&lt;
+          在k8s上面安装nevida-docker2sudo yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+
+curl -s -L https://nvidia.github.io/nvidia-docker/centos7/x86_64/nvidia-docker.repo | 
         </a>
       </p>
 
@@ -211,8 +208,8 @@ Title :内存对齐1、为什么要内存对齐
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-09 20:49" pubdate>
-              2022-03-09
+            <time datetime="2022-06-23 16:22" pubdate>
+              2022-06-23
             </time>
           </div>
         
@@ -228,18 +225,58 @@ Title :内存对齐1、为什么要内存对齐
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/06/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/go%20map/"></a>
+        <a href="/2022/04/24/k8s/%E5%9C%A8centos%E4%B8%8A%E9%9D%A2%E5%AE%89%E8%A3%85k8s/"></a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/03/06/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/go%20map/">
+        <a href="/2022/04/24/k8s/%E5%9C%A8centos%E4%B8%8A%E9%9D%A2%E5%AE%89%E8%A3%85k8s/">
           
           
             
           
-          1、为什么map不可以寻址，map是怎么存储的
-如果字典的元素不存在，则返回零值，而零值是不可变对象，如果能寻址问题就大了。
-而如果字典的元素存在，考虑到 Go 中 map 实现中元素的地址是变化的，这意味着寻址的结果也是无意义的。
+          在centos上面安装k8s1、配置镜像源，在centos上面安装k8s
+Kubernetes packages are not available from official CentOS 7 repositories,需要配置yum源
+cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernet
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-24 23:48" pubdate>
+              2022-04-24
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/22/k8s/KubeDL%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/"></a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/22/k8s/KubeDL%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/">
+          
+          
+            
+          
+          KubeDL 项目问题项目负责人你好，我叫应宇杰，来自杭州电子科技大学，是计科大三，无k8s基础，有一定docker使用经验。想参与2022年开源之夏的KubeDL项目，原因有二：
+
+我想参加开源之夏kubeDL项目，深入参与一次开源社区的开发，提高自己的能力
+
+我在一个人工智能小公司实习，公司有一定的机器数量我想使用这个项目来提高公司的机器资源利用率（这个只是我想做的，公司还没和他们商量）。
 
 
         </a>
@@ -249,12 +286,192 @@ Title :内存对齐1、为什么要内存对齐
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-06 17:49" pubdate>
-              2022-03-06
+            <time datetime="2022-04-22 01:02" pubdate>
+              2022-04-22
             </time>
           </div>
         
         
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E9%9D%A2%E7%AD%8B/%E7%BE%8E%E5%9B%A2%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88/">美团后台开发工程师一面</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E9%9D%A2%E7%AD%8B/%E7%BE%8E%E5%9B%A2%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88/">
+          
+          
+            
+          
+          所在模块：面经
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-21 16:25" pubdate>
+              2022-03-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E9%9D%A2%E7%AD%8B/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E6%9C%9D%E8%8A%B1%E5%A4%95%E6%8B%BE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E7%AB%AF%E4%B8%80%E9%9D%A2/">字节跳动朝花夕拾服务器后端一面</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E9%9D%A2%E7%AD%8B/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E6%9C%9D%E8%8A%B1%E5%A4%95%E6%8B%BE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E7%AB%AF%E4%B8%80%E9%9D%A2/">
+          
+          
+            
+          
+          所在模块：面经
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-21 16:25" pubdate>
+              2022-03-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/16/swift%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"></a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/16/swift%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+          
+          
+            
+          
+          1、ios模拟器的位置
+&#x2F;Users&#x2F;jie&#x2F;Library&#x2F;Developer&#x2F;CoreSimulator&#x2F;Devices
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-16 11:20" pubdate>
+              2022-03-16
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/08/mac%E9%85%8D%E7%BD%AEflutter%E9%97%AE%E9%A2%98%E5%90%88%E9%9B%86/">mac配置flutter问题合集</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/08/mac%E9%85%8D%E7%BD%AEflutter%E9%97%AE%E9%A2%98%E5%90%88%E9%9B%86/">
+          
+          
+            
+          
+          我在配置flutter遇到的问题
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-08 23:28" pubdate>
+              2022-02-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/flutter/">flutter</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/flutter/">flutter</a>
+            
+          </div>
         
       </div>
     </article>
@@ -292,56 +509,6 @@ Title :内存对齐1、为什么要内存对齐
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E7%89%9B%E5%AE%A2%E7%BD%91%E5%88%B7%E9%A2%98/">牛客网刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/string/">string</a>
-            
-              <a href="/tags/golang/">golang</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E5%A4%B4%E6%9D%A1%E6%A0%A1%E6%8B%9B/">头条校招</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E5%A4%B4%E6%9D%A1%E6%A0%A1%E6%8B%9B/">
-          
-          
-            
-          
-          所在模块：贪心
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
               <a href="/categories/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98/">牛客刷题</a>
             
           </div>
@@ -352,7 +519,7 @@ Title :内存对齐1、为什么要内存对齐
             
               <a href="/tags/golang/">golang</a>
             
-              <a href="/tags/%E8%B4%AA%E5%BF%83/">贪心</a>
+              <a href="/tags/string/">string</a>
             
           </div>
         
@@ -416,66 +583,16 @@ Title :内存对齐1、为什么要内存对齐
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E5%AD%97%E6%AF%8D%E4%BA%A4%E6%8D%A2/">字母交换</a>
+        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E5%A4%B4%E6%9D%A1%E6%A0%A1%E6%8B%9B/">头条校招</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E5%AD%97%E6%AF%8D%E4%BA%A4%E6%8D%A2/">
+        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E5%A4%B4%E6%9D%A1%E6%A0%A1%E6%8B%9B/">
           
           
             
           
-          所在模块：动态规划
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98/">牛客刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/c/">c</a>
-            
-              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E9%99%84%E5%8A%A0%E9%A2%98/">字节跳动附加题</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E9%99%84%E5%8A%A0%E9%A2%98/">
-          
-          
-            
-          
-          所在模块：动态规划
+          所在模块：贪心
         </a>
       </p>
 
@@ -502,157 +619,7 @@ Title :内存对齐1、为什么要内存对齐
             
               <a href="/tags/golang/">golang</a>
             
-              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E6%9C%80%E5%A4%A7%E7%82%B9%E9%9B%86/">最大点集</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E6%9C%80%E5%A4%A7%E7%82%B9%E9%9B%86/">
-          
-          
-            
-          
-          所在模块：排序
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98/">牛客刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/c/">c</a>
-            
-              <a href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E6%88%BF%E9%97%B4%E4%BA%BA%E6%95%B0/">房间人数</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E6%88%BF%E9%97%B4%E4%BA%BA%E6%95%B0/">
-          
-          
-            
-          
-          所在模块：array
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98/">牛客刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/array/">array</a>
-            
-              <a href="/tags/golang/">golang</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B7%B3%E8%B7%83%E9%97%AE%E9%A2%98/">机器人跳跃问题</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/%E7%89%9B%E5%AE%A2%E7%BD%91/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B7%B3%E8%B7%83%E9%97%AE%E9%A2%98/">
-          
-          
-            
-          
-          所在模块：array
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98/">牛客刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/array/">array</a>
-            
-              <a href="/tags/golang/">golang</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/">贪心</a>
             
           </div>
         
@@ -664,7 +631,7 @@ Title :内存对齐1、为什么要内存对齐
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
@@ -750,10 +717,10 @@ Title :内存对齐1、为什么要内存对齐
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -762,7 +729,7 @@ Title :内存对齐1、为什么要内存对齐
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

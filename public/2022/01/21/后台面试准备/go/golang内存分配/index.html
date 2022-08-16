@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>杰杰boke</title>
+  <title>golang内存分配 - 杰杰boke</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.我爱你/img/%E7%81%AF%E5%85%89%E5%9F%8E%E5%B8%82.jpg') no-repeat center center;
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      120 字
+      2k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      25
        分钟
     </span>
   
@@ -229,20 +229,190 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">golang内存分配</h1>
             
             <div class="markdown-body" id="post-body">
-              <hr>
-<h2 id="title；golang内存分配"><a href="#title；golang内存分配" class="headerlink" title="title；golang内存分配"></a>title；golang内存分配</h2><p>go语言启动时会分配一块内存，然后切成小块进行管理，分成span，bitmap，arena，</p>
+              <p>go语言启动时会分配一块内存，然后切成小块进行管理，分成span，bitmap，arena，</p>
 <p>arena：将内存分成8kb的页（page），一起组成起来称mspan，成为go内存管理的基本单元。</p>
 <p>bitmap：标记堆区使用的映射表，记录哪些区保存对象，哪些区包含指针</p>
 <p>spans:存放mspan指针，根据spans信息很容易找到mspan，可以在GC时更快速找到大块内存mspan。</p>
+<h3 id="goroutine的栈内存分配"><a href="#goroutine的栈内存分配" class="headerlink" title="goroutine的栈内存分配"></a>goroutine的栈内存分配</h3><p>在<code>Go</code>应用程序运行时，每个<code>goroutine</code>都维护着一个自己的栈区，这个栈区只能自己使用不能被其他<code>goroutine</code>使用。<strong>栈区的初始大小是2KB</strong>（比x86_64架构下线程的默认栈2M要小很多），在<code>goroutine</code>运行的时候栈区会按照需要增长和收缩，占用的内存最大限制的默认值在64位系统上是1GB。栈大小的初始值和上限这部分的设置都可以在<code>Go</code>的源码<code>runtime/stack.go</code>里找到：</p>
+<pre><code class="hljs go"><span class="hljs-comment">// rumtime.stack.go</span>
+<span class="hljs-comment">// The minimum size of stack used by Go code</span>
+_StackMin = <span class="hljs-number">2048</span>
+
+<span class="hljs-keyword">var</span> maxstacksize <span class="hljs-type">uintptr</span> = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span> <span class="hljs-comment">// enough until runtime.main sets it for real</span></code></pre>
+
+<p>其实栈内存空间、结构和初始大小在最开始并不是2KB，也是经过了几个版本的更迭</p>
+<ul>
+<li>v1.0 ~ v1.1 — 最小栈内存空间为 4KB；</li>
+<li>v1.2 — 将最小栈内存提升到了 8KB；</li>
+<li>v1.3 — 使用<strong>连续栈</strong>替换之前版本的分段栈；</li>
+<li>v1.4 — 将最小栈内存降低到了 2KB；</li>
+</ul>
+<h3 id="分段栈和连续栈"><a href="#分段栈和连续栈" class="headerlink" title="分段栈和连续栈"></a>分段栈和连续栈</h3><h4 id="分段栈"><a href="#分段栈" class="headerlink" title="分段栈"></a>分段栈</h4><p>Go 1.3 版本前使用的栈结构是分段栈，随着<code>goroutine</code> 调用的函数层级的深入或者局部变量需要的越来越多时，运行时会调用 <code>runtime.morestack</code> 和 <code>runtime.newstack</code>创建一个新的栈空间，这些栈空间是不连续的，但是当前 <code>goroutine</code> 的多个栈空间会以双向链表的形式串联起来，运行时会通过指针找到连续的栈片段：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/98871ce62ad74f578ddcc1f879c49f07~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" srcset="/img/loading.gif" alt="img"></p>
+<p>分段栈虽然能够按需为当前 <code>goroutine</code> 分配内存并且及时减少内存的占用，但是它也存在一个比较大的问题：</p>
+<ul>
+<li>如果当前 <code>goroutine</code> 的栈几乎充满，那么任意的函数调用都会触发栈的扩容，当函数返回后又会触发栈的收缩，如果在一个循环中调用函数，栈的分配和释放就会造成巨大的额外开销，这被称为热分裂问题（Hot split）。</li>
+</ul>
+<p>为了解决这个问题，Go在1.2版本的时候不得不将栈的初始化内存从4KB增大到了8KB。后来把采用连续栈结构后，又把初始栈大小减小到了2KB。</p>
+<h3 id="连续栈"><a href="#连续栈" class="headerlink" title="连续栈"></a>连续栈</h3><p>连续栈可以解决分段栈中存在的两个问题，其核心原理就是每当程序的栈空间不足时，初始化一片比旧栈大两倍的新栈并将原栈中的所有值都迁移到新的栈中，新的局部变量或者函数调用就有了充足的内存空间。使用连续栈机制时，栈空间不足导致的扩容会经历以下几个步骤：</p>
+<ol>
+<li>调用用<code>runtime.newstack</code>在内存空间中分配更大的栈内存空间；</li>
+<li>使用<code>runtime.copystack</code>将旧栈中的所有内容复制到新的栈中；</li>
+<li><strong>将指向旧栈对应变量的指针重新指向新栈</strong>；</li>
+<li>调用<code>runtime.stackfree</code>销毁并回收旧栈的内存空间；</li>
+</ol>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/498c581f48894526850a3f05708b38c1~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" srcset="/img/loading.gif" alt="img"></p>
+<h4 id="栈区的内存管理"><a href="#栈区的内存管理" class="headerlink" title="栈区的内存管理"></a>栈区的内存管理</h4><p>前面说了每个<code>goroutine</code>都维护着自己的栈区，栈结构是连续栈，是一块连续的内存，在<code>goroutine</code>的类型定义的源码里我们可以找到标记着栈区边界的<code>stack</code>信息，<code>stack</code>里记录着栈区边界的高位内存地址和低位内存地址：</p>
+<pre><code class="hljs go"><span class="hljs-keyword">type</span> g <span class="hljs-keyword">struct</span> &#123;
+	stack       stack
+  ...
+&#125;
+
+<span class="hljs-keyword">type</span> stack <span class="hljs-keyword">struct</span> &#123;
+	lo <span class="hljs-type">uintptr</span>
+	hi <span class="hljs-type">uintptr</span>
+&#125;</code></pre>
+
+<h3 id="栈扩容"><a href="#栈扩容" class="headerlink" title="栈扩容"></a>栈扩容</h3><p>编译器会为函数调用插入运行时检查<code>runtime.morestack</code>，它会在几乎所有的函数调用之前检查当前<code>goroutine</code> 的栈内存是否充足，如果当前栈需要扩容，会调用<code>runtime.newstack</code> 创建新的栈：</p>
+<pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">newstack</span><span class="hljs-params">()</span></span> &#123;
+   ......
+   <span class="hljs-comment">// Allocate a bigger segment and move the stack.</span>
+   oldsize := gp.stack.hi - gp.stack.lo
+   newsize := oldsize * <span class="hljs-number">2</span>
+   <span class="hljs-keyword">if</span> newsize &gt; maxstacksize &#123;
+       <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;runtime: goroutine stack exceeds &quot;</span>, maxstacksize, <span class="hljs-string">&quot;-byte limit\n&quot;</span>)
+      throw(<span class="hljs-string">&quot;stack overflow&quot;</span>)
+   &#125;
+
+   <span class="hljs-comment">// The goroutine must be executing in order to call newstack,</span>
+   <span class="hljs-comment">// so it must be Grunning (or Gscanrunning).</span>
+   casgstatus(gp, _Grunning, _Gcopystack)
+
+   <span class="hljs-comment">// The concurrent GC will not scan the stack while we are doing the copy since</span>
+   <span class="hljs-comment">// the gp is in a Gcopystack status.</span>
+   copystack(gp, newsize, <span class="hljs-literal">true</span>)
+   <span class="hljs-keyword">if</span> stackDebug &gt;= <span class="hljs-number">1</span> &#123;
+      <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;stack grow done\n&quot;</span>)
+   &#125;
+   casgstatus(gp, _Gcopystack, _Grunning)
+&#125;
+复制代码</code></pre>
+
+<p>旧栈的大小是通过我们上面说的保存在<code>goroutine</code>中的<code>stack</code>信息里记录的栈区内存边界计算出来的，然后用旧栈两倍的大小创建新栈，创建前会检查是新栈的大小是否超过了单个栈的内存上限。</p>
+<pre><code class="hljs go">   oldsize := gp.stack.hi - gp.stack.lo
+   newsize := oldsize * <span class="hljs-number">2</span>
+   <span class="hljs-keyword">if</span> newsize &gt; maxstacksize &#123;
+       <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;runtime: goroutine stack exceeds &quot;</span>, maxstacksize, <span class="hljs-string">&quot;-byte limit\n&quot;</span>)
+      throw(<span class="hljs-string">&quot;stack overflow&quot;</span>)
+   &#125;
+复制代码</code></pre>
+
+<p>如果目标栈的大小没有超出程序的限制，会将 <code>goroutine</code> 切换至 <code>_Gcopystack</code> 状态并调用 <code>runtime.copystack</code> 开始栈的拷贝，在拷贝栈的内存之前，运行时会先通过<code>runtime.stackalloc</code> 函数分配新的栈空间：</p>
+<pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">copystack</span><span class="hljs-params">(gp *g, newsize <span class="hljs-type">uintptr</span>)</span></span> &#123;
+	old := gp.stack
+	used := old.hi - gp.sched.sp
+  <span class="hljs-comment">// 创建新栈</span>
+	<span class="hljs-built_in">new</span> := stackalloc(<span class="hljs-type">uint32</span>(newsize))
+	...
+  <span class="hljs-comment">// 把旧栈的内容拷贝至新栈</span>
+	memmove(unsafe.Pointer(<span class="hljs-built_in">new</span>.hi-ncopy), unsafe.Pointer(old.hi-ncopy), ncopy)
+  ...
+  <span class="hljs-comment">// 调整指针</span>
+  adjustctxt(gp, &amp;adjinfo)
+  <span class="hljs-comment">// groutine里记录新栈的边界</span>
+  gp.stack = <span class="hljs-built_in">new</span>
+  ...
+  <span class="hljs-comment">// 释放旧栈</span>
+  stackfree(old)
+&#125;
+复制代码</code></pre>
+
+<p>新栈的初始化和数据的复制是一个比较简单的过程，整个过程中最复杂的地方是将指向源栈中内存的指针调整为指向新的栈，这一步完成后就会释放掉旧栈的内存空间了。</p>
+<p>我们可以通过修改一下源码文件<code>runtime.stack.go</code>，把常量<code>stackDebug</code>的值修改为1，使用命令<strong>go build -gcflags -S main.go</strong> 运行文章最开始的那个例子，观察栈的初始化和扩容过程：</p>
+<pre><code class="hljs shell">stackalloc 2048
+stackcacherefill order=0
+  allocated 0xc000030000
+...
+copystack gp=0xc000000180 [0xc000030000 0xc0000306e0 0xc000030800] -&gt; [0xc00005c000 0xc00005cee0 0xc00005d000]/4096
+stackfree 0xc000030000 2048
+stack grow done
+...
+copystack gp=0xc000000180 [0xc00005c000 0xc00005c890 0xc00005d000] -&gt; [0xc000064000 0xc000065890 0xc000066000]/8192
+stackfree 0xc00005c000 4096
+stack grow done
+...
+copystack gp=0xc000000180 [0xc000064000 0xc000065890 0xc000066000] -&gt; [0xc00006c000 0xc00006f890 0xc000070000]/16384
+stackfree 0xc000064000 8192
+stack grow done
+...
+copystack gp=0xc000000180 [0xc00006c000 0xc00006f890 0xc000070000] -&gt; [0xc000070000 0xc000077890 0xc000078000]/32768
+stackfree 0xc00006c000 16384
+stack grow done
+
+复制代码</code></pre>
+
+<h3 id="栈缩容"><a href="#栈缩容" class="headerlink" title="栈缩容"></a>栈缩容</h3><p>在<code>goroutine</code>运行的过程中，如果栈区的空间使用率不超过1&#x2F;4，那么在垃圾回收的时候使用<code>runtime.shrinkstack</code>进行栈缩容，当然进行缩容前会执行一堆前置检查，都通过了才会进行缩容</p>
+<pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">shrinkstack</span><span class="hljs-params">(gp *g)</span></span> &#123;
+	...
+	oldsize := gp.stack.hi - gp.stack.lo
+	newsize := oldsize / <span class="hljs-number">2</span>
+	<span class="hljs-keyword">if</span> newsize &lt; _FixedStack &#123;
+		<span class="hljs-keyword">return</span>
+	&#125;
+	avail := gp.stack.hi - gp.stack.lo
+	<span class="hljs-keyword">if</span> used := gp.stack.hi - gp.sched.sp + _StackLimit; used &gt;= avail/<span class="hljs-number">4</span> &#123;
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	copystack(gp, newsize)
+&#125;
+复制代码</code></pre>
+
+<p>如果要触发栈的缩容，新栈的大小会是原始栈的一半，不过如果新栈的大小低于程序的最低限制 2KB，那么缩容的过程就会停止。缩容也会调用扩容时使用的 <code>runtime.copystack</code> 函数开辟新的栈空间，将旧栈的数据拷贝到新栈以及调整原来指针的指向。</p>
+<p>在我们上面的那个例子里，当<code>main</code>函数里的其他函数执行完后，只有<code>main</code>函数还在栈区的空间里，如果这个时候系统进行垃圾回收就会对这个<code>goroutine</code>的栈区进行缩容。在这里我们可以在程序里通过调用<code>runtime.GC</code>，强制系统进行垃圾回收，来试验看一下栈缩容的过程和效果：</p>
+<pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+   <span class="hljs-keyword">var</span> x [<span class="hljs-number">10</span>]<span class="hljs-type">int</span>
+   <span class="hljs-built_in">println</span>(&amp;x)
+   a(x)
+   runtime.GC()
+   <span class="hljs-built_in">println</span>(&amp;x)
+&#125;
+复制代码</code></pre>
+
+<p>执行命令<strong>go build -gcflags -S main.go</strong>后会看到类似下面的输出。</p>
+<pre><code class="hljs dns">...
+shrinking stack <span class="hljs-number">32768</span>-&gt;<span class="hljs-number">16384</span>
+stackalloc <span class="hljs-number">16384</span>
+  allocated <span class="hljs-number">0</span>xc<span class="hljs-number">000076000</span>
+copystack gp=<span class="hljs-number">0</span>xc<span class="hljs-number">000000180</span> [<span class="hljs-number">0</span>xc<span class="hljs-number">00007a000</span> <span class="hljs-number">0</span>xc<span class="hljs-number">000081e60</span> <span class="hljs-number">0</span>xc<span class="hljs-number">000082000</span>] -&gt; [<span class="hljs-number">0</span>xc<span class="hljs-number">000076000</span> <span class="hljs-number">0</span>xc<span class="hljs-number">000079e60</span> <span class="hljs-number">0</span>xc<span class="hljs-number">00007a000</span>]/<span class="hljs-number">16384</span>
+...
+
+复制代码</code></pre>
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p><strong>参考文章：</strong><a target="_blank" rel="noopener" href="https://juejin.cn/post/6871550379432574990">https://juejin.cn/post/6871550379432574990</a></p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/golang/">golang</a>
+                    
+                  </div>
                 
               </div>
               
@@ -253,9 +423,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/golang%20%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%A4%9A%E4%B8%AA%E5%80%BC%E7%9A%84/">
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/map/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">golang是怎么实现函数返回多个值的</span>
+                        <span class="hidden-mobile">map</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -263,8 +433,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/golang%E8%AF%AD%E8%A8%80%E9%97%AE%E9%A2%98/">
-                        <span class="hidden-mobile">golang后台面试题目</span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/%E5%88%87%E7%89%87/">
+                        <span class="hidden-mobile">go slice 扩容深度分析（1.18版本的golang已经改变之前的分配方式）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -393,10 +563,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -405,7 +575,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>
@@ -476,7 +646,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "golang内存分配&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -536,6 +706,33 @@
 
 
 
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
 
 
 

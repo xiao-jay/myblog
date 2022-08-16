@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.我爱你/img/%E7%81%AF%E5%85%89%E5%9F%8E%E5%B8%82.jpg') no-repeat center center;
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      60 字
+      308 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      3
        分钟
     </span>
   
@@ -232,13 +232,38 @@
             <h1 style="display: none">CPU时间片</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>现在的操作系统是分时系统，会给每个进程分配相同时间CPU资源，如果这个进程在时间片结束前阻塞或者结束，可以进行CPU切换来提高CPU的利用率。</p>
+              <h2 id="时间片"><a href="#时间片" class="headerlink" title="时间片"></a>时间片</h2><p>定义： 现在的操作系统是分时系统，会给每个进程分配相同时间CPU资源，如果这个进程在时间片结束前阻塞或者结束，可以进行CPU切换来提高CPU的利用率。这样就不会因为一个进程阻塞住导致电脑无响应，提高了电脑的交互性。</p>
+<h3 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h3><h4 id="轮状调度算法"><a href="#轮状调度算法" class="headerlink" title="轮状调度算法"></a>轮状调度算法</h4><p>​    时间片轮转调度是一种最古老，最简单，最公平且使用最广的算法。每个进程被分配一个时间段，称作它的时间片，即该进程允许运行的时间。如果在时间片结束时进程还在运行，则CPU将被剥夺并分配给另一个进程。如果进程在时间片结束前阻塞或结束，则CPU当即进行切换。调度程序所要做的就是维护一张就绪进程列表，当进程用完它的时间片后，它被移到队列的末尾。</p>
+<h4 id="优先调度算法"><a href="#优先调度算法" class="headerlink" title="优先调度算法"></a>优先调度算法</h4><h5 id="1、优先调度算法的类型"><a href="#1、优先调度算法的类型" class="headerlink" title="1、优先调度算法的类型"></a>1、优先调度算法的类型</h5><ul>
+<li><p>非抢占式优先调度算法</p>
+</li>
+<li><p>抢占式优先调度算法</p>
+</li>
+</ul>
+<h5 id="2、优先权的类型"><a href="#2、优先权的类型" class="headerlink" title="2、优先权的类型"></a>2、优先权的类型</h5><ul>
+<li>静态优先权</li>
+<li>动态优先权</li>
+</ul>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
                 
               </div>
               
@@ -249,9 +274,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ArchLinux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/HTTP%20%E5%92%8C%20HTTPS%20/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ArchLinux定时任务</span>
+                        <span class="hidden-mobile">HTTP 和 HTTPS</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -259,8 +284,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/LINUX%E5%92%8CWindows%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E4%BB%8E%E5%BA%95%E5%B1%82%E6%9D%A5%E8%AF%B4%EF%BC%89/">
-                        <span class="hidden-mobile">LINUX和Windows的区别（从底层来说）</span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ArchLinux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+                        <span class="hidden-mobile">ArchLinux定时任务</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -389,10 +414,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -401,7 +426,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>
@@ -525,6 +550,41 @@
         var element = document.createElement('a');
         $(element).attr('data-fancybox', 'images');
         $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
+his).attr('src'));
         $(this).wrap(element);
       }
     );

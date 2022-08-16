@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.我爱你/img/%E7%81%AF%E5%85%89%E5%9F%8E%E5%B8%82.jpg') no-repeat center center;
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      545 字
+      584 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      6
        分钟
     </span>
   
@@ -239,14 +239,16 @@
 <h6 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h6><p>1、根节点是黑色的</p>
 <p>2、最大长度为2*（log（n+1））</p>
 <h4 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h4><p>2-3树是B树的一种特例，二叉搜索树搜索效率高，但是为了保持平衡需要的代价太大，所以人想出了一个结点允许多个值的数据结构-B树</p>
-<p> <img src="http://hkctfsys.com/img/B%E6%A0%91.png" srcset="/img/loading.gif" alt="B树"></p>
+<p> <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0e0zmzuq0j20k408daa9.jpg" srcset="/img/loading.gif" alt="B树"></p>
 <h5 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h5><p>1、所有叶子子结点在同一层上面，和平衡二叉树比层数低，磁盘io少，加快了查询插入速度</p>
 <p>2、每个节点的元素从小到大排列</p>
-<h4 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h4><p><img src="http://hkctfsys.com/img/b%E5%8A%A0%E6%A0%91.png" srcset="/img/loading.gif" alt="b+树png"></p>
+<p>操作系统索引表也用了b+树</p>
+<h4 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h4><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0e10thk89j20mx094weu.jpg" srcset="/img/loading.gif" alt="b+树png"></p>
 <h5 id="特点：-2"><a href="#特点：-2" class="headerlink" title="特点："></a>特点：</h5><p>1、所有叶子节点都在同一层，并且中间结点是他的子结点的最大或者最小值，最大值在根节点中</p>
 <p>2、所有数据都在子结点上面，子结点包括了所有信息，每个元素不保存数据只用来索引，查询稳定，所有子结点都链接起来，导出全部数据方便</p>
 <p>3、非叶子节点只有key，没有value，叶子节点有key，value</p>
-<h4 id="B树和B-树的区别，为什么mysql会选b-树"><a href="#B树和B-树的区别，为什么mysql会选b-树" class="headerlink" title="B树和B+树的区别，为什么mysql会选b+树"></a>B树和B+树的区别，为什么mysql会选b+树</h4><p>1、B+树的中间节点没有卫星数据，同样大小的磁盘页可以容纳更多的节点元素。意味着，数据量相同的情况下，B+树的结构比B树更加矮胖，因此查询时IO次数更少，B+树更加的矮胖一点，磁盘IO操作少，查询速度比B快</p>
+<h4 id="B树和B-树的区别，为什么mysql会选b-树"><a href="#B树和B-树的区别，为什么mysql会选b-树" class="headerlink" title="B树和B+树的区别，为什么mysql会选b+树"></a>B树和B+树的区别，为什么mysql会选b+树</h4><p><strong>卫星数据：</strong>指索引元素所指向的数据记录，比如数据库中的某一行。</p>
+<p>1、B+树的中间节点没有卫星数据，同样大小的磁盘页可以容纳更多的节点元素。意味着，数据量相同的情况下，B+树的结构比B树更加矮胖，因此查询时IO次数更少，B+树更加的矮胖一点，磁盘IO操作少，查询速度比B快</p>
 <p>2、数据库扫库更加方便，范围查询更加方便，查询一段区别的数据比B树方便</p>
 <p>3、查询性能更加稳定，B+树得每次查到叶子结点，B树可能查到中间结点查到数据就终止</p>
 <h4 id="hash比B-树快-为什么还选B-树"><a href="#hash比B-树快-为什么还选B-树" class="headerlink" title="hash比B+树快,为什么还选B+树"></a>hash比B+树快,为什么还选B+树</h4><p>因为只选一个数据是hash块，但是范数据量大无法一次装入内存，范围查询的话是B+树快</p>
@@ -256,6 +258,20 @@
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
                 
               </div>
               
@@ -266,9 +282,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%8D%8F%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">TCP和UDP的区别</span>
+                        <span class="hidden-mobile">进程线程和协程的特性和区别</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -277,7 +293,7 @@
                     
                     
                       <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/MyISAM%E4%B8%8EInnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB/">
-                        <span class="hidden-mobile">MyISAM与InnoDB 的区别</span>
+                        <span class="hidden-mobile">MyISAM与InnoDB的区别</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -406,10 +422,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -418,7 +434,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

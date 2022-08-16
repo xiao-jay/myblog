@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      363 字
+      302 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      4
        分钟
     </span>
   
@@ -251,40 +251,27 @@
     <span class="hljs-keyword">if</span> grid == <span class="hljs-literal">nil</span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
     &#125;
-    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(grid)==<span class="hljs-number">1</span> &amp;&amp; <span class="hljs-built_in">len</span>(grid[<span class="hljs-number">0</span>])==<span class="hljs-number">1</span>&#123;
-        <span class="hljs-keyword">return</span> grid[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]
+    m,n := <span class="hljs-built_in">len</span>(grid),<span class="hljs-built_in">len</span>(grid[<span class="hljs-number">0</span>])
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;m;i++ &#123;
+        grid[i][<span class="hljs-number">0</span>] += grid[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>]
     &#125;
-    num := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-built_in">len</span>(grid))
-    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(grid);i++&#123;
-        num[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-built_in">len</span>(grid[i]))
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;n;i++ &#123;
+        grid[<span class="hljs-number">0</span>][i] += grid[<span class="hljs-number">0</span>][i<span class="hljs-number">-1</span>]
     &#125;
-    <span class="hljs-keyword">for</span>  i:=<span class="hljs-built_in">len</span>(grid)<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i-- &#123;
-        <span class="hljs-keyword">for</span> j:=<span class="hljs-built_in">len</span>(grid[<span class="hljs-number">0</span>])<span class="hljs-number">-1</span>;j&gt;=<span class="hljs-number">0</span>;j-- &#123;
-            <span class="hljs-keyword">if</span> i == <span class="hljs-built_in">len</span>(grid)<span class="hljs-number">-1</span> &#123;
-                <span class="hljs-keyword">if</span> j == <span class="hljs-built_in">len</span>(grid[<span class="hljs-number">0</span>])<span class="hljs-number">-1</span>&#123;
-                    num[i][j] = grid[i][j]
-                &#125;<span class="hljs-keyword">else</span>&#123;
-                    num[i][j] = grid[i][j] + num[i][j+<span class="hljs-number">1</span>]
-                &#125;
-            
-            &#125;<span class="hljs-keyword">else</span>&#123;
-                <span class="hljs-keyword">if</span> j == <span class="hljs-built_in">len</span>(grid[<span class="hljs-number">0</span>])<span class="hljs-number">-1</span>&#123;
-                    num[i][j] = grid[i][j] + num[i+<span class="hljs-number">1</span>][j]
-                &#125;<span class="hljs-keyword">else</span>&#123;
-                    num[i][j] = min(num[i][j+<span class="hljs-number">1</span>],num[i+<span class="hljs-number">1</span>][j]) + grid[i][j]
-                &#125;
-                
+    <span class="hljs-keyword">for</span>  i:=<span class="hljs-number">1</span>;i&lt;m;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;n;j++ &#123;
+            grid[i][j] = min(grid[i][j<span class="hljs-number">-1</span>],grid[i<span class="hljs-number">-1</span>][j]) + grid[i][j]
             &#125;
-        &#125;
-        
     &#125;
-    <span class="hljs-keyword">return</span> num[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">return</span> grid[m<span class="hljs-number">-1</span>][n<span class="hljs-number">-1</span>]
 &#125;</code></pre>
 
 <h4 id="代码效率："><a href="#代码效率：" class="headerlink" title="代码效率："></a>代码效率：</h4><p class="note note-primary"; style="font-size:22px">
-   内存消耗：4.3 MB, 在所有 Go 提交中击败了44.17%的用户<br>
-   内存消耗：4.3 MB, 在所有 Go 提交中击败了44.17%的用户
+   执行用时：4 ms, 在所有 Go 提交中击败了97.88%的用户<br>
+   内存消耗：3.7 MB, 在所有 Go 提交中击败了92.14%的用户
 </p>
+
+
 
 
             </div>
@@ -303,9 +290,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/array/">array</a>
-                    
                       <a class="hover-with-bg" href="/tags/golang/">golang</a>
+                    
+                      <a class="hover-with-bg" href="/tags/array/">array</a>
                     
                   </div>
                 
@@ -458,10 +445,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -470,7 +457,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

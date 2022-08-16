@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('http://sjy.我爱你/img/%E7%81%AF%E5%85%89%E5%9F%8E%E5%B8%82.jpg') no-repeat center center;
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      2k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      21
        分钟
     </span>
   
@@ -232,14 +232,15 @@
             <h1 style="display: none">mysql索引</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>索引底层数据结构是B+数</p>
-<p>单例索引：一个索引只能包含一个列，一个表可以有多个单例索引</p>
-<p>组合索引：一个组合索引包含两个或以上的列，原理简单，在a，b，c字段上创建索引，索引记录会首先安装A排序，A一样照B排序，B一样照C排序。</p>
-<p><img src="http://hkctfsys.com/img/%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95.png" srcset="/img/loading.gif"></p>
-<p>聚簇索引：数据存储和索引放一块，b+树叶子节点存放的是数据表的行记录，可以理解成将数据存储和索引放到了一块,这是主键索引，因为InnoDB数据文件本身要按主键聚集，所以InnoDB要求必须有主键，如果没有就自动生成一个隐含的字段作为主键</p>
-<p><img src="http://hkctfsys.com/img/innode%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95.png" srcset="/img/loading.gif"></p>
+              <p>对于各种树的介绍和异同可以看这篇文章<a target="_blank" rel="noopener" href="http://www.mystorys.xyz/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/B%E6%A0%91%E5%92%8CB+%E6%A0%91%E7%9A%84%E5%8C%BA%E5%88%AB/">B树、B+树、红黑树、AVL树</a></p>
+<p>索引底层数据结构是B+树，B+树最大的优点在于它将索引存放在<strong>磁盘</strong>，让检索技术摆脱了内存限制。</p>
+<p><strong>单例索引：</strong>一个索引只能包含一个列，一个表可以有多个单例索引</p>
+<p><strong>组合索引：</strong>一个组合索引包含两个或以上的列，原理简单，在a，b，c字段上创建索引，索引记录会首先安装A排序，A一样照B排序，B一样照C排序。</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0e0abqd14j203205xq30.jpg" srcset="/img/loading.gif"></p>
+<p><strong>聚簇索引：</strong>数据存储和索引放一块，b+树叶子节点存放的是数据表的行记录，可以理解成将数据存储和索引放到了一块,这是主键索引，因为InnoDB数据文件本身要按主键聚集，所以InnoDB要求必须有主键，如果没有就自动生成一个隐含的字段作为主键</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0e0bs4mxzj20dw060aaa.jpg" srcset="/img/loading.gif"></p>
 <p>为什么mysql表要有一个自增的id主键，因为mysql索引用b+数，得是一个递增的，因为如果不递增增加数据的话得裂表影响效率，而且不建议使用太长的字段作为主键。</p>
-<p>非聚簇索引：数据和索引是分开的，B+树叶子节点存放的不是数据表的行记录。</p>
+<p><strong>非聚簇索引：</strong>数据和索引是分开的，B+树叶子节点存放的不是数据表的行记录。</p>
 <p>聚簇索引优点：</p>
 <ul>
 <li>数据访问更快，因为聚簇索引将数据放在同一个B+树中，所以比非聚簇索引快</li>
@@ -251,20 +252,63 @@
 <li>更新主键的代价很高</li>
 <li>二级索引访问需要两次索引查找，第一次找到主键值，第二次根据主键值找到行数据。</li>
 </ul>
-<h3 id="1、一级索引"><a href="#1、一级索引" class="headerlink" title="1、一级索引"></a>1、一级索引</h3><p>索引和数据存储在一起，都存储在同一个B+tree中的叶子节点。一般主键索引都是一级索引。</p>
-<h3 id="2、二级索引"><a href="#2、二级索引" class="headerlink" title="2、二级索引"></a>2、二级索引</h3><p>二级索引树的叶子节点存储的是主键而不是数据。也就是说，在找到索引后，得到对应的主键，再回到一级索引中找主键对应的数据记录。</p>
-<h3 id="3、一级索引和二级索引的关系：回表"><a href="#3、一级索引和二级索引的关系：回表" class="headerlink" title="3、一级索引和二级索引的关系：回表"></a>3、一级索引和二级索引的关系：回表</h3><p>一级索引可以单独存在，二级索引不能单独存在，必须依附于一级索引，这叫做“回表”。</p>
-<h3 id="4、索引建立原则"><a href="#4、索引建立原则" class="headerlink" title="4、索引建立原则"></a>4、索引建立原则</h3><p>（1）最左前缀匹配原则，非常重要的原则，mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a &#x3D; 1 and b &#x3D; 2 and c &gt; 3 and d &#x3D; 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，<br>如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</p>
+<h4 id="1、一级索引"><a href="#1、一级索引" class="headerlink" title="1、一级索引"></a>1、一级索引</h4><p>索引和数据存储在一起，都存储在同一个B+tree中的叶子节点。一般主键索引都是一级索引。</p>
+<h4 id="2、二级索引"><a href="#2、二级索引" class="headerlink" title="2、二级索引"></a>2、二级索引</h4><p>二级索引树的叶子节点存储的是主键而不是数据。也就是说，在找到索引后，得到对应的主键，再回到一级索引中找主键对应的数据记录。</p>
+<h4 id="3、一级索引和二级索引的关系：回表"><a href="#3、一级索引和二级索引的关系：回表" class="headerlink" title="3、一级索引和二级索引的关系：回表"></a>3、一级索引和二级索引的关系：回表</h4><p>一级索引可以单独存在，二级索引不能单独存在，必须依附于一级索引，这叫做“回表”。</p>
+<p>select 所需获得列中有大量的非索引列，索引就需要到表中找到相应的列的信息，这就叫回表</p>
+<h4 id="4、索引建立原则"><a href="#4、索引建立原则" class="headerlink" title="4、索引建立原则"></a>4、索引建立原则</h4><p>（1）最左前缀匹配原则，非常重要的原则，mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a &#x3D; 1 and b &#x3D; 2 and c &gt; 3 and d &#x3D; 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的。<br>如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</p>
 <p>（2）&#x3D;和in可以乱序，比如a &#x3D; 1 and b &#x3D; 2 and c &#x3D; 3 建立(a,b,c)索引可以任意顺序，<br>mysql的查询优化器会帮你优化成索引可以识别的形式</p>
 <p>（3）尽量选择区分度高的列作为索引,区分度的公式是count(distinct col)&#x2F;count(*)，表示字段不重复的比例，<br>比例越大我们扫描的记录数越少，唯一键的区分度是1，而一些状态、性别字段可能在大数据面前区分度就是0，<br>那可能有人会问，这个比例有什么经验值吗？使用场景不同，这个值也很难确定，<br>一般需要join的字段我们都要求是0.1以上，即平均1条扫描10条记录</p>
 <p>（4）索引列不能参与计算，保持列“干净”，比如from_unixtime(create_time) &#x3D; ’2014-05-29’就不能使用到索引，<br>原因很简单，b+树中存的都是数据表中的字段值，但进行检索时，需要把所有元素都应用函数才能比较，<br>显然成本太大。所以语句应该写成create_time &#x3D; unix_timestamp(’2014-05-29’);</p>
 <p>（5）尽量的扩展索引，不要新建索引。比如表中已经有a的索引，现在要加(a,b)的索引，那么只需要修改原来的索引即可</p>
+<h4 id="5、可能索引失效的原因"><a href="#5、可能索引失效的原因" class="headerlink" title="5、可能索引失效的原因"></a>5、可能索引失效的原因</h4><p>和索引建立原则类似</p>
+<ul>
+<li><p>范围查询，&gt;,&lt;,!&#x3D;,or会导致索引失效,like ‘%liu’ 百分号在前也会导致索引失效</p>
+<ul>
+<li>最左前缀匹配原则，非常重要的原则，mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a &#x3D; 1 and b &#x3D; 2 and c &gt; 3 and d &#x3D; 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，把c&gt;3放到最后。</li>
+</ul>
+</li>
+<li><p>使用select * 类似的语句可能会导致不用索引，优化器可能会选择TABLE ACCESS FULL</p>
+</li>
+<li><p>单键值的b树索引列上存在null值，导致COUNT(*)不能走索引</p>
+</li>
+<li><p>索引列上有函数运算，导致不走索引</p>
+</li>
+<li><p>建立组合索引，但查询谓词并未使用组合索引的第一列，此处有一个INDEX SKIP SCAN概念</p>
+</li>
+</ul>
+<h4 id="6、唯一索引和主键索引的区别"><a href="#6、唯一索引和主键索引的区别" class="headerlink" title="6、唯一索引和主键索引的区别"></a>6、唯一索引和主键索引的区别</h4><p>1、概念：主键是一种约束、是一种逻辑键实际上不存在；唯一索引是一个索引、是物理键，实际上存在。</p>
+<p>2、主键索引不能有空值，唯一索引可以有空值（可以有多个空值）</p>
+<p>3、主键可以建立外键， 唯一索引不能</p>
+<p>4、一个表中只能有一个主键，但是可以有多个外键</p>
+<p>5、主键更适合那些不容易更改的唯一标识，如自动递增列、身份证号等</p>
+<h4 id="7、为什么唯一索引比普通索引快（查询会快一点点点点）"><a href="#7、为什么唯一索引比普通索引快（查询会快一点点点点）" class="headerlink" title="7、为什么唯一索引比普通索引快（查询会快一点点点点）"></a>7、为什么唯一索引比普通索引快（查询会快一点点点点）</h4><p><strong>查询效率：</strong>唯一索引查询时有很小概率会比普通索引快，有概率普通索引有一条数据在一个页表末尾，一条数据在页表前面，需要两次io，这时唯一索引会比普通索引快一点。</p>
+<p><strong>更新效率：</strong>唯一索引更新的时候需要把索引页读到内存中，不然不能判断数据是否唯一，会比普通索引慢</p>
+<p><strong>总结：</strong>少用唯一索引。</p>
+<h4 id="8、为什么数据库联合索引不符合最左前缀就会失效"><a href="#8、为什么数据库联合索引不符合最左前缀就会失效" class="headerlink" title="8、为什么数据库联合索引不符合最左前缀就会失效"></a>8、为什么数据库联合索引不符合最左前缀就会失效</h4><p>这就得看看联合索引在底层是怎么放的</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0nqys5zfcj20hs0ewmyh.jpg" srcset="/img/loading.gif"></p>
+<p>单一索引是一个节点存一个键，联合索引是一个节点存多个键，每个键都是有顺序的，两个节点比较是第一个节点如果相同，就比较第二个节点，查找的时候也是这样，如果第一个节点找到了，就开始比较第二个节点是否相同。</p>
+<h4 id="9、为什么b-树大层数总是2-4层"><a href="#9、为什么b-树大层数总是2-4层" class="headerlink" title="9、为什么b+树大层数总是2-4层"></a>9、为什么b+树大层数总是2-4层</h4><p>​    我们来计算一下3层b+树能放多少数据，mysql默认页是16KB，假设一条数据1KB，一页就能放16条记录，假设有三层数据，假如我们的主键id为bigint类型，长度为8字节，而指针大小在InnoDB源码中设置为6字节。这样算下来就是 16384 &#x2F; 14 &#x3D; 1170，就是说一个页上可以存放1170个指针，两层是1170*16，三层是1170 * 16 * 1170，千万行足够大部分场景，再大也要分库分表了。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
                 
               </div>
               
@@ -277,7 +321,7 @@
                     
                       <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/MyISAM%E4%B8%8EInnoDB-%E7%9A%84%E5%8C%BA%E5%88%AB/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MyISAM与InnoDB 的区别</span>
+                        <span class="hidden-mobile">MyISAM与InnoDB的区别</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -285,8 +329,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
-                        <span class="hidden-mobile">数据库隔离</span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E5%92%8C%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
+                        <span class="hidden-mobile">数据库事务和隔离级别</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -415,10 +459,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -427,7 +471,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

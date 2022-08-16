@@ -280,6 +280,40 @@
 
 
 
+<pre><code class="hljs go"><span class="hljs-comment">// 单调栈解法</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">trap</span><span class="hljs-params">(height []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">var</span> stack []<span class="hljs-type">int</span>
+    <span class="hljs-keyword">var</span> res <span class="hljs-type">int</span>
+    <span class="hljs-keyword">for</span> i,h := <span class="hljs-keyword">range</span> height&#123;
+        <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(stack)&gt;<span class="hljs-number">0</span> &amp;&amp; height[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]] &lt; h&#123;
+            top := stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+            stack = stack[:<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+            <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(stack) == <span class="hljs-number">0</span>&#123;
+                <span class="hljs-keyword">continue</span> 
+            &#125;
+            left := stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+            width := i-left<span class="hljs-number">-1</span>
+            height := min(h, height[left]) - height[top]
+            res += width*height
+        &#125;
+        stack = <span class="hljs-built_in">append</span>(stack, i)
+    &#125;
+    <span class="hljs-keyword">return</span> res
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span><span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a&gt;b&#123;
+        <span class="hljs-keyword">return</span> b
+    &#125;
+    <span class="hljs-keyword">return</span> a
+&#125;</code></pre>
+
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;note note-primary&quot;</span>; <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-size:22px&quot;</span>&gt;</span>
+   执行用时：8 ms, 在所有 Go 提交中击败了67.12%的用户<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+   内存消耗：4.9 MB, 在所有 Go 提交中击败了31.09%的用户
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+
+
 
 
             </div>
@@ -298,9 +332,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/array/">array</a>
-                    
                       <a class="hover-with-bg" href="/tags/golang/">golang</a>
+                    
+                      <a class="hover-with-bg" href="/tags/array/">array</a>
                     
                   </div>
                 
@@ -453,10 +487,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -465,7 +499,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      448 字
+      588 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      8
        分钟
     </span>
   
@@ -279,6 +279,38 @@
 </p>
 
 
+<p>优化版本</p>
+<pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">lengthOfLIS</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    n := <span class="hljs-built_in">len</span>(nums)
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n+<span class="hljs-number">1</span>)
+    <span class="hljs-built_in">len</span> := <span class="hljs-number">1</span>
+    dp[<span class="hljs-built_in">len</span>] = nums[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;n;i++&#123;
+        <span class="hljs-keyword">if</span> dp[<span class="hljs-built_in">len</span>] &lt; nums[i]&#123;
+            <span class="hljs-built_in">len</span>++
+            dp[<span class="hljs-built_in">len</span>] = nums[i]
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            l,r,pos := <span class="hljs-number">1</span>,<span class="hljs-built_in">len</span>,<span class="hljs-number">0</span>
+            <span class="hljs-keyword">for</span> l &lt;= r&#123;
+                mid := (l+r)&gt;&gt;<span class="hljs-number">1</span>
+                <span class="hljs-keyword">if</span> dp[mid] &lt; nums[i]&#123;
+                     l = mid+<span class="hljs-number">1</span>
+                    pos = mid
+                    
+                &#125;<span class="hljs-keyword">else</span>&#123;
+                   r = mid<span class="hljs-number">-1</span>
+                &#125;
+            &#125;
+            dp[pos+<span class="hljs-number">1</span>] = nums[i]
+        &#125;
+        <span class="hljs-comment">//fmt.Println(dp)</span>
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>
+&#125;</code></pre>
+
+<p>执行用时：4 ms, 在所有 Go 提交中击败了98.09%的用户</p>
+<p>内存消耗：3.4 MB, 在所有 Go 提交中击败了89.60%的用户</p>
+
             </div>
             <hr>
             <div>
@@ -295,9 +327,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/array/">array</a>
-                    
                       <a class="hover-with-bg" href="/tags/golang/">golang</a>
+                    
+                      <a class="hover-with-bg" href="/tags/array/">array</a>
                     
                   </div>
                 
@@ -320,8 +352,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%8A%9B%E6%89%A3/33.%20%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84/">
-                        <span class="hidden-mobile">33. 搜索旋转排序数组</span>
+                      <a href="/2022/01/21/%E5%8A%9B%E6%89%A3/32.%20%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/">
+                        <span class="hidden-mobile">32. 最长有效括号</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -450,10 +482,10 @@
   <!-- 备案信息 -->
   <div class="beian">
     <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">浙ICP备2020038092号</a>
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
     
       <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020038092"
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
         rel="nofollow noopener"
         class="beian-police"
         target="_blank"
@@ -462,7 +494,7 @@
         
           <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
         
-        <span>浙ICP备2020038092号</span>
+        <span>浙ICP备2022005138号-2</span>
       </a>
      
   </div>

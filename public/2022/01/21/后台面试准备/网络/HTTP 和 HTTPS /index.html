@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://hkctfsys.com/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
+  <link rel="icon" type="image/png" href="http://sjy.我爱你/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>HTTP 和 HTTPS - 杰杰boke</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>My Story</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/ABOUT/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-21 21:37" pubdate>
+        2022年1月21日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">HTTP 和 HTTPS</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>http是超文本传输协议，最开始是为了方便传输html而创建的，传输的信息都是没经过加密的，并且是无状态的，连接通过TCP连接，端口为80，安全性很差，但是连接很简单，速度快减少界面加载延时</p>
+<h2 id="HTTP协议的特点？"><a href="#HTTP协议的特点？" class="headerlink" title="HTTP协议的特点？"></a>HTTP协议的特点？</h2><ol>
+<li>HTTP允许传输<strong>任意类型</strong>的数据。传输的类型由Content-Type加以标记。 </li>
+<li><strong>无状态</strong>。对于客户端每次发送的请求，服务器都认为是一个新的请求，上一次会话和下一次会话之间没有联系。 </li>
+<li>支持<strong>客户端&#x2F;服务器模式</strong>。</li>
+</ol>
+<h4 id="http缺点"><a href="#http缺点" class="headerlink" title="http缺点"></a>http缺点</h4><p>1、无法验证报文的完整性</p>
+<p>2、无法验证发送人，所以可能被伪装</p>
+<p>3、通信使用明文，可能信息被窃听</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0gi9djnslj20g20btdg9.jpg" srcset="/img/loading.gif"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0gi9j8u5uj20re0iejsd.jpg" srcset="/img/loading.gif"></p>
+<h4 id="http常见状态码"><a href="#http常见状态码" class="headerlink" title="http常见状态码"></a>http常见状态码</h4><table>
+<thead>
+<tr>
+<th>http状态码</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200 OK</td>
+<td>请求成功完成</td>
+</tr>
+<tr>
+<td>301 Moved Permanently</td>
+<td>永久移动，永久重定向</td>
+</tr>
+<tr>
+<td>302 Found</td>
+<td>临时移动，临时重定向</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>客户端请求错误,服务器理解不了</td>
+</tr>
+<tr>
+<td>403 Forbidden</td>
+<td>服务器收到并且理解请求，但是拒绝提供服务</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>客户端所要找的资源找不到</td>
+</tr>
+<tr>
+<td>499 client has closed connection</td>
+<td>nginx 自定义状态码，两次post提交过快或者服务器端处理的时间过长</td>
+</tr>
+<tr>
+<td>500 Internal Server Error</td>
+<td>服务器错误</td>
+</tr>
+<tr>
+<td>503  Service Unavailable</td>
+<td>服务器尚未处于可以请求状态，服务器停机或者已超载</td>
+</tr>
+</tbody></table>
+<h3 id="介绍下http2-0"><a href="#介绍下http2-0" class="headerlink" title="介绍下http2.0"></a>介绍下http2.0</h3><h3 id="HTTP2-0"><a href="#HTTP2-0" class="headerlink" title="HTTP2.0"></a><a target="_blank" rel="noopener" href="http://sjy.我爱你/2022/03/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/HTTP1.0%E5%92%8C2.0%E7%9A%84%E5%8C%BA%E5%88%AB/">HTTP2.0</a></h3><h3 id="HTTP和HTTPS的区别"><a href="#HTTP和HTTPS的区别" class="headerlink" title="HTTP和HTTPS的区别"></a>HTTP和HTTPS的区别</h3><p>安全的基础是ssl协议，连接方式不同（待补充），https是http+ssl协议进行构建的加密传输、身份认证的网络协议，比http协议安全很多，连接方式通常也是tcp，也有可能是SCTP。</p>
+<p>ssl由权威机构颁发，ssl是一个非对称加密，有一个公钥，和一个私钥，用公钥加密后的信息只能由私钥解密，用私钥加密的数据只能公钥解密,公钥放在服务器，私钥放在个人主机。</p>
+<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>https是经过ssl证书认证并且在传输过程加密的一种传输方式，端口为443安全性大大增加，https &#x3D; http+ssl加密</p>
+<h2 id="什么是数字证书？"><a href="#什么是数字证书？" class="headerlink" title="什么是数字证书？"></a>什么是数字证书？</h2><p>服务端可以向证书颁发机构CA申请证书，以避免中间人攻击（防止证书被篡改）。证书包含三部分内容：<strong>证书内容、证书签名<a href="">算法</a>和签名</strong>，签名是为了验证身份。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20211017/530285728_1634456987428/image-20211004111441594.png" srcset="/img/loading.gif" alt="img"></p>
+<p>服务端把证书传输给浏览器，浏览器从证书里取公钥。证书可以证明该公钥对应本网站。</p>
+<p><strong>数字签名的制作过程</strong>：</p>
+<ol>
+<li>CA使用证书签名<a href="">算法</a>对证书内容进行<strong>hash运算</strong>。 </li>
+<li>对hash后的值<strong>用CA的私钥加密</strong>，得到数字签名。</li>
+</ol>
+<p><strong>浏览器验证过程</strong>：</p>
+<ol>
+<li>获取证书，得到证书内容、证书签名算法和数字签名。 </li>
+<li>用CA机构的公钥<strong>对数字签名解密</strong>（由于是浏览器信任的机构，所以浏览器会保存它的公钥）。 </li>
+<li>用证书里的签名<a href="">算法</a><strong>对证书内容进行hash运算</strong>。 </li>
+<li>比较解密后的数字签名和对证书内容做hash运算后得到的哈希值，相等则表明证书可信。</li>
+</ol>
+<p>首先是TCP三次握手，然后客户端发起一个HTTPS连接建立请求，客户端先发一个<code>Client Hello</code>的包，然后服务端响应<code>Server Hello</code>，接着再给客户端发送它的证书，然后双方经过密钥交换，最后使用交换的密钥加解密数据。</p>
+<ol>
+<li><p><strong>协商加密算法</strong> 。在<code>Client Hello</code>里面客户端会告知服务端自己当前的一些信息，包括客户端要使用的TLS版本，支持的加密算法，要访问的域名，给服务端生成的一个随机数（Nonce）等。需要提前告知服务器想要访问的域名以便服务器发送相应的域名的证书过来。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20211017/530285728_1634456987415/image-20210921104210833.png" srcset="/img/loading.gif" alt="img"></p>
+</li>
+<li><p>服务端响应<code>Server Hello</code>，告诉客户端服务端<strong>选中的加密算法</strong>。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20211017/530285728_1634456987405/image-20210921105450791.png" srcset="/img/loading.gif" alt="img"></p>
+</li>
+<li><p>接着服务端给客户端发来了2个证书。第二个证书是第一个证书的签发机构（CA）的证书。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20211017/530285728_1634456987405/image-20211004172007102.png" srcset="/img/loading.gif" alt="img"></p>
+</li>
+<li><p>客户端使用证书的认证机构CA公开发布的RSA公钥<strong>对该证书进行验证</strong>，下图表明证书认证成功。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20211017/530285728_1634456987746/image-20210921105929268.png" srcset="/img/loading.gif" alt="img"></p>
+</li>
+<li><p>验证通过之后，浏览器和服务器通过<strong>密钥交换算法</strong>产生共享的<strong>对称密钥</strong>。</p>
+<p>RSA密钥交换算法：</p>
+<p>（1）任意客户端对服务器发起请求，服务器首先发回复自己的公钥到客户端（公钥明文传输）。</p>
+<p>（2）客户端使用随机数算法，生成一个密钥S，使用收到的公钥进行加密，生成C，把C发送到服务器。</p>
+<p>（3）服务器收到C，使用公钥对应的私钥进行解密，得到S。</p>
+<p>（4）上述交换步骤后，客户端和服务器都得到了S，S为密钥（预主密钥）。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20211017/530285728_1634456987406/image-20210921110025197.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20211017/530285728_1634456987428/image-20210921110155075.png" srcset="/img/loading.gif" alt="img"></p>
+</li>
+<li><p>开始传输数据，使用同一个对称密钥来加解密。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20211017/530285728_1634456987387/image-20210921110315068.png" srcset="/img/loading.gif" alt="img"></p>
+</li>
+</ol>
+<h3 id="https被中间人攻击了怎么办"><a href="#https被中间人攻击了怎么办" class="headerlink" title="https被中间人攻击了怎么办"></a>https被中间人攻击了怎么办</h3><p>攻击人先使用DNS劫持把请求都到他的服务器，再用伪造的证书与客户端进行交互</p>
+<p><strong>解决办法：</strong></p>
+<p>第一步需要验证CA证书的时候去验证他是不是权威机构，使用权威机构的CA证书的公钥解密验证和原来的证书是否一致，如果不是就不信任他不与他进行https连接。</p>
+<h4 id="Get和Post的区别"><a href="#Get和Post的区别" class="headerlink" title="Get和Post的区别"></a>Get和Post的区别</h4><p>1、get请求表示的意思是要得到信息，并且get请求参数都放header或者url上面，安全性较差放url上面有长度限制，最多1024个字符，不适合传大长度信息。</p>
+<p>2、post请求表示添加信息 ，请求参数作为键值对放在http请求中，不会出现在url中，安全性较get较好</p>
+<p>3、get请求在url不可加入中文字符，会乱码，post可以</p>
+<h4 id="Restful风格的接口"><a href="#Restful风格的接口" class="headerlink" title="Restful风格的接口"></a>Restful风格的接口</h4><p>1、请求头</p>
+<p>get  表示请求数据 ，一般数据放header里面</p>
+<p>post 表示增加数据 ，一般数据放body里面</p>
+<p>put 表示修改数据，一般数据放body里面</p>
+<p>delete  表示删除数据，一般数据放body里面</p>
+<p>2、url的复用，比如work这块，写一个group里面，然后get “&#x2F;”表示获取工作信息，post“&#x2F;”增加工作信息</p>
+<p>3、状态码，详情看上面</p>
+<p>4、制作一个统一的返回信息的格式，写一个可以多处用的success return和error return，返回结果统一json</p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/833962">https://www.nowcoder.com/discuss/833962</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/%E9%94%81/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mysql锁</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E5%81%9A%E9%A1%B9%E7%9B%AE%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98_%E8%80%81%E7%89%88/">
+                        <span class="hidden-mobile">项目遇到的问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://example.com/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/HTTP%20%E5%92%8C%20HTTPS%20/';
+        this.page.identifier = '/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E7%BD%91%E7%BB%9C/HTTP%20%E5%92%8C%20HTTPS%20/';
+      };
+      function loadDisqus() {
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }
+      waitElementVisible('disqus_thread', loadDisqus);
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
+    
+      <a
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
+        rel="nofollow noopener"
+        class="beian-police"
+        target="_blank"
+      >
+        <span class="beian-police-sep">&nbsp;|&nbsp;</span>
+        
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+        <span>浙ICP备2022005138号-2</span>
+      </a>
+     
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "HTTP 和 HTTPS&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
