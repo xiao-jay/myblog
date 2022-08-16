@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.4k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      18
        分钟
     </span>
   
@@ -256,6 +256,14 @@ type hmap struct &#123;
 
 <p>map分为hmap和bmap，hmap是一个哈希表，bmap是一个数组，golang用链表法解决哈希冲突，如果溢出会弄一个溢出bucket放进去。</p>
 <p>bmap 是存放 k-v 的地方，我们把视角拉近，仔细看 bmap 的内部组成。</p>
+<pre><code class="hljs go"><span class="hljs-keyword">type</span> bmap <span class="hljs-keyword">struct</span> &#123;
+    topbits  [<span class="hljs-number">8</span>]<span class="hljs-type">uint8</span>
+    keys     [<span class="hljs-number">8</span>]keytype
+    values   [<span class="hljs-number">8</span>]valuetype
+    pad      <span class="hljs-type">uintptr</span>
+    overflow <span class="hljs-type">uintptr</span>
+&#125;</code></pre>
+
 <p><img src="https://user-images.githubusercontent.com/7698088/57577391-f88f1d80-74a7-11e9-893c-4783dc4fb35e.png" srcset="/img/loading.gif" alt="img"></p>
 <h3 id="创建map"><a href="#创建map" class="headerlink" title="创建map"></a>创建map</h3><p>从语法层面上来说，创建 map 很简单：</p>
 <pre><code class="hljs go">ageMp := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
@@ -347,6 +355,48 @@ return h
 <li>装载因子超过阈值，源码里定义的阈值是 6.5。</li>
 <li>overflow 的 bucket 数量过多：当 B 小于 15，也就是 bucket 总数 2^B 小于 2^15 时，如果 overflow 的 bucket 数量超过 2^B；当 B &gt;&#x3D; 15，也就是 bucket 总数 2^B 大于等于 2^15，如果 overflow 的 bucket 数量超过 2^15。</li>
 </ol>
+<pre><code class="hljs reasonml"><span class="hljs-comment">// src/runtime/hashmap.go/mapassign</span>
+
+<span class="hljs-comment">// 触发扩容时机</span>
+<span class="hljs-keyword">if</span> !h.growing<span class="hljs-literal">()</span><span class="hljs-operator"> &amp;&amp; </span>(over<span class="hljs-constructor">LoadFactor(<span class="hljs-params">int64</span>(<span class="hljs-params">h</span>.<span class="hljs-params">count</span>)</span>, h.B)<span class="hljs-operator"> || </span>too<span class="hljs-constructor">ManyOverflowBuckets(<span class="hljs-params">h</span>.<span class="hljs-params">noverflow</span>, <span class="hljs-params">h</span>.B)</span>) &#123;
+        hash<span class="hljs-constructor">Grow(<span class="hljs-params">t</span>, <span class="hljs-params">h</span>)</span>
+    &#125;
+
+<span class="hljs-comment">// 装载因子超过 6.5</span>
+func over<span class="hljs-constructor">LoadFactor(<span class="hljs-params">count</span> <span class="hljs-params">int64</span>, B <span class="hljs-params">uint8</span>)</span> <span class="hljs-built_in">bool</span> &#123;
+    return count &gt;= bucketCnt<span class="hljs-operator"> &amp;&amp; </span>float32(count) &gt;= loadFactor*float32((uint64(<span class="hljs-number">1</span>)&lt;&lt;B))
+&#125;
+
+<span class="hljs-comment">// overflow buckets 太多</span>
+func too<span class="hljs-constructor">ManyOverflowBuckets(<span class="hljs-params">noverflow</span> <span class="hljs-params">uint16</span>, B <span class="hljs-params">uint8</span>)</span> <span class="hljs-built_in">bool</span> &#123;
+    <span class="hljs-keyword">if</span> B &lt; <span class="hljs-number">16</span> &#123;
+        return noverflow &gt;= uint16(<span class="hljs-number">1</span>)&lt;&lt;B
+    &#125;
+    return noverflow &gt;= <span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">15</span>
+&#125;</code></pre>
+
+
+
+<p>再来看看真正执行搬迁工作的 growWork() 函数。</p>
+<pre><code class="hljs reasonml">func grow<span class="hljs-constructor">Work(<span class="hljs-params">t</span> <span class="hljs-operator">*</span><span class="hljs-params">maptype</span>, <span class="hljs-params">h</span> <span class="hljs-operator">*</span><span class="hljs-params">hmap</span>, <span class="hljs-params">bucket</span> <span class="hljs-params">uintptr</span>)</span> &#123;
+    <span class="hljs-comment">// 确认搬迁老的 bucket 对应正在使用的 bucket</span>
+    evacuate(t, h, bucket&amp;h.oldbucketmask<span class="hljs-literal">()</span>)
+
+    <span class="hljs-comment">// 再搬迁一个 bucket，以加快搬迁进程</span>
+    <span class="hljs-keyword">if</span> h.growing<span class="hljs-literal">()</span> &#123;
+        evacuate(t, h, h.nevacuate)
+    &#125;
+&#125;</code></pre>
+
+<p>h.growing() 函数非常简单：</p>
+<pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(h *hmap)</span></span> growing() <span class="hljs-type">bool</span> &#123;
+
+    <span class="hljs-keyword">return</span> h.oldbuckets != <span class="hljs-literal">nil</span>
+
+&#125;</code></pre>
+
+<p>如果 <code>oldbuckets</code> 不为空，说明还没有搬迁完毕，还得继续搬。</p>
+<p>TODO:evacuate函数干了什么下次看懂源码再写，一个搬迁的细节是搬到大内存去的时候得重新hash计算放到哪个bucket中，因为比原来多了一位。</p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1、为什么map不可以寻址，map是怎么存储的"><a href="#1、为什么map不可以寻址，map是怎么存储的" class="headerlink" title="1、为什么map不可以寻址，map是怎么存储的"></a>1、为什么map不可以寻址，map是怎么存储的</h3><ol>
 <li>如果字典的元素不存在，则返回零值，而零值是不可变对象，如果能寻址问题就大了。</li>
 <li>而如果字典的元素存在，考虑到 Go 中 map 实现中元素的地址是变化的，这意味着寻址的结果也是无意义的。</li>
@@ -382,9 +432,9 @@ return h
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/go%E8%AF%AD%E8%A8%80runtime/">
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/golang%E8%AF%AD%E8%A8%80%E9%97%AE%E9%A2%98/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">go语言runtime</span>
+                        <span class="hidden-mobile">golang后台面试题目</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -392,8 +442,8 @@ return h
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/go%E8%AF%AD%E8%A8%80chan%E7%BC%93%E5%AD%98%E5%92%8C%E9%98%BB%E5%A1%9E/">
-                        <span class="hidden-mobile">go语言chan缓存和阻塞</span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/GMP/">
+                        <span class="hidden-mobile">GMP</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -662,36 +712,6 @@ return h
       }
     );
   </script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-</body>
-</html>
 
 
 
