@@ -114,3 +114,84 @@ Redis采用了IO多路复用技术和非阻塞IO，这个技术由操作系统�
 - 开发和调试非常友好，可维护性高
 
 所以Redis正是基于以上这些方面，所以采用了单线程模型来完成请求处理的工作。
+
+
+
+### 缺点
+
+上面介绍了单线程可以达到如此高的性能，并不是说它就没有缺点了。
+
+**单线程处理最大的缺点就是，如果前一个请求发生耗时比较久的操作，那么整个Redis就会阻塞住，其他请求也无法进来，直到这个耗时久的操作处理完成并返回，其他请求才能被处理到。**
+
+我们平时遇到Redis变慢或长时间阻塞的问题，90%也都是因为Redis处理请求是单线程这个原因导致的。
+
+所以，我们在使用Redis时，一定要避免非常耗时的操作，例如使用时间复杂度过高的方式获取数据、一次性获取过多的数据、大量key集中过期导致Redis淘汰key压力变大等等，这些场景都会阻塞住整个处理线程，直到它们处理完成，势必会影响业务的访问。
+
+我会在后期的文章中专门介绍具体有哪些场景会引发Redis阻塞的问题，并提供规避问题的方法和优化方案。
+
+
+
+# 什么是大key问题
+
+
+
+就是一个key的value特别大，比如一个hashmap中存了超多k,v;
+或者一个列表key中存了超长列表，等等；
+多大算大： hashmap中有100w的k,v => 1s延迟；
+删除大Key的时间复杂度: O(N), N代表大key里的值数量，因为redis是单线程一个个删。
+所以删大key也会卡qps。
+
+因为redis是单线程处理，如果处理一些长时间的操作会造成阻塞
+
+1.内存不均：单value较大时，可能会导致节点之间的内存使用不均匀，间接地影响key的部分和负载不均匀；
+2.阻塞请求：redis为单线程，单value较大读写需要较长的处理时间，会阻塞后续的请求处理；
+3.阻塞网络：单value较大时会占用服务器网卡较多带宽，可能会影响该服务器上的其他Redis实例或者应用。
+
+### redis 大key怎么处理
+
+#### 1、 lazyfree机制
+
+`unlink`命令：代替DEL命令；
+会把对应的大key放到`BIO_LAZY_FREE`后台线程任务队列，然后在后台异步删除；
+
+类似的异步删除命令:
+
+```
+flushdb async: 异步清空数据库
+flushall async: 异步清空所有数据库
+```
+
+异步删除配置:
+
+```
+slave-lazy-flush: slave接受完rdb文件后，异步清空数据库；
+lazyfree-lazy-eviction: 异步淘汰key;
+lazyfree-lazy-expire:   异步key过期;
+lazyfree-lazy-server-del: 异步内部删除key；生效于rename命令
+## rename命令: RENAME mykey new_name 
+## 如果new_name已经存在，会先删除new_name，此时触发上述lazy机制
+```
+
+**1.单个简单key的存储的value过大的解决方案：**
+
+**将大key拆分成多个key-value，使用multiGet方法获得值，这样的拆分主要是为了减少单台操作的压力，而是将压力平摊到集群各个实例中，降低单台机器的IO操作。**
+
+**2.hash、set、zset、list中存储过多的元素的解决方案：**
+
+**1).类似于第一种场景，使用第一种方案拆分;**
+
+**2).以hash为例，将原先的hget、hset方法改成（加入固定一个hash桶的数量为10000），先计算field的hash值模取10000，确定该field在哪一个key上。**
+
+将大key进行分割，为了均匀分割，可以对field进行hash并通过质数N取余，将余数加到key上面，我们取质数N为997。
+
+那么新的key则可以设置为：
+
+newKey = order_20200102_String.valueOf( Math.abs(order_id.hashcode() % 997) )
+
+field = order_id
+
+value = 10
+
+hset (newKey, field, value) ;  
+
+hget(newKey, field)
