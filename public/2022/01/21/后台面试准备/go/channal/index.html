@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      60 字
+      181 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      2
        分钟
     </span>
   
@@ -249,6 +249,9 @@
 
 
 <p>可以，但是从channal里面拿就会panic</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1、能使用无缓存的channal做mutex吗"><a href="#1、能使用无缓存的channal做mutex吗" class="headerlink" title="1、能使用无缓存的channal做mutex吗"></a>1、能使用无缓存的channal做mutex吗</h3><p>虽然没有缓存，但是可以有一个放入，多个放出，放出可以抽象成争抢锁</p>
+<p>1、设置一个goroutine，专门来放入，因为没有拿就阻塞了，如果有人拿就退出</p>
+<p>2、有人拿了，没有被阻塞，说明拿到锁了，开始执行任务，然后执行完的时候重新启动一个goroutine来放入锁，等待下一个拿到锁的人。</p>
 
             </div>
             <hr>
@@ -279,9 +282,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/context/">
+                      <a href="/2022/01/21/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2/%E6%B5%85%E8%B0%88git%E7%9A%84%E4%BD%BF%E7%94%A8/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Context</span>
+                        <span class="hidden-mobile">浅谈git的使用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -289,8 +292,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/golang%20GC/">
-                        <span class="hidden-mobile">golang GC</span>
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/go/context/">
+                        <span class="hidden-mobile">Context</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -576,20 +579,6 @@
   
 
   
-
-  
-
-  
-
-  
-
-
-
-
-
-</body>
-</html>
-
 
   
 
