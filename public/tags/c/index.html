@@ -385,7 +385,12 @@
 
 </body>
 </html>
-lass="list-group" id="local-search-result"></div>
+>
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
@@ -486,7 +491,7 @@ lass="list-group" id="local-search-result"></div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - c&nbsp;",
+        "标签 - c++&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

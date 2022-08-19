@@ -240,74 +240,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/21/PAT%E4%B9%99/1027%20%E6%89%93%E5%8D%B0%E6%B2%99%E6%BC%8F/">1027 打印沙漏</a>
+        <a href="/2022/01/21/PAT%E4%B9%99/1033%20%E6%97%A7%E9%94%AE%E7%9B%98%E6%89%93%E5%AD%97/">1033 旧键盘打字</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/01/21/PAT%E4%B9%99/1027%20%E6%89%93%E5%8D%B0%E6%B2%99%E6%BC%8F/">
+        <a href="/2022/01/21/PAT%E4%B9%99/1033%20%E6%97%A7%E9%94%AE%E7%9B%98%E6%89%93%E5%AD%97/">
           
           
             
           
-          打印沙漏题目描述：本题要求你写个程序把给定的符号打印成沙漏的形状。例如给定17个“*”，要求按下列格式打印
-*****
- ***
-  *
- ***
-*****
-
-所谓“沙漏形状”，是指每行输出奇数个符号；各行符号中心对齐；相邻两行符号数差2；符号数先从大到小顺序递减到1，再从小到大顺序递增；首尾符号数相等。
-给定任意N个符号，不一定能正好组成一个沙漏。要求打印出的沙漏能用掉尽可能多的符号。
-输入格
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/PAT%E5%88%B7%E9%A2%98/">PAT刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/PAT%E4%B9%99/1001%20%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n+1%E7%8C%9C%E6%83%B3%20/">1001 害死人不偿命的3n+1猜想</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/PAT%E4%B9%99/1001%20%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n+1%E7%8C%9C%E6%83%B3%20/">
-          
-          
-            
-          
-          害死人不偿命的3n+1猜想 题目描述：卡拉兹(Callatz)猜想：
-对任何一个正整数 n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把 (3n+1) 砍掉一半。这样一直反复砍下去，最后一定在某一步得到 n&#x3D;1。卡拉兹在 1950 年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证 (3n+1)，以
+          旧键盘打字题目描述：旧键盘上坏了几个键，于是在敲一段文字的时候，对应的字符就不会出现。现在给出应该输入的一段文字、以及坏掉的那些键，打出的结果文字会是怎样？
+输入格式：输入在 2 行中分别给出坏掉的那些键、以及应该输入的文字。其中对应英文字母的坏键以大写给出；每段文字是不超过 105 个字符的串。可用的字符包括字母 [a-z, A-Z]、数字 0-9、以及下划线 _（代表空格）、,、.、-、+（代
         </a>
       </p>
 
@@ -518,6 +461,55 @@
           
           继续3n+1猜想 题目描述：卡拉兹(Callatz)猜想已经在1001中给出了描述。在这个题目里，情况稍微有些复杂。
 当我们验证卡拉兹猜想的时候，为了避免重复计算，可以记录下递推过程中遇到的每一个数。例如对 n&#x3D;3 进行验证的时候，我们需要计算 3、5、8、4、2、1，则当我们对 n&#x3D;5、8、4、2 进行验证的时候，就可以直接判定卡拉兹猜想的真伪，而不需要重复计算，因为这 4 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/PAT%E5%88%B7%E9%A2%98/">PAT刷题</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/golang/">golang</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/PAT%E4%B9%99/1001%20%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n+1%E7%8C%9C%E6%83%B3%20/">1001 害死人不偿命的3n+1猜想</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/PAT%E4%B9%99/1001%20%E5%AE%B3%E6%AD%BB%E4%BA%BA%E4%B8%8D%E5%81%BF%E5%91%BD%E7%9A%843n+1%E7%8C%9C%E6%83%B3%20/">
+          
+          
+            
+          
+          害死人不偿命的3n+1猜想 题目描述：卡拉兹(Callatz)猜想：
+对任何一个正整数 n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把 (3n+1) 砍掉一半。这样一直反复砍下去，最后一定在某一步得到 n&#x3D;1。卡拉兹在 1950 年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证 (3n+1)，以
         </a>
       </p>
 
