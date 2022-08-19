@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://hkctfsys.com/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
+  <link rel="icon" type="image/png" href="http://sjy.我爱你/img/%E7%88%B1%E6%83%85%E6%A0%91.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>索引explain的使用 - 杰杰boke</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>My Story</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/ABOUT/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/%E5%A3%81%E7%BA%B8.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-21 21:37" pubdate>
+        2022年1月21日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">索引explain的使用</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>有两个重要的属性，type和extre，type是类型，越左边越好。</p>
+<p><strong>type：</strong>system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</p>
+<p>system是查已经放入内存的系统表</p>
+<p>const命中主键索引并且返回常数值</p>
+<p>eq_ref是命中主键索引或者唯一索引</p>
+<p>ref是命中普通索引</p>
+<p>range是索引上面的范围查询</p>
+<p>index是使用索引的全表查询，和all速度差不多，官网说比all快是因为查出来的数据是有序的吧。</p>
+<p><strong>extra：</strong></p>
+<p><strong>Using where】</strong></p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729090932514-1337263507.png"><img src="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729090932514-1337263507.png" srcset="/img/loading.gif" alt="img"></a></p>
+<p><strong>实验语句</strong>：</p>
+<pre><code class="hljs n1ql"><span class="hljs-keyword">explain</span> <span class="hljs-symbol">``</span><span class="hljs-keyword">select</span><span class="hljs-symbol">` `</span>* <span class="hljs-symbol">``</span><span class="hljs-keyword">from</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">user</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">where</span><span class="hljs-symbol">` `</span>sex=<span class="hljs-symbol">``</span><span class="hljs-string">&#x27;no&#x27;</span><span class="hljs-symbol">``</span>;</code></pre>
+
+<p><strong>结果说明</strong>：</p>
+<p>　　Extra为Using where说明，SQL使用了where条件过滤数据。</p>
+<p>需要注意的是：</p>
+<p>（1）返回所有记录的SQL，不使用where条件过滤数据，大概率不符合预期，对于这类SQL往往需要进行优化；</p>
+<p>（2）使用了where条件的SQL，并不代表不需要优化，往往需要配合explain结果中的type（连接类型）来综合判断；</p>
+<p>　　本例虽然Extra字段说明使用了where条件过滤，但type属性是ALL，表示需要扫描全部数据，仍有优化空间。</p>
+<p>　　常见的优化方法为，在where过滤属性上添加索引。</p>
+<p>画外音：本例中，sex字段区分度不高，添加索引对性能提升有限。*</p>
+<p><strong>二、【Using index】</strong>　　</p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091039527-949770879.png"><img src="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091039527-949770879.png" srcset="/img/loading.gif" alt="img"></a></p>
+<p><strong>实验语句</strong>：</p>
+<pre><code class="hljs n1ql"><span class="hljs-keyword">explain</span> <span class="hljs-symbol">``</span><span class="hljs-keyword">select</span><span class="hljs-symbol">` `</span>id,<span class="hljs-symbol">``</span>name<span class="hljs-symbol">` `</span><span class="hljs-keyword">from</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">user</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">where</span><span class="hljs-symbol">` `</span>name<span class="hljs-symbol">``</span>=<span class="hljs-symbol">``</span><span class="hljs-string">&#x27;shenjian&#x27;</span><span class="hljs-symbol">``</span>;</code></pre>
+
+<p><strong>结果说明</strong>：</p>
+<p>　　Extra为Using index说明，SQL所需要返回的所有列数据均在一棵索引树上，而无需访问实际的行记录。</p>
+<p>　　这类SQL语句往往性能较好。</p>
+<p><strong>问题来了，什么样的列数据，会包含在索引树上呢？</strong></p>
+<p><strong>三、【Using index condition】</strong></p>
+<p><strong>结果说明：</strong></p>
+<p>Extra为Using index condition说明，确实命中了索引，但不是所有的列数据都在索引树上，还需要访问实际的行记录。</p>
+<p><em>画外音：*<em>聚集索引，普通索引的底层实现差异，详见《</em></em><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&mid=2651961494&idx=1&sn=34f1874c1e36c2bc8ab9f74af6546ec5&chksm=bd2d0d4a8a5a845c566006efce0831e610604a43279aab03e0a6dde9422b63944e908fcc6c05&scene=21#wechat_redirect">1分钟了解MyISAM与InnoDB的索引差异</a>》。*</p>
+<p>这类SQL语句性能也较高，但不如Using index。</p>
+<p><strong>问题来了，如何优化为Using index呢？</strong></p>
+<p>添加聚簇索引，使所有列在索引中。</p>
+<p><strong>四、【Using filesort】</strong></p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091428454-1485068081.png"><img src="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091428454-1485068081.png" srcset="/img/loading.gif" alt="img"></a></p>
+<p><strong>实验语句：</strong></p>
+<pre><code class="hljs n1ql"><span class="hljs-keyword">explain</span> <span class="hljs-symbol">``</span><span class="hljs-keyword">select</span><span class="hljs-symbol">` `</span>* <span class="hljs-symbol">``</span><span class="hljs-keyword">from</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">user</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">order</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">by</span><span class="hljs-symbol">` `</span>sex;</code></pre>
+
+<p><strong>结果说明：</strong></p>
+<p>　　Extra为Using filesort说明，得到所需结果集，需要对所有记录进行文件排序。</p>
+<p>　　这类SQL语句性能极差，需要进行优化。</p>
+<p>　　典型的，在一个没有建立索引的列上进行了order by，就会触发filesort，常见的优化方案是，在order by的列上添加索引，避免每次查询都全量排序。</p>
+<p><strong>五、【Using temporary】</strong></p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091518732-1550780386.png"><img src="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091518732-1550780386.png" srcset="/img/loading.gif" alt="img"></a></p>
+<p><strong>实验语句：</strong></p>
+<pre><code class="hljs autohotkey">explain ``select` `* ``from` `user` `group` `by` `name` `order` `by` `sex<span class="hljs-comment">;</span></code></pre>
+
+<p><strong>结果说明：</strong></p>
+<p>　　Extra为Using temporary说明，需要建立临时表(temporary table)来暂存中间结果。 </p>
+<p>　　这类SQL语句性能较低，往往也需要进行优化。</p>
+<p>　　典型的，group by和order by同时存在，且作用于不同的字段时，就会建立临时表，以便计算出最终的结果集。</p>
+<p><strong>六、【Using join buffer (Block Nested Loop)】</strong></p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091608174-768087803.png"><img src="https://img2018.cnblogs.com/blog/885859/201907/885859-20190729091608174-768087803.png" srcset="/img/loading.gif" alt="img"></a></p>
+<p><strong>实验语句：</strong></p>
+<pre><code class="hljs n1ql"><span class="hljs-keyword">explain</span> <span class="hljs-symbol">``</span><span class="hljs-keyword">select</span><span class="hljs-symbol">` `</span>* <span class="hljs-symbol">``</span><span class="hljs-keyword">from</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">user</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">where</span><span class="hljs-symbol">` `</span>id <span class="hljs-symbol">``</span><span class="hljs-keyword">in</span><span class="hljs-symbol">``</span>(<span class="hljs-symbol">``</span><span class="hljs-keyword">select</span><span class="hljs-symbol">` `</span>id <span class="hljs-symbol">``</span><span class="hljs-keyword">from</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">user</span><span class="hljs-symbol">` `</span><span class="hljs-keyword">where</span><span class="hljs-symbol">` `</span>sex=<span class="hljs-symbol">``</span><span class="hljs-string">&#x27;no&#x27;</span><span class="hljs-symbol">``</span>);</code></pre>
+
+<p><strong>结果说明：</strong></p>
+<p>　　Extra为Using join buffer (Block Nested Loop)说明，需要进行嵌套循环计算。</p>
+<p>　　<em>画外音：**内层和外层的type均为ALL，rows均为4，需要循环进行4*4次计算。</em></p>
+<p>　　这类SQL语句性能往往也较低，需要进行优化。</p>
+<p>　　典型的，两个关联表join，关联字段均未建立索引，就会出现这种情况。常见的优化方案是，在关联字段上添加索引，避免每次嵌套循环计算。</p>
+<p><strong>七、使用字符串查找数字索引的列会命中吗</strong></p>
+<p>1、在一次MySQL查询中，某字段为 varchar 字符串类型，传入参数值为 int 数字类型，发现查询的结果和预期的不一致。 如： 某两列 name&#x3D;’11’ , name &#x3D; ‘11aa’ 。 where name &#x3D; 11 ， 可以查到 ‘11’ 和 ‘11aa’ 两个结果，这里是错误的；而 where name &#x3D;’11’ ，能得到预期结果。</p>
+<p>2、反之，字段为 int 数字类型，传入参数值为 varchar 字符串类型，也能查到数据，同样查询的结果和预期的不一致。如：age&#x3D;2的数据有2条。where age &#x3D; 2 ， 可以正常查到数据 ； 而 where age &#x3D; ‘2aabbcc’，查到的数据结果和 where age &#x3D; 2 是一样的，这里是错误的，应该查不到数据。</p>
+<p>结论：</p>
+<p>1、原因： 当MySQL字段类型和传入条件数据类型不一致时，会进行隐形的数据类型转换（MySQL Implicit conversion）</p>
+<p>2、若字符串是以数字开头，且全部都是数字，则转换为数字结果是整个字符串；部分是数字，则转换为数字结果是截止到第一个不是数字的字符为止。 理解： varchar str &#x3D; “123dafa”，转换为数字是123 。 SELECT ‘123dafa’+1 ; — 124 。</p>
+<p>3、若字符串不是以数字开头，则转换为数字结果是 0 。 varchar str &#x3D; “aabb33” ; 转换为数字是 0 。 SELECT ‘aabb33’+100 ; — 100 。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF%E9%9D%A2%E8%AF%95/">后端面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%B7%B3%E8%B7%83%E8%A1%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">跳跃表</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">
+                        <span class="hidden-mobile">io多路复用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://example.com/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%B4%A2%E5%BC%95explain/';
+        this.page.identifier = '/2022/01/21/%E5%90%8E%E5%8F%B0%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%B4%A2%E5%BC%95explain/';
+      };
+      function loadDisqus() {
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }
+      waitElementVisible('disqus_thread', loadDisqus);
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">浙ICP备2022005138号-1</a>
+    
+      <a
+        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022005138"
+        rel="nofollow noopener"
+        class="beian-police"
+        target="_blank"
+      >
+        <span class="beian-police-sep">&nbsp;|&nbsp;</span>
+        
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+        <span>浙ICP备2022005138号-2</span>
+      </a>
+     
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "索引explain的使用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
