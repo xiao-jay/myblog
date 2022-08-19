@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      542 字
+      630 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      9
        分钟
     </span>
   
@@ -268,6 +268,28 @@
 </p>
 
 
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><pre><code class="hljs smali">// 从后往前才是正解
+func merge(nums1 []int, m int, nums2 []int, n int) &#123;
+    for p1, p2, tail<span class="hljs-keyword"> :</span>= m-1, n-1, m+n-1; p1 &gt;= 0 || p2 &gt;= 0; tail-- &#123;
+        var cur<span class="hljs-built_in"> int</span>
+<span class="hljs-built_in"></span>       <span class="hljs-built_in"> if </span>p1 == -1 &#123;
+            cur = nums2[p2]
+            p2--
+        &#125; else<span class="hljs-built_in"> if </span>p2 == -1 &#123;
+            cur = nums1[p1]
+            p1--
+        &#125; else<span class="hljs-built_in"> if </span>nums1[p1] &gt; nums2[p2] &#123;
+            cur = nums1[p1]
+            p1--
+        &#125; else &#123;
+            cur = nums2[p2]
+            p2--
+        &#125;
+        nums1[tail] = cur
+    &#125;
+&#125;</code></pre>
+
+
             </div>
             <hr>
             <div>
@@ -299,9 +321,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/21/%E5%8A%9B%E6%89%A3/873.%20%E6%9C%80%E9%95%BF%E7%9A%84%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E9%95%BF%E5%BA%A6/">
+                      <a href="/2022/01/21/%E5%8A%9B%E6%89%A3/875.%20%E7%88%B1%E5%90%83%E9%A6%99%E8%95%89%E7%9A%84%E7%8F%82%E7%8F%82/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">873. 最长的斐波那契子序列的长度</span>
+                        <span class="hidden-mobile">875. 爱吃香蕉的珂珂</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

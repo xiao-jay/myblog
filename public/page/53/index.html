@@ -189,17 +189,19 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/21/PAT%E4%B9%99/1079%20%E5%BB%B6%E8%BF%9F%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0/">1079 延迟的回文数</a>
+        <a href="/2022/01/21/PAT%E4%B9%99/1070%20%E7%BB%93%E7%BB%B3/">1070 结绳</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/01/21/PAT%E4%B9%99/1079%20%E5%BB%B6%E8%BF%9F%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0/">
+        <a href="/2022/01/21/PAT%E4%B9%99/1070%20%E7%BB%93%E7%BB%B3/">
           
           
             
           
-          延迟的回文数题目描述：给定一个 k+1 位的正整数 N，写成 a**k⋯a1a0 的形式，其中对所有 i 有 0≤a**i&lt;10 且 a*k&gt;0。N* 被称为一个回文数，当且仅当对所有 i 有 a**i&#x3D;a**k−i。零也被定义为一个回文数。
-非回文数也可以通过一系列操作变出回文数。首先将该数字逆转，再将逆转数与该数相加，如果和还不是一个回文数，就重复这个逆转再相加的操作，直
+           结绳题目描述：给定一段一段的绳子，你需要把它们串成一条绳。每次串连的时候，是把两段绳子对折，再如下图所示套接在一起。这样得到的绳子又被当成是另一段绳子，可以再次对折去跟另一段绳子串连。每次串连后，原来两段绳子的长度就会减半。
+
+给定 N 段绳子的长度，你需要找出它们能串成的绳子的最大长度。
+输入格式：每个输入包含 1 个测试用例。每个测试用例第 1 行给出正整数 N (2≤N≤104)；第 2 
         </a>
       </p>
 
@@ -290,18 +292,20 @@ ID x y
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/21/PAT%E4%B9%99/1088%20%E4%B8%89%E4%BA%BA%E8%A1%8C/">1088 三人行</a>
+        <a href="/2022/01/21/PAT%E4%B9%99/1085%20PAT%E5%8D%95%E4%BD%8D%E6%8E%92%E8%A1%8C/">1085 PAT单位排行</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/01/21/PAT%E4%B9%99/1088%20%E4%B8%89%E4%BA%BA%E8%A1%8C/">
+        <a href="/2022/01/21/PAT%E4%B9%99/1085%20PAT%E5%8D%95%E4%BD%8D%E6%8E%92%E8%A1%8C/">
           
           
             
           
-          三人行题目描述：子曰：“三人行，必有我师焉。择其善者而从之，其不善者而改之。”
-本题给定甲、乙、丙三个人的能力值关系为：甲的能力值确定是 2 位正整数；把甲的能力值的 2 个数字调换位置就是乙的能力值；甲乙两人能力差是丙的能力值的 X 倍；乙的能力值是丙的 Y 倍。请你指出谁比你强应“从之”，谁比你弱应“改之”。
-输入格式：输入在一行中给出三个数，依次为：M（你自己的能力值）、X 和 Y。三个数字
+          PAT单位排行题目描述：每次 PAT 考试结束后，考试中心都会发布一个考生单位排行榜。本题就请你实现这个功能。
+输入格式：输入第一行给出一个正整数 N（≤105），即考生人数。随后 N 行，每行按下列格式给出一个考生的信息：
+准考证号 得分 学校
+
+其中准考证号是由 6 个字符组成的字符串，其首字母表示考试的级别：B代表乙级，A代表甲级，T代表顶级；得分是 [0, 100] 区间内的整数；学校是由
         </a>
       </p>
 
@@ -326,7 +330,7 @@ ID x y
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/golang/">golang</a>
+              <a href="/tags/c/">c</a>
             
           </div>
         
@@ -392,58 +396,6 @@ ID x y
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/21/PAT%E4%B9%99/1085%20PAT%E5%8D%95%E4%BD%8D%E6%8E%92%E8%A1%8C/">1085 PAT单位排行</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/PAT%E4%B9%99/1085%20PAT%E5%8D%95%E4%BD%8D%E6%8E%92%E8%A1%8C/">
-          
-          
-            
-          
-          PAT单位排行题目描述：每次 PAT 考试结束后，考试中心都会发布一个考生单位排行榜。本题就请你实现这个功能。
-输入格式：输入第一行给出一个正整数 N（≤105），即考生人数。随后 N 行，每行按下列格式给出一个考生的信息：
-准考证号 得分 学校
-
-其中准考证号是由 6 个字符组成的字符串，其首字母表示考试的级别：B代表乙级，A代表甲级，T代表顶级；得分是 [0, 100] 区间内的整数；学校是由
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/PAT%E5%88%B7%E9%A2%98/">PAT刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/c/">c</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2022/01/21/PAT%E4%B9%99/1091%20N-%E8%87%AA%E5%AE%88%E6%95%B0/">1091 N-自守数</a>
       </h1>
 
@@ -456,57 +408,6 @@ ID x y
           N-自守数题目描述：如果某个数 K 的平方乘以 N 以后，结果的末尾几位数等于 K，那么就称这个数为“N-自守数”。例如 3×922&#x3D;25392，而 25392 的末尾两位正好是 92，所以 92 是一个 3-自守数。
 本题就请你编写程序判断一个给定的数字是否关于某个 N 是 N-自守数。
 输入格式：输入在第一行中给出正整数 M（≤20），随后一行给出 M 个待检测的、不超过 1000 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 21:37" pubdate>
-              2022-01-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/PAT%E5%88%B7%E9%A2%98/">PAT刷题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">golang</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/21/PAT%E4%B9%99/1093%E5%AD%97%E7%AC%A6%E4%B8%B2A+B/">1093 字符串A+B</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/21/PAT%E4%B9%99/1093%E5%AD%97%E7%AC%A6%E4%B8%B2A+B/">
-          
-          
-            
-          
-          字符串A+B题目描述：给定两个字符串 A 和 B，本题要求你输出 A+B，即两个字符串的并集。要求先输出 A，再输出 B，但重复的字符必须被剔除。
-输入格式：输入在两行中分别给出 A 和 B，均为长度不超过 106的、由可见 ASCII 字符 (即码值为32~126)和空格组成的、由回车标识结束的非空字符串。
-输出格式：在一行中输出题面要求的 A 和 B 的和。
-输入样例：This is a sa
         </a>
       </p>
 
@@ -591,6 +492,107 @@ table th:nth-of-type(5) {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/01/21/PAT%E4%B9%99/1093%E5%AD%97%E7%AC%A6%E4%B8%B2A+B/">1093 字符串A+B</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/PAT%E4%B9%99/1093%E5%AD%97%E7%AC%A6%E4%B8%B2A+B/">
+          
+          
+            
+          
+          字符串A+B题目描述：给定两个字符串 A 和 B，本题要求你输出 A+B，即两个字符串的并集。要求先输出 A，再输出 B，但重复的字符必须被剔除。
+输入格式：输入在两行中分别给出 A 和 B，均为长度不超过 106的、由可见 ASCII 字符 (即码值为32~126)和空格组成的、由回车标识结束的非空字符串。
+输出格式：在一行中输出题面要求的 A 和 B 的和。
+输入样例：This is a sa
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/PAT%E5%88%B7%E9%A2%98/">PAT刷题</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/golang/">golang</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/21/PAT%E4%B9%99/1088%20%E4%B8%89%E4%BA%BA%E8%A1%8C/">1088 三人行</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/21/PAT%E4%B9%99/1088%20%E4%B8%89%E4%BA%BA%E8%A1%8C/">
+          
+          
+            
+          
+          三人行题目描述：子曰：“三人行，必有我师焉。择其善者而从之，其不善者而改之。”
+本题给定甲、乙、丙三个人的能力值关系为：甲的能力值确定是 2 位正整数；把甲的能力值的 2 个数字调换位置就是乙的能力值；甲乙两人能力差是丙的能力值的 X 倍；乙的能力值是丙的 Y 倍。请你指出谁比你强应“从之”，谁比你弱应“改之”。
+输入格式：输入在一行中给出三个数，依次为：M（你自己的能力值）、X 和 Y。三个数字
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-21 21:37" pubdate>
+              2022-01-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/PAT%E5%88%B7%E9%A2%98/">PAT刷题</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/golang/">golang</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/01/21/PAT%E4%B9%99/1038%20%E7%BB%9F%E8%AE%A1%E5%90%8C%E6%88%90%E7%BB%A9%E5%AD%A6%E7%94%9F/">1038 统计同成绩学生</a>
       </h1>
 
@@ -641,16 +643,16 @@ table th:nth-of-type(5) {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/21/PAT%E4%B9%99/1048%20%E6%95%B0%E5%AD%97%E5%8A%A0%E5%AF%86/">1048 数字加密</a>
+        <a href="/2022/01/21/PAT%E4%B9%99/1044%20%E7%81%AB%E6%98%9F%E6%95%B0%E5%AD%97/">1044 火星数字</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/01/21/PAT%E4%B9%99/1048%20%E6%95%B0%E5%AD%97%E5%8A%A0%E5%AF%86/">
+        <a href="/2022/01/21/PAT%E4%B9%99/1044%20%E7%81%AB%E6%98%9F%E6%95%B0%E5%AD%97/">
           
           
             
           
-          go与c的for循环不同地方,学会了字符串逆置
+          学习了用“\n”以标志进行输入字符串,并用replace取消了结尾的"\n",sting字符串不可改变，可以先转化成[]byte改变后再转换过来，学会了字符串split。
         </a>
       </p>
 
