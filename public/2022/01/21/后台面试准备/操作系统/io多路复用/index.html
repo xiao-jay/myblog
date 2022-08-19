@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      844 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      9
        分钟
     </span>
   
@@ -232,7 +232,79 @@
             <h1 style="display: none">io多路复用</h1>
             
             <div class="markdown-body" id="post-body">
-              
+              <h3 id="io多路复用概念"><a href="#io多路复用概念" class="headerlink" title="io多路复用概念"></a>io多路复用概念</h3><p>​    IO多路复用是一种同步IO模型，一个线程监听多个IO事件，当有IO事件就绪时，就会通知线程去执行相应的读写操作，没有就绪事件时，就会阻塞交出cpu。多路是指网络链接，复用指的是复用同一线程。</p>
+<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><ol>
+<li>用户线程调用select，将fd_set从用户空间拷贝到内核空间</li>
+<li>内核在内核空间对fd_set遍历一遍，检查是否有就绪的socket描述符，如果没有的话，就会进入休眠，直到有就绪的socket描述符</li>
+<li>内核返回select的结果给用户线程，即就绪的文件描述符数量</li>
+<li>用户拿到就绪文件描述符数量后，再次对fd_set进行遍历，找出就绪的文件描述符</li>
+<li>用户线程对就绪的文件描述符进行读写操作</li>
+</ol>
+<p>优点</p>
+<ol>
+<li>所有平台都支持，良好的跨平台性</li>
+</ol>
+<p>缺点</p>
+<ol>
+<li>每次调用select，都需要将fd_set从用户空间拷贝到内核空间，当fd很多时，这个开销很大</li>
+<li>最大连接数（支持的最大文件描述符数量）有限制，一般为1024</li>
+<li>每次有活跃的socket描述符时，都需要遍历一次fd_set，造成大量的时间开销，时间复杂度是O(n)</li>
+<li>将fd_set从用户空间拷贝到内核空间，内核空间也需要对fd_set遍历一遍</li>
+</ol>
+<h3 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h3><p>数据结构定义如下，<strong>链表</strong>存储</p>
+<pre><code class="hljs c"><span class="hljs-comment">/* Data structure describing a polling request.  */</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">pollfd</span></span>
+<span class="hljs-class">  &#123;</span>
+    <span class="hljs-type">int</span> fd;			<span class="hljs-comment">/* File descriptor to poll.  */</span>
+    <span class="hljs-type">short</span> <span class="hljs-type">int</span> events;		<span class="hljs-comment">/* Types of events poller cares about.  */</span>
+    <span class="hljs-type">short</span> <span class="hljs-type">int</span> revents;		<span class="hljs-comment">/* Types of events that actually occurred.  */</span>
+  &#125;;</code></pre>
+
+
+
+
+<p>与select的异同点</p>
+<p>相同点：</p>
+<p>（执行过程与select类似）</p>
+<ol>
+<li>内核线程都需要遍历文件描述符，并且当内核返回就绪的文件描述符数量后，还需要遍历一次找出就绪的文件描述符</li>
+<li>需要将文件描述符数组或链表从用户空间拷贝到内核空间</li>
+<li>性能开销会随文件描述符的数量而线性增大</li>
+</ol>
+<p>不同点：</p>
+<ol>
+<li>select存储的数据结构是文件描述符数组，poll采用链表</li>
+<li>select有最大连接数限制，poll没有最大限制，因为poll采用链表存储</li>
+</ol>
+<h3 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h3><ol>
+<li><p>epoll_create创建eventpoll对象（红黑树，双链表）</p>
+</li>
+<li><p>一棵红黑树，存储监听的所有文件描述符，并且通过epoll_ctl将文件描述符添加、删除到红黑树</p>
+</li>
+<li><p>一个双链表，存储就绪的文件描述符列表，epoll_wait调用时，检测此链表中是否有数据，有的话直接返回</p>
+</li>
+<li><p>所有添加到eventpoll中的事件都与设备驱动程序建立回调关系</p>
+</li>
+</ol>
+<p>缺点</p>
+<ol>
+<li>只能工作在linux下</li>
+</ol>
+<p>优点</p>
+<ol>
+<li>时间复杂度为O(1)，当有事件就绪时，epoll_wait只需要检测就绪链表中有没有数据，如果有的话就直接返回</li>
+<li>不需要从用户空间到内核空间频繁拷贝文件描述符集合，使用了内存映射(mmap)技术</li>
+<li>当有就绪事件发生时采用回调的形式通知用户线程</li>
+</ol>
+<ul>
+<li>应用场景<ol>
+<li>连接数较少并且都很活跃,用select和poll效率更高</li>
+<li>连接数较多并且都不很活跃,使用epoll效率更高</li>
+</ol>
+</li>
+</ul>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6931543528971436046">https://juejin.cn/post/6931543528971436046</a></p>
+
             </div>
             <hr>
             <div>
