@@ -21,3 +21,15 @@ banner_img: /img/壁纸.jpg
 VM是一个运行在宿主机之上的完整的操作系统，VM运行自身操作系统会占用较多的CPU、内存、硬盘资源。Docker不同于VM，只包含应用程序以及依赖库，基于libcontainer运行在宿主机上，并处于一个隔离的环境中，这使得Docker更加轻量高效，启动容器只需几秒钟之内完成。由于Docker轻量、资源占用少，使得Docker可以轻易的应用到构建标准化的应用中。但Docker目前还不够完善，比如隔离效果不如VM，共享宿主机操作系统的一些基础库等；网络配置功能相对简单，主要以桥接方式为主；查看日志也不够方便灵活。
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24ely1h59quy8wlvj21c80u0afi.jpg)
+
+
+
+
+
+### Docker 容器有几种在状态？
+
+- starting 运行状态
+- Exited 退出状态
+- Paused 暂停状态
+- healthy 健康状态
+- unhealthy 非健康状态
