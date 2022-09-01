@@ -71,8 +71,70 @@ MySQL从 **5.5** 版本开始通过以插件的形式开始支持半同步的主
 
 ## Mysql集群常用高可用方案
 
-### 主从或主主 + Keepalived
+
+
+### 1、主从或主主 + Keepalived
 
 主从或主主 + Keepalived 算是历史比较悠久的 MySQL 高可用方案，常见架构如下：
 
 ![img](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20210819_f701ca76-00d2-11ec-8bff-00163e068ecd.png)
+
+### 2、MySQL Cluster
+mysql集群（MySQL Cluster）也是mysql官方提供的。
+
+MySQL Cluster是多主多从结构的
+
+就各个集群方案来说，其优势为：
+
+mysql官方提供的工具，无需第三方插件。
+高可用性优秀，99.999%的可用性，可以自动切分数据，能跨节点冗余数据（其数据集并不是存储某个特定的MySQL实例上，而是被分布在多个Data Nodes中，即一个table的数据可能被分散在多个物理节点上，任何数据都会在多个Data Nodes上冗余备份。任何一个数据变更操作，都将在一组Data Nodes上同步，以保证数据的一致性）。
+可伸缩性优秀，能自动切分数据，方便数据库的水平拓展。
+负载均衡优秀，可同时用于读操作、写操作都都密集的应用，也可以使用SQL和NOSQL接口访问数据。
+多个主节点，没有单点故障的问题，节点故障恢复通常小于1秒。
+其劣势为：
+
+架构模式和原理很复杂。
+只能使用存储引擎 NDB ，与平常使用的InnoDB 有很多明显的差距。比如在事务（其事务隔离级别只支持Read Committed，即一个事务在提交前，查询不到在事务内所做的修改），外键（虽然最新的NDB 存储引擎已经支持外键，但性能有问题，因为外键所关联的记录可能在别的分片节点），表限制上的不同，可能会导致日常开发出现意外。点击查看具体差距比较
+作为分布式的数据库系统，各个节点之间存在大量的数据通讯，比如所有访问都是需要经过超过一个节点（至少有一个 SQL Node和一个 NDB Node）才能完成，因此对节点之间的内部互联网络带宽要求高。
+Data Node数据会被尽量放在内存中，对内存要求大，而且重启的时候，数据节点将数据load到内存需要很长时间。
+
+### 3、MHA（Master High Avaliable）
+
+MHA（Master High Avaliable） 是一款 MySQL 开源高可用程序，MHA 在监测到主实例无响应后，可以自动将同步最靠前的 Slave 提升为 Master，然后将其他所有的 Slave 重新指向新的 Master。常见架构如下：
+
+![img](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20210819_f7667fac-00d2-11ec-8bff-00163e068ecd.png)
+
+优点
+
+- 可以根据需要扩展 MySQL 的节点数量。
+- 只要复制没有延迟，MHA 通常可以在几秒内实现故障切换。
+- 可以使用任何存储引擎。
+
+缺点
+
+- 仅监视主数据库。
+- 需要做 SSH 互信
+- 使用 Perl 开发，二次开发困难。
+- 跟不上 MySQL 新版本，最近一次发版是 2018 年。
+
+
+
+### 4、 Xenon
+
+Xenon 是一个使用 Raft 协议的 MySQL 高可用和复制管理工具，使用 Go 语音编写。架构图如下：
+
+![img](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20210819_f86c4166-00d2-11ec-8bff-00163e068ecd.png)
+
+Xenon 基于 Raft 协议进行无中心化选主，并能实现秒级切换。
+
+优点
+
+- 不需要管理节点。
+- 无数据丢失的快速故障转移。
+
+
+
+缺点
+
+- 只适用于 GTID。
+- 默认情况下，Xenon 和 MySQL 跑在同一个账号下。
