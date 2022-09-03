@@ -45,10 +45,6 @@ IPVS 提供了更多选项来平衡后端 Pod 的流量。这些是：
 - `sed`：最短预期延迟（Shortest Expected Delay）
 - `nq`：从不排队（Never Queue）
 
-##### ipvs
-
-
-
 
 
 服务发现：
