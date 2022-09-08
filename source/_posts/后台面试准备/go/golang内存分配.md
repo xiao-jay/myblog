@@ -106,7 +106,6 @@ func newstack() {
    }
    casgstatus(gp, _Gcopystack, _Grunning)
 }
-复制代码
 ```
 
 旧栈的大小是通过我们上面说的保存在`goroutine`中的`stack`信息里记录的栈区内存边界计算出来的，然后用旧栈两倍的大小创建新栈，创建前会检查是新栈的大小是否超过了单个栈的内存上限。
@@ -118,7 +117,6 @@ func newstack() {
        print("runtime: goroutine stack exceeds ", maxstacksize, "-byte limit\n")
       throw("stack overflow")
    }
-复制代码
 ```
 
 如果目标栈的大小没有超出程序的限制，会将 `goroutine` 切换至 `_Gcopystack` 状态并调用 `runtime.copystack` 开始栈的拷贝，在拷贝栈的内存之前，运行时会先通过`runtime.stackalloc` 函数分配新的栈空间：
@@ -141,7 +139,6 @@ func copystack(gp *g, newsize uintptr) {
   // 释放旧栈
   stackfree(old)
 }
-复制代码
 ```
 
 新栈的初始化和数据的复制是一个比较简单的过程，整个过程中最复杂的地方是将指向源栈中内存的指针调整为指向新的栈，这一步完成后就会释放掉旧栈的内存空间了。
@@ -169,12 +166,11 @@ copystack gp=0xc000000180 [0xc00006c000 0xc00006f890 0xc000070000] -> [0xc000070
 stackfree 0xc00006c000 16384
 stack grow done
 
-复制代码
 ```
 
 ### 栈缩容
 
-在`goroutine`运行的过程中，如果栈区的空间使用率不超过1/4，那么在垃圾回收的时候使用`runtime.shrinkstack`进行栈缩容，当然进行缩容前会执行一堆前置检查，都通过了才会进行缩容
+在`goroutine`运行的过程中，如果栈区的空间使用率不超过1/4，那么在**垃圾回收**的时候使用`runtime.shrinkstack`进行栈缩容，当然进行缩容前会执行一堆前置检查，都通过了才会进行缩容
 
 ```go
 func shrinkstack(gp *g) {
@@ -191,7 +187,6 @@ func shrinkstack(gp *g) {
 
 	copystack(gp, newsize)
 }
-复制代码
 ```
 
 如果要触发栈的缩容，新栈的大小会是原始栈的一半，不过如果新栈的大小低于程序的最低限制 2KB，那么缩容的过程就会停止。缩容也会调用扩容时使用的 `runtime.copystack` 函数开辟新的栈空间，将旧栈的数据拷贝到新栈以及调整原来指针的指向。
@@ -206,7 +201,6 @@ func main() {
    runtime.GC()
    println(&x)
 }
-复制代码
 ```
 
 执行命令**go build -gcflags -S main.go**后会看到类似下面的输出。
@@ -219,10 +213,7 @@ stackalloc 16384
 copystack gp=0xc000000180 [0xc00007a000 0xc000081e60 0xc000082000] -> [0xc000076000 0xc000079e60 0xc00007a000]/16384
 ...
 
-复制代码
 ```
-
-## 
 
 
 
