@@ -147,3 +147,11 @@ TCP和UPD的区别
 3、UDP程序结构比较简单
 
 4、TCP要求数据正确，保证数据顺序；UDP可能丢包，不保证数据顺序。
+
+
+
+### tcp在socket各阶段
+
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h651zzbxb2j20le0m2acf.jpg)
+
+![](https://tva1.sinaimg.cn/large/e6c9d24ely1h651yhv5trj20qu0kn751.jpg)
